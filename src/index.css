@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -11,28 +12,21 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #F52D30;
+  background: #E5E5F8;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #be2022;
+  background: #cccce7;
 }
 
-@font-face {
-  font-family: "Giga Sans";
-  src: url("assets/fonts/GigaSan/GigaSans-Medium.eot");
-  src: local("Giga Sans Medium"), local("GigaSans-Medium"), url("assets/fonts/GigaSan/GigaSans-Medium.eot?#iefix") format("embedded-opentype"), url("assets/fonts/GigaSan/GigaSans-Medium.woff2") format("woff2"), url("assets/fonts/GigaSan/GigaSans-Medium.woff") format("woff"), url("assets/fonts/GigaSan/GigaSans-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-}
 * {
   margin: 0;
   padding: 0;
-  text-decoration: none;
+  text-decoration: none !important;
   outline: none;
-  font-family: "Giga Sans", serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -62,7 +56,7 @@ font-family: 'Montserrat Alternates', sans-serif;
 }
 
 body {
-  background-color: #ECECEC !important;
+  background-color: #FAFAFF !important;
 }
 
 .cursor-pointer {
@@ -73,12 +67,16 @@ body {
   color: #000;
 }
 
+.c-white {
+  color: #fff !important;
+}
+
 .container {
-  max-width: 1140px !important;
+  max-width: 1420px !important;
 }
 
 .MainTemplate {
-  margin-top: 174px;
+  margin-top: 60px;
 }
 @media (max-width: 576px) {
   .MainTemplate {
@@ -86,55 +84,91 @@ body {
   }
 }
 
-.def-content {
+.fa-flip-horizontal {
+  transform: scaleX(-1) !important;
+}
+
+.purple-button {
+  border-radius: 1.25rem !important;
+  background: #7675F9 !important;
+  padding: 0.5625rem 1.125rem !important;
+  color: #FAFAFF !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+  line-height: unset !important;
+  box-shadow: unset !important;
+}
+
+.btn-green {
+  border-radius: 3.125rem !important;
+  background: #61CDA6 !important;
+  line-height: unset !important;
+  box-shadow: unset !important;
+  color: #FFF !important;
+  text-align: center !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+}
+
+hr {
+  border-color: #BFBFD9;
+}
+
+.def-search {
+  width: 220px;
+  height: 40px;
+  border-radius: 50px;
+  border: 1px solid #A8A8BE;
+  background: #FAFAFF;
+  padding-left: 1.875rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-right: 20px;
+  color: #A8A8BE;
+  font-size: 16px;
+}
+.def-search input {
   width: 100%;
-  background: #FFFFFF;
-  box-shadow: 8px 7px 10px rgba(0, 0, 0, 0.06);
-  border-radius: 2rem;
-  padding: 3.1875rem;
-}
-@media (max-width: 576px) {
-  .def-content {
-    padding: 2.25rem;
-  }
-}
-
-.content-title {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 1.5rem;
-  line-height: 96.4%;
-  color: #000000;
-}
-
-.content-subtitle {
-  font-family: "Inter", sans-serif;
-  font-style: normal;
+  border: 0;
+  background: transparent;
+  margin-left: 10px;
+  color: #A8A8BE;
+  font-size: 16px;
   font-weight: 400;
-  font-size: 1rem;
-  line-height: 100%;
-  color: #000000;
 }
-
-.def-image {
-  width: 100%;
-}
-
-.btn-red {
-  background-color: #F52D30 !important;
-  border-radius: 10px !important;
-  padding-left: 40px !important;
-  padding-right: 40px !important;
-  font-family: "Inter", sans-serif !important;
+.def-search input::placeholder {
+  color: #A8A8BE;
+  font-size: 16px;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 0.002em;
-  color: #FFFFFF;
 }
 
-.def-checkbox {
-  color: rgba(245, 45, 48, 0.89) !important;
+.pagination button {
+  color: #A8A8BE;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+.pagination button[aria-current=true] {
+  background: transparent;
+  color: #666676;
+}
+.pagination li:first-child button:after {
+  content: "";
+  width: 36px;
+  height: 10px;
+  background: url("./assets/images/prev-pagination.svg");
+}
+.pagination li:last-child button:after {
+  content: "";
+  width: 36px;
+  height: 10px;
+  background: url("./assets/images/next-pagination.svg");
+}
+.pagination li svg {
+  display: none;
 }
 
 /*# sourceMappingURL=index.css.map */
