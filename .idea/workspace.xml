@@ -5,24 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb80f4e0-05c3-46b6-b849-f5a346321be1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/images/product.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/pagination-count/pagination-count.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/product/product.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/product/product.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/status-button/status-button.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/status-button/status-button.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/switch/switch.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/icons.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/icons.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/main-template/main-template.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/main-template/main-template.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/navbar/navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/navbar/navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shape/shape.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shape/shape.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/review-moderation/review-moderation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/review-moderation/review-moderation.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/review-moderation/review-moderation.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/review-moderation/review-moderation.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/const.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/const.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +58,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1695398251549</updated>
-      <workItem from="1695398253724" duration="20144000" />
+      <workItem from="1695398253724" duration="20222000" />
     </task>
     <servers />
   </component>

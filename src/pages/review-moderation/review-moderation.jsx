@@ -44,13 +44,15 @@ const pageSize = [10, 50, 100];
 function ReviewModeration() {
   const [paginationCount, setPaginationCount] = useState(pageSize[0]);
   const [activePage, setActivePage] = useState(1);
-  const [activePageArray, setActivePageArray] = useState([]);
+  const [activePageArray, setActivePageArray] = useState(
+    [...products].slice(0, paginationCount)
+  );
 
   useEffect(() => {
     const firstPageIndex = (activePage - 1) * paginationCount;
     const lastPageIndex = firstPageIndex + paginationCount;
     setActivePageArray(products.slice(firstPageIndex, lastPageIndex));
-  }, [products, paginationCount, activePage]);
+  }, [paginationCount, activePage]);
 
   return (
     <MainTemplate className="reviewModeration">
