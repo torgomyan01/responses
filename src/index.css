@@ -27,6 +27,7 @@
   text-decoration: none !important;
   outline: none;
   font-family: "Roboto", sans-serif;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -67,8 +68,24 @@ body {
   color: #000;
 }
 
+.c-grey {
+  color: #666676;
+}
+
 .c-white {
   color: #fff !important;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.fs-14 {
+  font-size: 14px;
 }
 
 .container {
@@ -77,6 +94,7 @@ body {
 
 .MainTemplate {
   margin-top: 60px;
+  padding-bottom: 100px;
 }
 @media (max-width: 576px) {
   .MainTemplate {
@@ -111,7 +129,26 @@ body {
   font-weight: 700 !important;
   text-transform: uppercase !important;
 }
+.btn-green.outlined {
+  border-radius: 50px !important;
+  border: 1px solid #61CDA6 !important;
+  background: #fff !important;
+  color: #61CDA6 !important;
+  padding: 0.9375rem 2.125rem !important;
+}
 
+.purple-gray-button {
+  background: #E5E5F8 !important;
+  border-radius: 10px !important;
+  padding: 10px !important;
+  color: #A8A8BE !important;
+  font-size: 20px !important;
+  box-shadow: unset !important;
+}
+.purple-gray-button.outlined {
+  border: 1px solid #BFBFD9 !important;
+  background: #FAFAFF !important;
+}
 hr {
   border-color: #BFBFD9;
 }
@@ -169,6 +206,50 @@ hr {
 }
 .pagination li svg {
   display: none;
+}
+
+.def-label {
+  width: 100%;
+  height: auto;
+}
+.def-label-title {
+  color: #666676;
+  font-size: 18px;
+  display: block;
+  margin-bottom: 10px;
+}
+.def-label input, .def-label textarea {
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  background: #E5E5F8;
+  padding-left: 10px;
+  border: 0;
+  color: #A8A8BE;
+}
+.def-label textarea {
+  overflow: auto;
+  padding: 12px;
+  resize: none;
+  height: 100px;
+}
+
+.pagination-count {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.pagination-count .purple-gray-button {
+  min-width: 40px !important;
+  height: 40px !important;
+  border-radius: 5px !important;
+  font-size: 16px !important;
+  margin-right: 20px;
+  transition: 0.3s !important;
+}
+.pagination-count .purple-gray-button.active {
+  background: #E5E5F8 !important;
+  border-color: #E5E5F8 !important;
 }
 
 /*# sourceMappingURL=index.css.map */

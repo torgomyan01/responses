@@ -5,6 +5,11 @@ import rubleIcon from "../../assets/images/ruble-icon.svg";
 import { Link } from "react-router-dom";
 import { Badge, Button, IconButton } from "@mui/material";
 
+/**
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function Navbar() {
   return (
     <div className="nav">

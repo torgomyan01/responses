@@ -2,7 +2,15 @@ import React from "react";
 import "./shape.css";
 import updateButton from "../../assets/images/update-button.svg";
 
+/**
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function Shape() {
+  function ReloadPage() {
+    window.location.reload();
+  }
   return (
     <div className="shape">
       <div className="shape-item">
@@ -11,9 +19,14 @@ function Shape() {
       </div>
       <div className="shape-item green">
         <i className="fa-regular fa-message-lines fa-flip-horizontal me-2" />
-        Список товаров
+        Отзывы
       </div>
-      <img src={updateButton} alt="updateButton" className="cursor-pointer" />
+      <img
+        src={updateButton}
+        alt="updateButton"
+        onClick={ReloadPage}
+        className="cursor-pointer"
+      />
     </div>
   );
 }
