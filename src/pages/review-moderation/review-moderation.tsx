@@ -1,50 +1,35 @@
-import React, { useEffect, useState } from "react";
-import "./review-moderation.css";
-import MainTemplate from "../../features/main-template/main-template";
-import { Button, Pagination } from "@mui/material";
-import Shape from "../../features/shape/shape";
-import product from "../../assets/images/product.png";
-import { STATUS_BUTTON } from "../../utils/const";
-import Product from "../../features/product/product";
-import { RandomKey } from "../../utils/helpers";
-import PaginationCount from "../../features/pagination-count/pagination-count";
+import React, { useEffect, useState } from 'react';
+import './review-moderation.css';
+import MainTemplate from '../../features/main-template/main-template';
+import { Button, Pagination } from '@mui/material';
+import Shape from '../../features/shape/shape';
+import product from '../../assets/images/product.png';
+import { STATUS_BUTTON } from '../../utils/const';
+import Product from '../../features/product/product';
+import { RandomKey } from '../../utils/helpers';
+import PaginationCount from '../../features/pagination-count/pagination-count';
 
-/**
- *
- * @type {{image: *, reviews: number, autoSend: boolean, title: string, list: string[], status: string}[]}
- */
-const products = Array.from({ length: 100 }).map((item, index) => {
+const products: Products[] = Array.from({ length: 100 }).map((item, index) => {
   return {
     image: product,
-    title:
-      "Шпатели для депиляции, шугаринга, воска, бровей деревянные -----" +
-      (index + 1),
+    title: `Шпатели для депиляции, шугаринга, воска, бровей деревянные -----${index + 1}`,
     list: [
-      "Организация: ВБ ИП Шишкова О.П.",
-      "Артикул: 123123123 ",
-      "Артикул поставщика: Узкие-шпатели-100-ИП-Шишкова-О-П",
+      'Организация: ВБ ИП Шишкова О.П.',
+      'Артикул: 123123123 ',
+      'Артикул поставщика: Узкие-шпатели-100-ИП-Шишкова-О-П'
     ],
     status: STATUS_BUTTON.CLOSED,
     autoSend: false,
-    reviews: 2,
+    reviews: 2
   };
 });
 
-/**
- *
- * @type {number[]}
- */
 const pageSize = [10, 50, 100];
 
-/**
- *
- * @returns {JSX.Element}
- * @constructor
- */
 function ReviewModeration() {
-  const [paginationCount, setPaginationCount] = useState(pageSize[0]);
-  const [activePage, setActivePage] = useState(1);
-  const [activePageArray, setActivePageArray] = useState(
+  const [paginationCount, setPaginationCount] = useState<number>(pageSize[0]);
+  const [activePage, setActivePage] = useState<number>(1);
+  const [activePageArray, setActivePageArray] = useState<Products[]>(
     [...products].slice(0, paginationCount)
   );
 
@@ -92,7 +77,7 @@ function ReviewModeration() {
         <PaginationCount
           array={pageSize}
           active={paginationCount}
-          onChange={(value) => setPaginationCount(value)}
+          onChange={(value: number) => setPaginationCount(value)}
         />
         <div className="pagination">
           <Pagination

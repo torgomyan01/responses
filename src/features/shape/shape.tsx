@@ -1,12 +1,7 @@
-import React from "react";
-import "./shape.css";
-import updateButton from "../../assets/images/update-button.svg";
+import React from 'react';
+import './shape.css';
+import updateButton from '../../assets/images/update-button.svg';
 
-/**
- *
- * @returns {JSX.Element}
- * @constructor
- */
 function Shape() {
   function ReloadPage() {
     window.location.reload();
@@ -21,12 +16,7 @@ function Shape() {
         <i className="fa-regular fa-message-lines fa-flip-horizontal me-2" />
         Отзывы
       </div>
-      <img
-        src={updateButton}
-        alt="updateButton"
-        onClick={ReloadPage}
-        className="cursor-pointer"
-      />
+      <img src={updateButton} alt="updateButton" onClick={ReloadPage} className="cursor-pointer" />
     </div>
   );
 }

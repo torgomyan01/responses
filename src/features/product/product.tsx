@@ -1,19 +1,13 @@
-import React, { useState } from "react";
-import StatusButton from "../status-button/status-button";
-import { Button, Rating } from "@mui/material";
-import DefSwitch from "../switch/switch";
-import "./product.css";
-import { RandomKey } from "../../utils/helpers";
+import React, { useState } from 'react';
+import StatusButton from '../status-button/status-button';
+import { Button, Rating } from '@mui/material';
+import DefSwitch from '../switch/switch';
+import './product.css';
+import { RandomKey } from '../../utils/helpers';
 
-/**
- *
- * @param info
- * @returns {JSX.Element}
- * @constructor
- */
-function Product({ info }) {
-  const [value, setValue] = useState(info.reviews);
-  const [review, setReview] = useState(false);
+function Product({ info }: Product) {
+  const [value, setValue] = useState<number | null>(info.reviews);
+  const [review, setReview] = useState<boolean>(false);
   return (
     <div className="products-item">
       <div className="products-item-header">
@@ -24,7 +18,7 @@ function Product({ info }) {
           <div>
             <h2 className="products-item-header-title">{info.title}</h2>
             <ul>
-              {info.list.map((listItem) => (
+              {info.list.map((listItem: string) => (
                 <li key={RandomKey()}>{listItem}</li>
               ))}
             </ul>
@@ -58,21 +52,17 @@ function Product({ info }) {
           variant="contained"
           className="purple-gray-button"
           sx={{ minWidth: 40, height: 40 }}
-          onClick={() => setReview(!review)}
-        >
+          onClick={() => setReview(!review)}>
           <i
             className="fa-solid fa-angle-up trans"
             style={{
-              transform: `rotate(${review ? "0" : "180deg"})`,
+              transform: `rotate(${review ? '0' : '180deg'})`
             }}
           />
         </Button>
       </div>
 
-      <div
-        className="overflow-hidden trans"
-        style={{ height: review ? 320 : 0 }}
-      >
+      <div className="overflow-hidden trans" style={{ height: review ? 320 : 0 }}>
         <label className="def-label mt-5">
           <span className="def-label-title">Отзыв</span>
           <input type="text" placeholder="sd" />

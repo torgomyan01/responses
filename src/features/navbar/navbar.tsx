@@ -1,15 +1,10 @@
-import React from "react";
-import "./navbar.css";
-import Logo from "../../assets/images/logo-site.svg";
-import rubleIcon from "../../assets/images/ruble-icon.svg";
-import { Link } from "react-router-dom";
-import { Badge, Button, IconButton } from "@mui/material";
+import React from 'react';
+import './navbar.css';
+import Logo from '../../assets/images/logo-site.svg';
+import rubleIcon from '../../assets/images/ruble-icon.svg';
+import { Link } from 'react-router-dom';
+import { Badge, Button, IconButton } from '@mui/material';
 
-/**
- *
- * @returns {JSX.Element}
- * @constructor
- */
 function Navbar() {
   return (
     <div className="nav">
@@ -50,10 +45,9 @@ function Navbar() {
             overlap="circular"
             className="ms-3 nav-debug"
             anchorOrigin={{
-              vertical: "top",
-              horizontal: "left",
-            }}
-          >
+              vertical: 'top',
+              horizontal: 'left'
+            }}>
             <IconButton aria-label="setting" className="c-white">
               <i className="fa-sharp fa-solid fa-bell" />
             </IconButton>
