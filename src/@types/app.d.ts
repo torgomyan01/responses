@@ -35,3 +35,10 @@ declare interface StatusButton {
 declare interface SortingSelect {
   items: string[];
 }
+
+declare interface IDefaultInputs {
+  error?: boolean;
+  errorMessage?: string;
+  placeholder: string;
+  onChange?: any;
+}

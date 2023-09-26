@@ -1,5 +1,6 @@
 export const SITE_URL = {
-  HOME: '/'
+  HOME: '/',
+  CREATE_PROJECT: '/createproject'
 };
 
 export const STATUS_BUTTON = {

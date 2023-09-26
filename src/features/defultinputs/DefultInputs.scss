@@ -1,0 +1,23 @@
+
+
+.defaultInputs{
+  width: 100%;
+  .defaultInput{
+    width: 100%;
+    border-radius: 5px;
+    background: #E5E5F8;
+    padding: 15px 0 15px 20px;
+    color: #333;
+    font-size: 16px;
+    &.error{
+      background: #FFCECE;
+      &::placeholder{
+        color: #FF6C6C;
+      }
+    }
+    &::placeholder{
+      color: #A8A8BE;
+      font-size: 16px;
+    }
+  }
+}

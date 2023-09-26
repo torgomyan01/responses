@@ -7,6 +7,7 @@ import { Badge, Button, IconButton } from '@mui/material';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropDownWb from '../../assets/images/DropDownWb.svg';
 import DropDownOz from '../../assets/images/DropDownOz.svg';
+import { SITE_URL } from '../../utils/const';
 
 function Navbar() {
   return (
@@ -86,9 +87,11 @@ function Navbar() {
               <i className="fa-sharp fa-solid fa-bell" />
             </IconButton>
           </Badge>
-          <IconButton aria-label="setting" className="nav-user ms-3">
-            <i className="fa-regular fa-user" />
-          </IconButton>
+          <Link to={SITE_URL.CREATE_PROJECT}>
+            <IconButton aria-label="setting" className="nav-user ms-3">
+              <i className="fa-regular fa-user" />
+            </IconButton>
+          </Link>
           <IconButton aria-label="setting" className="c-white ms-3">
             <i className="fa-regular fa-right-to-bracket" />
           </IconButton>

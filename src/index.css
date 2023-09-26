@@ -24,8 +24,9 @@
 * {
   margin: 0;
   padding: 0;
-  text-decoration: none !important;
   outline: none;
+  border: 0;
+  text-decoration: none !important;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;

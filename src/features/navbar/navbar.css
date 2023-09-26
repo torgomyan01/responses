@@ -34,6 +34,7 @@
 .nav-user {
   background: #fff !important;
   color: #4B4AEF !important;
+  display: block;
 }
 .nav-logo {
   margin-right: 3.125rem;

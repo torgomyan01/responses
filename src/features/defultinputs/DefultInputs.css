@@ -1,0 +1,23 @@
+.defaultInputs {
+  width: 100%;
+}
+.defaultInputs .defaultInput {
+  width: 100%;
+  border-radius: 5px;
+  background: #E5E5F8;
+  padding: 15px 0 15px 20px;
+  color: #333;
+  font-size: 16px;
+}
+.defaultInputs .defaultInput.error {
+  background: #FFCECE;
+}
+.defaultInputs .defaultInput.error::placeholder {
+  color: #FF6C6C;
+}
+.defaultInputs .defaultInput::placeholder {
+  color: #A8A8BE;
+  font-size: 16px;
+}
+
+/*# sourceMappingURL=DefultInputs.css.map */
