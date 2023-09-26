@@ -58,4 +58,6 @@ declare interface IDefaultInputs {
   placeholder?: string;
   onChange?: any;
   className?: string;
+  value?: string | number;
+  title?: any;
 }

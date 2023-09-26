@@ -1,0 +1,80 @@
+.input-number input {
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #BFBFD9;
+  text-align: right;
+  color: #A8A8BE;
+  font-size: 24px;
+  font-weight: 600;
+  padding-right: 20px;
+}
+
+.input-number-title {
+  color: #666676;
+  font-size: 18px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.price-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+.price-list-left-list {
+  border-radius: 20px 10px 10px 20px;
+  background: #9E8CEF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 5.125rem 2.5rem;
+  width: 19rem;
+}
+.price-list-left-list-item {
+  color: #FFF;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.price-list-prices {
+  width: calc(100% - 19rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-left: 6px;
+}
+.price-list-col {
+  width: calc((100% / 12) * 2 - 0rem);
+  height: 100%;
+  margin-right: 6px;
+}
+.price-list-col:last-child .price-list-col-item.title {
+  border-radius: 10px 20px 10px 10px;
+}
+.price-list-col-item {
+  background: #FFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666676;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  height: 80px;
+}
+.price-list-col-item.title {
+  border-radius: 10px;
+  background: #9E8CEF;
+  color: #FFF;
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/*# sourceMappingURL=payments.css.map */
