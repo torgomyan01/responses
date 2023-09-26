@@ -253,4 +253,11 @@ hr {
   border-color: #E5E5F8 !important;
 }
 
+.def-section-title {
+  color: #666676;
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
 /*# sourceMappingURL=index.css.map */

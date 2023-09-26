@@ -2,6 +2,7 @@ import React from 'react';
 import './profile-settings.css';
 import DefaultInputs from '../../features/defultinputs/Defultinputs';
 import MainTemplate from '../../features/main-template/main-template';
+import Payments from './components/payments/payments';
 
 function ProfileSettings() {
   return (
@@ -20,6 +21,10 @@ function ProfileSettings() {
         </div>
       </div>
     </MainTemplate>
+    <div className="CreateProject">
+      <div className="container"></div>
+      <Payments />
+    </div>
   );
 }
 
