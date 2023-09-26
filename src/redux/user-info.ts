@@ -4,31 +4,31 @@ interface IUserInfo {
   userId: number | string;
   username: string;
   email: string;
-  projects: {
-    imageURL: string;
+  stores: {
+    storeId: number;
+    storeType: string;
+    title: string;
+    apiToken: string;
   }[];
 }
+
 const initialState: IUserInfo = {
   userId: '',
   username: '',
   email: '',
-  projects: [
-    {
-      imageURL: 's'
-    }
-  ]
+  stores: []
 };
 
 const UserInfo = createSlice({
   name: 'user-info',
   initialState,
   reducers: {
-    // change(state, action) {
-    //   state.open = action.payload;
-    // }
+    setStores(state, action) {
+      state.stores = action.payload;
+    }
   }
 });
 
-export const {} = UserInfo.actions;
+export const { setStores } = UserInfo.actions;
 
 export default UserInfo.reducer;

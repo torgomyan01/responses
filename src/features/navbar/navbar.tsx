@@ -6,10 +6,21 @@ import { Link } from 'react-router-dom';
 import { Badge, Button, IconButton } from '@mui/material';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropDownWb from '../../assets/images/DropDownWb.svg';
+import { useSelector } from 'react-redux';
+import { RandomKey } from '../../utils/helpers';
+import { STORES_MARKETPLACE } from '../../utils/const';
 import DropDownOz from '../../assets/images/DropDownOz.svg';
 import { SITE_URL } from '../../utils/const';
 
 function Navbar() {
+  const stores = useSelector((state: IUserInfo) => state.UserInfo.stores);
+
+  function GetStoreImage(type: string) {
+    const res = STORES_MARKETPLACE.find((_type) => _type.name === type);
+    return res ? res.image : '';
+  }
+
+  console.log(stores);
   return (
     <div className="nav">
       <div className="container h-100 d-flex justify-content-between align-items-center">
@@ -31,25 +42,17 @@ function Navbar() {
             </Dropdown.Toggle>
 
             <Dropdown.Menu className="DropDownItem">
-              <Dropdown.Item className="DropDownItems" href="#/action-1">
-                <img src={DropDownOz} alt="img" />
-                ozon.ru ООО “Рога и копаты инкорп...
-              </Dropdown.Item>
-              <Dropdown.Item className="DropDownItems" href="#/action-2">
-                <img src={DropDownWb} alt="img" />
-                Wildberries ООО Название
-              </Dropdown.Item>
-              <Dropdown.Item className="DropDownItems" href="#/action-3">
-                <img src={DropDownOz} alt="img" />
-                ozon ИП Название
-              </Dropdown.Item>
-              <Dropdown.Item className="DropDownItems" href="#/action-3">
-                <img src={DropDownWb} alt="img" />
-                Wildberries ИП Название
-              </Dropdown.Item>
+              {stores.map((store: IStores) => (
+                <Dropdown.Item key={RandomKey()} className="DropDownItems">
+                  <img src={GetStoreImage(store.storeType)} alt="img" />
+
+                  {store.title}
+                </Dropdown.Item>
+              ))}
+
               <Link to="#" className="addShop">
                 <div className="IconPlus">
-                  <i className="fa-solid fa-plus"></i>
+                  <i className="fa-solid fa-plus" />
                 </div>
                 добавить МАГАЗИН
               </Link>
