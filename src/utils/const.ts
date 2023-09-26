@@ -4,7 +4,7 @@ import DropDownYm from '../assets/images/DropDownYm.png';
 
 export const SITE_URL = {
   HOME: '/',
-  CREATE_PROJECT: '/createproject'
+  CREATE_PROJECT: '/profile-settings'
 };
 
 export const STATUS_BUTTON = {

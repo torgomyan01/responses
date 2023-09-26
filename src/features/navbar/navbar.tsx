@@ -9,7 +9,6 @@ import DropDownWb from '../../assets/images/DropDownWb.svg';
 import { useSelector } from 'react-redux';
 import { RandomKey } from '../../utils/helpers';
 import { STORES_MARKETPLACE } from '../../utils/const';
-import DropDownOz from '../../assets/images/DropDownOz.svg';
 import { SITE_URL } from '../../utils/const';
 
 function Navbar() {

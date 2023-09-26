@@ -1,21 +1,23 @@
 .defaultInputs {
   width: 100%;
+  height: 3.125rem;
 }
-.defaultInputs .defaultInput {
+.defaultInputs input {
   width: 100%;
+  height: 100%;
   border-radius: 5px;
   background: #E5E5F8;
-  padding: 15px 0 15px 20px;
+  padding: 0.9375rem 0 0.9375rem 1.25rem;
   color: #333;
   font-size: 16px;
 }
-.defaultInputs .defaultInput.error {
+.defaultInputs input.error {
   background: #FFCECE;
 }
-.defaultInputs .defaultInput.error::placeholder {
+.defaultInputs input.error::placeholder {
   color: #FF6C6C;
 }
-.defaultInputs .defaultInput::placeholder {
+.defaultInputs input::placeholder {
   color: #A8A8BE;
   font-size: 16px;
 }

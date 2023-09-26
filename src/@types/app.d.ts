@@ -57,4 +57,5 @@ declare interface IDefaultInputs {
   errorMessage?: string;
   placeholder: string;
   onChange?: any;
+  className?: string;
 }
