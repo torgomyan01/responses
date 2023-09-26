@@ -3,7 +3,7 @@ import React from 'react';
 function Payments() {
   return (
     <h1>
-      <div>payments</div>
+      <h2 className="def-section-title ">Баланс</h2>
     </h1>
   );
 }
