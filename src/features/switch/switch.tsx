@@ -3,10 +3,6 @@ import { styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
-/**
- *
- * @type {StyledComponent<PropsOf<React.JSXElementConstructor<React.ComponentProps<C>>> & MUIStyledCommonProps<Theme>, {}, {}>}
- */
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
 ))(({ theme }) => ({
@@ -36,7 +32,7 @@ const IOSSwitch = styled((props) => (
     '&.Mui-disabled .MuiSwitch-thumb': {
       color: theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600]
     },
-    '&.Mui-disabled + .MuiSwitch-track': {
+    '&.Mui-disabled +  .MuiSwitch-track': {
       opacity: theme.palette.mode === 'light' ? 0.7 : 0.3
     }
   },

@@ -16,10 +16,10 @@ function Navbar() {
           <Link to="#" className="nav-item">
             Настройка отзывов
           </Link>
-          <Link to="#" className="nav-item">
-            Настройка отзывов
-            <i className="fa-regular fa-chevron-down ms-2" />
-          </Link>
+          {/*<Link to="#" className="nav-item">*/}
+          {/*  Настройка отзывов*/}
+          {/*  <i className="fa-regular fa-chevron-down ms-2" />*/}
+          {/*</Link>*/}
           <Link to="#" className="nav-item">
             Статистика
           </Link>
