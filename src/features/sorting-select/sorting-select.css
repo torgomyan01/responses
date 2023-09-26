@@ -1,0 +1,32 @@
+.sorting-select button {
+  color: #A8A8BE !important;
+  font-size: 16px;
+  font-weight: 400;
+  border: 0 !important;
+  background: transparent !important;
+}
+.sorting-select button:after {
+  display: none;
+}
+.sorting-select button i {
+  transform: rotate(0);
+  display: inline-block;
+}
+.sorting-select button.show i {
+  transform: rotate(-180deg);
+}
+.sorting-select .dropdown-menu {
+  border-radius: 5px;
+  background: #FFF;
+  box-shadow: 4px 5px 20px 0 rgba(74, 105, 165, 0.16);
+  border: 0;
+}
+.sorting-select .dropdown-menu a {
+  color: #666676;
+  font-size: 16px;
+}
+.sorting-select .dropdown-menu a:hover {
+  background: #E5E5F8;
+}
+
+/*# sourceMappingURL=sorting-select.css.map */

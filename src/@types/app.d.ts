@@ -31,3 +31,7 @@ declare interface StatusButton {
   status: string;
   text: string;
 }
+
+declare interface SortingSelect {
+  items: string[];
+}
