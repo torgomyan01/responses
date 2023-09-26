@@ -55,6 +55,15 @@
       &:after{
         display: none;
       }
+      &.show{
+        i{
+          display: inline-block;
+          transform: rotate(-180deg);
+        }
+      }
+      i{
+        margin-left: 10px;
+      }
       img{
         margin-right: 10px;
       }

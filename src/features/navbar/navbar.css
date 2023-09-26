@@ -54,6 +54,13 @@
 .nav .DropDown .DropDownBtn:after {
   display: none;
 }
+.nav .DropDown .DropDownBtn.show i {
+  display: inline-block;
+  transform: rotate(-180deg);
+}
+.nav .DropDown .DropDownBtn i {
+  margin-left: 10px;
+}
 .nav .DropDown .DropDownBtn img {
   margin-right: 10px;
 }

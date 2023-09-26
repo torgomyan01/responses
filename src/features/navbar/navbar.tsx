@@ -38,6 +38,7 @@ function Navbar() {
             <Dropdown.Toggle className="DropDownBtn" variant="success" id="dropdown-basic">
               <img src={DropDownWb} alt="img" />
               WB ИП ФИО...(№ 1111)
+              <i className="fa-solid fa-caret-down"></i>
             </Dropdown.Toggle>
 
             <Dropdown.Menu className="DropDownItem">
