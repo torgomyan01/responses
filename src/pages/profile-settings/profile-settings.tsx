@@ -1,15 +1,15 @@
 import React from 'react';
-import './Createproject.css';
+import './profile-settings.css';
 import DefaultInputs from '../../features/defultinputs/Defultinputs';
 
-function CreateProject() {
+function ProfileSettings() {
   return (
     <div className="CreateProject">
       <div>
-        <DefaultInputs placeholder={'E-Mail'} onChange={(e: any) => console.log(e.target.value)} />
+        <DefaultInputs placeholder="E-Mail" />
       </div>
     </div>
   );
 }
 
-export default CreateProject;
+export default ProfileSettings;

@@ -7,7 +7,7 @@ import './App.css';
 import { useDispatch } from 'react-redux';
 import { GetUserStores } from './utils/api';
 import { setStores } from './redux/user-info';
-import CreateProject from './pages/createproject/Createproject';
+import ProfileSettings from './pages/profile-settings/profile-settings';
 
 function App() {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ function App() {
     <Router>
       <Routes>
         <Route path={SITE_URL.HOME} element={<ReviewModeration />} />
-        <Route path={SITE_URL.CREATE_PROJECT} element={<CreateProject />} />
+        <Route path={SITE_URL.CREATE_PROJECT} element={<ProfileSettings />} />
       </Routes>
     </Router>
   );

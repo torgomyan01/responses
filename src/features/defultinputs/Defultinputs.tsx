@@ -5,18 +5,18 @@ function DefaultInputs({
   error = false,
   errorMessage = '',
   placeholder,
+  className,
   onChange
 }: IDefaultInputs) {
-  console.log(error);
   return (
-    <div className="defaultInputs">
+    <label className="defaultInputs">
       <input
-        className={`defaultInput ${error && 'error'}`}
+        className={`${error && 'error'} ${className}`}
         type="email"
         placeholder={error ? errorMessage : placeholder}
         onChange={onChange}
       />
-    </div>
+    </label>
   );
 }
 
