@@ -39,4 +39,79 @@
   &-logo{
     margin-right: 3.125rem;
   }
+
+  .DropDown{
+    background: transparent;
+    margin-right: 1.9rem;
+
+    .DropDownBtn{
+      border-radius: 5px;
+      background: #7675F9;
+      border: 0;
+      color: #FAFAFF;
+      font-size: 0.875rem;
+      font-weight: 500;
+      &:after{
+        display: none;
+      }
+      img{
+        margin-right: 10px;
+      }
+    }
+
+    .DropDownItem{
+      margin-top: 5px;
+      width: 350px;
+      border-radius: 5px;
+      background: #FFF;
+      box-shadow: 4px 5px 20px 0 rgba(74, 105, 165, 0.16);
+      padding: 20px 0 20px 0;
+
+      .addShop{
+        margin-top: 40px;
+        padding: 5px 0 5px 20px;
+        display: flex;
+        align-items: center;
+        color: #61CDA6;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        .IconPlus{
+          margin-right: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 2px solid #61CDA6;
+          padding: 2px;
+          i{
+            color: #61CDA6;
+          }
+        }
+
+      }
+
+      .DropDownItems{
+          transition: .2s linear;
+        color: #666676;
+        font-size: 1rem;
+        font-weight: 400;
+        padding: 5px 0 5px 20px;
+        margin-bottom: 5px;
+        &:hover{
+          background: #E5E5F8;
+        }
+        &.active{
+          background: #E5E5F8;
+        }
+        img{
+          margin-right: 10px;
+        }
+      }
+
+    }
+
+
+
+  }
+
 }

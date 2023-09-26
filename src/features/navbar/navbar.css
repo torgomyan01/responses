@@ -38,5 +38,69 @@
 .nav-logo {
   margin-right: 3.125rem;
 }
+.nav .DropDown {
+  background: transparent;
+  margin-right: 1.9rem;
+}
+.nav .DropDown .DropDownBtn {
+  border-radius: 5px;
+  background: #7675F9;
+  border: 0;
+  color: #FAFAFF;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.nav .DropDown .DropDownBtn:after {
+  display: none;
+}
+.nav .DropDown .DropDownBtn img {
+  margin-right: 10px;
+}
+.nav .DropDown .DropDownItem {
+  margin-top: 5px;
+  width: 350px;
+  border-radius: 5px;
+  background: #FFF;
+  box-shadow: 4px 5px 20px 0 rgba(74, 105, 165, 0.16);
+  padding: 20px 0 20px 0;
+}
+.nav .DropDown .DropDownItem .addShop {
+  margin-top: 40px;
+  padding: 5px 0 5px 20px;
+  display: flex;
+  align-items: center;
+  color: #61CDA6;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.nav .DropDown .DropDownItem .addShop .IconPlus {
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #61CDA6;
+  padding: 2px;
+}
+.nav .DropDown .DropDownItem .addShop .IconPlus i {
+  color: #61CDA6;
+}
+.nav .DropDown .DropDownItem .DropDownItems {
+  transition: 0.2s linear;
+  color: #666676;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 5px 0 5px 20px;
+  margin-bottom: 5px;
+}
+.nav .DropDown .DropDownItem .DropDownItems:hover {
+  background: #E5E5F8;
+}
+.nav .DropDown .DropDownItem .DropDownItems.active {
+  background: #E5E5F8;
+}
+.nav .DropDown .DropDownItem .DropDownItems img {
+  margin-right: 10px;
+}
 
 /*# sourceMappingURL=navbar.css.map */
