@@ -4,36 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="df394040-2d2c-4bfe-9674-3cd63877ca6b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/features/defultinputs/DefultInputs.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/defultinputs/DefultInputs.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/defultinputs/DefultInputs.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/createproject/Createproject.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/createproject/Createproject.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/createproject/Createproject.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/createproject/Createproject.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/DropDownYm.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="97513578-fcd6-476e-8191-cf682cdd371d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/@types/app.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/@types/app.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/enums/enums.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/enums.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/navbar/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/navbar/navbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/navbar/navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/navbar/navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/react-app-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/react-app-env.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user-info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user-info.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/product/product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/product.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/sorting-select/sorting-select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/sorting-select/sorting-select.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/review-moderation/review-moderation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/review-moderation/review-moderation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user-info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user-info.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/const.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +53,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\AND\Desktop\responses\node_modules\prettier" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="ts.external.directory.path" value="C:\Users\AND\Desktop\responses\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\Users\Lenovo\Desktop\responses\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -117,6 +89,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
