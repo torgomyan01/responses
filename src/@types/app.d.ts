@@ -55,7 +55,7 @@ interface IUserInfo {
 declare interface IDefaultInputs {
   error?: boolean;
   errorMessage?: string;
-  placeholder: string;
+  placeholder?: string;
   onChange?: any;
   className?: string;
 }

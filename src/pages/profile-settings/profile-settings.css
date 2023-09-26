@@ -28,4 +28,94 @@
   margin-bottom: 30px;
 }
 
+.wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  border: 1px solid #BFBFD9;
+  background: #FFF;
+  padding: 40px;
+}
+.wrapper .wrapperTitle {
+  color: #666676;
+  font-size: 18px;
+}
+.wrapper .inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.wrapper .inner .input-box {
+  width: calc(50% - 23px);
+  margin-bottom: 30px;
+}
+.wrapper .inner .input-box2 {
+  margin-right: 45px;
+}
+.wrapper .inner .input-box_Last {
+  margin-bottom: 0;
+}
+
+.DropDown-step {
+  width: 100%;
+}
+.DropDown-step .DropDownBtn-step {
+  width: 100%;
+  height: 3.125rem;
+  border-radius: 5px;
+  background: #E5E5F8;
+  padding: 0.9375rem 0 0.9375rem 1.2rem;
+  color: #A8A8BE;
+  font-size: 16px;
+  border: 0;
+}
+.DropDown-step .DropDownBtn-step:after {
+  display: none;
+}
+.DropDown-step .DropDownBtn-step.show i {
+  display: inline-block;
+  transform: rotate(-180deg);
+}
+.DropDown-step .DropDownBtn-step i {
+  margin-left: 10px;
+}
+.DropDown-step .DropDownBtn-step img {
+  margin-right: 10px;
+}
+.DropDown-step .DropDownItem-step {
+  margin-top: 5px;
+  width: 160px;
+  border-radius: 5px;
+  background: #FFF;
+  box-shadow: 4px 5px 20px 0 rgba(74, 105, 165, 0.16);
+  padding: 30px 0 50px 0;
+  margin-left: 120px;
+}
+.DropDown-step .DropDownItem-step .DropDownItems-step {
+  transition: 0.2s linear;
+  color: #666676;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 10px 0 10px 0;
+  margin-bottom: 5px;
+}
+.DropDown-step .DropDownItem-step .DropDownItems-step:hover {
+  background: #E5E5F8;
+}
+.DropDown-step .DropDownItem-step .DropDownItems-step.active {
+  background: #E5E5F8;
+}
+.DropDown-step .DropDownItem-step .DropDownItems-step .links {
+  padding: 5px 0 5px 20px;
+}
+.DropDown-step .DropDownItem-step .DropDownItems-step .links img {
+  margin-right: 10px;
+}
+.DropDown-step .DropDownItem-step .DropDownItems-step .links span {
+  color: #666676;
+  font-size: 16px;
+  font-weight: 400;
+}
+
 /*# sourceMappingURL=profile-settings.css.map */
