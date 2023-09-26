@@ -1,6 +1,7 @@
 import React from 'react';
 import './profile-settings.css';
 import DefaultInputs from '../../features/defultinputs/Defultinputs';
+import Payments from './components/payments/payments';
 
 function ProfileSettings() {
   return (
@@ -8,6 +9,7 @@ function ProfileSettings() {
       <div>
         <DefaultInputs placeholder="E-Mail" />
       </div>
+      <Payments />
     </div>
   );
 }
