@@ -1,3 +1,26 @@
-
+.SetpUi {
+  max-width: 360px;
+  width: 100%;
+}
+.SetpUi .inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.SetpUi .inner .box {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #61CDA6;
+}
+.SetpUi .inner .box.active {
+  background: #61CDA6;
+}
+.SetpUi .inner .border {
+  background: #E5E5F8;
+  height: 2px;
+  max-width: 150px;
+  width: 100%;
+}
 
 /*# sourceMappingURL=profile-settings.css.map */
