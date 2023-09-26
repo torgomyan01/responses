@@ -6,15 +6,19 @@ function DefaultInputs({
   errorMessage = '',
   placeholder,
   className,
-  onChange
+  onChange,
+  value,
+  title
 }: IDefaultInputs) {
   return (
-    <label className="defaultInputs">
+    <label className={`defaultInputs ${className}`}>
+      {title}
       <input
-        className={`${error && 'error'} ${className}`}
+        className={`${error && 'error'}`}
         type="email"
         placeholder={error ? errorMessage : placeholder}
         onChange={onChange}
+        defaultValue={value}
       />
     </label>
   );

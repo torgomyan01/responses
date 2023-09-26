@@ -1,0 +1,75 @@
+@import "../../../../assets/helper";
+
+.input-number{
+  input{
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #BFBFD9;
+    text-align: right;
+    color: #A8A8BE;
+    font-size: 24px;
+    font-weight: 600;
+    padding-right: 20px;
+  }
+}
+.input-number-title{
+  color: #666676;
+  font-size: 18px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+$litLeftInfo: 19rem;
+.price-list{
+  @include flex('sb', 's');
+  &-left-list{
+    border-radius: 20px 10px 10px 20px;
+    background: #9E8CEF;
+    @include flex('c', 'c');
+    flex-direction: column;
+    padding: 5.125rem 2.5rem;
+    width: $litLeftInfo;
+    &-item{
+      color: #FFF;
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      height: 5rem;
+      @include flex('c', 'c');
+      margin-bottom: 6px;
+    }
+  }
+  &-prices{
+    width: calc(100% - #{$litLeftInfo});
+    @include flex('sb', 's');
+    margin-left: 6px;
+  }
+  &-col{
+    @include col(2);
+    height: 100%;
+    margin-right: 6px;
+    &:last-child{
+      .price-list-col-item.title{
+        border-radius: 10px 20px 10px 10px;
+      }
+    }
+    &-item{
+      background: #FFF;
+      @include flex('c', 'c');
+      color: #666676;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      height: 80px;
+      &.title{
+        border-radius: 10px;
+        background: #9E8CEF;
+        color: #FFF;
+        font-size: 18px;
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+}
