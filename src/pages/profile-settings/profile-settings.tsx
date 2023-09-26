@@ -9,22 +9,19 @@ function ProfileSettings() {
     <MainTemplate className="reviewModeration">
       <div className="CreateProject">
         <div className="container">
-          <div className="SetpUi">
+          <div className="StepUi">
             <div className="inner">
-              <div className="box active"></div>
-              <div className="border"></div>
-              <div className="box"></div>
-              <div className="border"></div>
-              <div className="box"></div>
+              <div className="box active" />
+              <div className="border" />
+              <div className="box" />
+              <div className="border" />
+              <div className="box" />
             </div>
           </div>
+          <h2 className="def-section-title head-st-1">Настройки профиля</h2>
         </div>
       </div>
     </MainTemplate>
-    <div className="CreateProject">
-      <div className="container"></div>
-      <Payments />
-    </div>
   );
 }
 

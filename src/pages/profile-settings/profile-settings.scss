@@ -1,8 +1,9 @@
 
 
-.SetpUi{
+.StepUi{
   max-width: 360px;
   width: 100%;
+  margin-bottom: 60px;
   .inner{
     display: flex;
     justify-content: center;
@@ -24,5 +25,8 @@
     }
   }
 
+}
 
+.head-st-1{
+  margin-bottom: 30px;
 }

@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="df394040-2d2c-4bfe-9674-3cd63877ca6b" name="Changes" comment="">
+    <list default="true" id="97513578-fcd6-476e-8191-cf682cdd371d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile-settings/profile-settings.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile-settings/profile-settings.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile-settings/profile-settings.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile-settings/profile-settings.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile-settings/profile-settings.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile-settings/profile-settings.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/navbar/navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/navbar/navbar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/profile-settings/components/payments/payments.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile-settings/components/payments/payments.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile-settings/profile-settings.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile-settings/profile-settings.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile-settings/profile-settings.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile-settings/profile-settings.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/profile-settings/profile-settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile-settings/profile-settings.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +58,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\AND\Desktop\responses\node_modules\prettier" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="ts.external.directory.path" value="C:\Users\AND\Desktop\responses\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\Users\Lenovo\Desktop\responses\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
