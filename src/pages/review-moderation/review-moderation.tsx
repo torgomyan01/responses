@@ -8,6 +8,7 @@ import { STATUS_BUTTON } from '../../utils/const';
 import Product from '../../features/product/product';
 import { RandomKey } from '../../utils/helpers';
 import PaginationCount from '../../features/pagination-count/pagination-count';
+import SortingSelect from '../../features/sorting-select/sorting-select';
 
 const products: Products[] = Array.from({ length: 100 }).map((item, index) => {
   return {
@@ -23,6 +24,16 @@ const products: Products[] = Array.from({ length: 100 }).map((item, index) => {
     reviews: 2
   };
 });
+
+const sortArray = [
+  'Сначала новые',
+  'Сначала старые',
+  'Сначала отправленные',
+  'Сначала неотправленные',
+  'Рейтинг по возрастанию',
+  'Рейтинг по убыванию',
+  'Группировка по товару'
+];
 
 const pageSize = [10, 50, 100];
 
@@ -54,10 +65,7 @@ function ReviewModeration() {
             <i className="fa-solid fa-magnifying-glass" />
             <input type="text" placeholder="Найти товар" />
           </label>
-          <div className="filter-block-sorting">
-            Сортировка
-            <i className="fa-regular fa-chevron-down ms-2" />
-          </div>
+          <SortingSelect items={sortArray} />
         </div>
         <div className="pagination">
           <Pagination

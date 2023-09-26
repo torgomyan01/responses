@@ -31,6 +31,7 @@ function Product({ info }: Product) {
             <Rating
               name="simple-controlled"
               value={value}
+              disabled
               onChange={(event, newValue) => {
                 setValue(newValue);
               }}
