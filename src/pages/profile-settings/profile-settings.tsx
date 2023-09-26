@@ -5,9 +5,7 @@ import DefaultInputs from '../../features/defultinputs/Defultinputs';
 function ProfileSettings() {
   return (
     <div className="CreateProject">
-      <div>
-        <DefaultInputs placeholder="E-Mail" />
-      </div>
+      <div className="container"></div>
     </div>
   );
 }

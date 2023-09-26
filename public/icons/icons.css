@@ -51,6 +51,11 @@
     content: "\2b"
 }
 
+
+.fa-caret-down:before {
+    content: "\f0d7"
+}
+
 /*---------------------------------*/
 
 

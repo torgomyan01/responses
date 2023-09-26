@@ -6,17 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="97513578-fcd6-476e-8191-cf682cdd371d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/icons/icons.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/icons.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/@types/app.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/@types/app.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/defultinputs/DefultInputs.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/defultinputs/DefultInputs.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/defultinputs/DefultInputs.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/defultinputs/DefultInputs.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/defultinputs/DefultInputs.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/defultinputs/DefultInputs.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/defultinputs/Defultinputs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/defultinputs/Defultinputs.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/navbar/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/navbar/navbar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/navbar/navbar.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/navbar/navbar.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/navbar/navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/navbar/navbar.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/navbar/navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/navbar/navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/createproject/Createproject.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/createproject/Createproject.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/createproject/Createproject.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/createproject/Createproject.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile-settings/profile-settings.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile-settings/profile-settings.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile-settings/profile-settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile-settings/profile-settings.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/user-info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user-info.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/const.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
