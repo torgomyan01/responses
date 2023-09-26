@@ -35,3 +35,19 @@ declare interface StatusButton {
 declare interface SortingSelect {
   items: string[];
 }
+
+declare interface IStores {
+  storeId: number;
+  storeType: string;
+  title: string;
+  apiToken: string;
+}
+
+interface IUserInfo {
+  UserInfo: {
+    userId: number | string;
+    username: string;
+    email: string;
+    stores: IStores[];
+  };
+}

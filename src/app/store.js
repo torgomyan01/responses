@@ -1,6 +1,9 @@
 import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import UserInfo from '../redux/user-info';
 
-const reducers = combineReducers({});
+const reducers = combineReducers({
+  UserInfo
+});
 
 export default configureStore({
   reducer: reducers,

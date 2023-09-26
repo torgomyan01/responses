@@ -5,39 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df394040-2d2c-4bfe-9674-3cd63877ca6b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/images/DropDownOz.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/DropDownWb.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/DropDownYm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/icons.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/icons.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/@types/app.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/@types/app.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.test.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/main-template/main-template.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/main-template/main-template.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/navbar/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/navbar/navbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/navbar/navbar.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/navbar/navbar.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/navbar/navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/navbar/navbar.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/navbar/navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/navbar/navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/pagination-count/pagination-count.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/pagination-count/pagination-count.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/product/product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/product/product.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/shape/shape.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/shape/shape.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/status-button/status-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/status-button/status-button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/switch/switch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/switch/switch.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/review-moderation/review-moderation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/review-moderation/review-moderation.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/react-app-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/react-app-env.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reportWebVitals.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setupTests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/setupTests.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/user-info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user-info.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/const.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/const.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/helpers.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTTP Private Environment File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="2VtA73idnNlZKFa52cZKXojsyIH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -58,13 +62,13 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\AND\Desktop\responses\node_modules\prettier" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
-    <property name="ts.external.directory.path" value="C:\Users\Lenovo\Desktop\responses\node_modules\typescript\lib" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="ts.external.directory.path" value="C:\Users\AND\Desktop\responses\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Lenovo\Desktop\responses\src\assets\images" />
+      <recent name="C:\Users\AND\Desktop\responses\src\assets\images" />
       <recent name="C:\Users\AND\Desktop\responses\src" />
       <recent name="C:\Users\AND\Desktop\responses\public" />
     </key>
@@ -78,24 +82,12 @@
       <option name="presentableId" value="Default" />
       <updated>1695644831678</updated>
       <workItem from="1695644833740" duration="4115000" />
-      <workItem from="1695713735240" duration="6814000" />
-      <workItem from="1695715367461" duration="4587000" />
+      <workItem from="1695713735240" duration="13642000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
