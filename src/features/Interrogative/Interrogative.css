@@ -1,0 +1,44 @@
+.interrogative {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.interrogative .fa-circle-question {
+  font-size: 24px;
+  color: #BFBFD9;
+  cursor: pointer;
+}
+.interrogative-tooltip {
+  position: absolute;
+  top: calc(100% + 27px);
+  left: 0;
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 4px 5px 20px 0 rgba(74, 105, 165, 0.16);
+  width: 300px;
+  padding: 40px 20px;
+  transform: translateX(-88%);
+}
+.interrogative-tooltip i {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+.interrogative-tooltip-title {
+  color: #666676;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.interrogative-tooltip-text {
+  color: #666676;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+/*# sourceMappingURL=Interrogative.css.map */

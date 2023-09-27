@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import telegram from '../../assets/images/telegram.svg';
 import whatsapp from '../../assets/images/whatcap.svg';
 import viber from '../../assets/images/viber.svg';
+import Payments from './components/payments/payments';
+import CreateProject from './components/create-project/create-project';
 import imgUpload from '../../assets/images/img-upload.svg';
 import { Checkbox } from '@mui/material';
 

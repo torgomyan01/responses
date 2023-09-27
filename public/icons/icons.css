@@ -60,6 +60,18 @@
     content: "\f078"
 }
 
+.fa-circle-question:before {
+    content: "\f059"
+}
+
+.fa-xmark:before {
+    content: "\f00d"
+}
+
+.fa-shield-check:before {
+    content: "\f2f7"
+}
+
 /*---------------------------------*/
 
 

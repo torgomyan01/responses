@@ -8,7 +8,8 @@ function DefaultInputs({
   className,
   onChange,
   value,
-  title
+  title,
+  inpProps
 }: IDefaultInputs) {
   return (
     <label className={`defaultInputs ${className}`}>
@@ -19,6 +20,7 @@ function DefaultInputs({
         placeholder={error ? errorMessage : placeholder}
         onChange={onChange}
         defaultValue={value}
+        {...inpProps}
       />
     </label>
   );

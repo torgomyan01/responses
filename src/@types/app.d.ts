@@ -60,4 +60,11 @@ declare interface IDefaultInputs {
   className?: string;
   value?: string | number;
   title?: any;
+  inpProps?: any;
+}
+
+declare interface IInterrogative {
+  text: string;
+  title: string;
+  className?: string;
 }
