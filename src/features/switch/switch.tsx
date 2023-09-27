@@ -51,13 +51,15 @@ const IOSSwitch = styled((props) => (
   }
 }));
 
-function DefSwitch({ status = true, onChange }: DefSwitch) {
+function DefSwitch({ status = undefined, onChange, className }: DefSwitch) {
+  console.log(status);
   return (
     <FormControlLabel
-      control={<IOSSwitch sx={{ m: 1 }} />}
+      control={<IOSSwitch />}
       label=""
       checked={status}
       onChange={onChange}
+      className={className}
     />
   );
 }

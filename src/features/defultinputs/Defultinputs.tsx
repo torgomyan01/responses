@@ -1,5 +1,6 @@
 import React from 'react';
 import './DefultInputs.css';
+import Interrogative from '../Interrogative/Interrogative';
 
 function DefaultInputs({
   error = false,
@@ -9,10 +10,11 @@ function DefaultInputs({
   onChange,
   value,
   title,
-  inpProps
+  quotation
 }: IDefaultInputs) {
   return (
-    <label className={`defaultInputs ${className}`}>
+    <label
+      className={`defaultInputs ${className ? className : ''} ${quotation ? 'quotation' : ''}`}>
       {title}
       <input
         className={`${error && 'error'}`}
@@ -20,8 +22,8 @@ function DefaultInputs({
         placeholder={error ? errorMessage : placeholder}
         onChange={onChange}
         defaultValue={value}
-        {...inpProps}
       />
+      {quotation && <Interrogative title={quotation.title} text={quotation.text} />}
     </label>
   );
 }

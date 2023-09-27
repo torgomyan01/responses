@@ -25,6 +25,7 @@ declare interface Product {
 declare interface DefSwitch {
   status?: boolean;
   onChange?: any;
+  className?: string;
 }
 
 declare interface StatusButton {
@@ -60,7 +61,12 @@ declare interface IDefaultInputs {
   className?: string;
   value?: string | number;
   title?: any;
-  inpProps?: any;
+  quotation?:
+    | {
+        title: string;
+        text: string;
+      }
+    | undefined;
 }
 
 declare interface IInterrogative {
@@ -79,4 +85,8 @@ declare interface IPayments {
 
 declare interface ICreateProject {
   change: any;
+}
+
+declare interface IProjectSettingsWrapper {
+  title: string;
 }

@@ -2,7 +2,14 @@
 
 .defaultInputs{
   width: 100%;
-  height: 3.125rem;
+  &.quotation{
+    position: relative;
+    .interrogative{
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+    }
+  }
   input{
     width: 100%;
     height: 100%;
