@@ -18,10 +18,10 @@ function DefaultInputs({
       {title}
       <input
         className={`${error && 'error'}`}
-        type="email"
+        type="text"
         placeholder={error ? errorMessage : placeholder}
         onChange={onChange}
-        defaultValue={value}
+        value={value}
       />
       {quotation && <Interrogative title={quotation.title} text={quotation.text} />}
     </label>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MainTemplate from '../../features/main-template/main-template';
 import { Button } from '@mui/material';
 import Shape from '../../features/shape/shape';
@@ -7,6 +7,10 @@ import DefaultInputs from '../../features/defultinputs/Defultinputs';
 import Interrogative from '../../features/Interrogative/Interrogative';
 import DefSwitch from '../../features/switch/switch';
 import ProjectSettingsWrapper from './components/project-settings-wrapper';
+import { Simulate } from 'react-dom/test-utils';
+import change = Simulate.change;
+import { useParams } from 'react-router-dom';
+import { GetStoreInfo } from '../../utils/api';
 
 const sortArray = [
   'Сначала новые',
@@ -19,6 +23,17 @@ const sortArray = [
 ];
 
 function ProjectSettings() {
+  const { storeId } = useParams();
+
+  useEffect(() => {
+    if (storeId) {
+      GetStoreInfo(storeId).then(({ data }) => {
+        console.log(data, 2222);
+      });
+    }
+  }, [storeId]);
+
+  console.log(storeId);
   return (
     <MainTemplate className="reviewModeration">
       <div className="d-flex justify-content-between align-items-center">
@@ -66,6 +81,23 @@ function ProjectSettings() {
         </div>
         <div className="col-6 mb-5 pe-4">
           <ProjectSettingsWrapper title="Включить автоответ на отзывы с рейтингом 1" />
+        </div>
+        <div className="col-6 mb-5 pe-4">
+          <ProjectSettingsWrapper title="Включить автоответ на отзывы с рейтингом 2" />
+        </div>
+        <div className="col-6 mb-5 pe-4">
+          <ProjectSettingsWrapper title="Включить автоответ на отзывы с рейтингом 3" />
+        </div>
+        <div className="col-6 mb-5 pe-4">
+          <ProjectSettingsWrapper title="Включить автоответ на отзывы с рейтингом 4" />
+        </div>
+        <div className="col-6 mb-5 pe-4">
+          <ProjectSettingsWrapper title="Включить автоответ на отзывы с рейтингом 5" />
+        </div>
+        <div className="col-12">
+          <Button variant="contained" className="btn-blue py-4 px-99">
+            Сохранить
+          </Button>
         </div>
       </div>
     </MainTemplate>

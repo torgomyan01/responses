@@ -71,6 +71,9 @@
 .fa-shield-check:before {
     content: "\f2f7"
 }
+.fa-circle-xmark:before {
+    content: "\f057"
+}
 
 /*---------------------------------*/
 

@@ -90,3 +90,25 @@ declare interface ICreateProject {
 declare interface IProjectSettingsWrapper {
   title: string;
 }
+
+declare interface IStore {
+  storeId: number;
+  configuration: {
+    replyConfiguration: {
+      rates: {
+        '1': IStoreRates;
+        '2': IStoreRates;
+        '3': IStoreRates;
+        '4': IStoreRates;
+        '5': IStoreRates;
+      };
+      version: string;
+    };
+  };
+}
+
+declare interface IStoreRates {
+  autoReply: boolean;
+  reviewStyle: string;
+  blacklistKeywords: string[];
+}

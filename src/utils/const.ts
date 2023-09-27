@@ -5,7 +5,7 @@ import DropDownYm from '../assets/images/DropDownYm.png';
 export const SITE_URL = {
   HOME: '/',
   CREATE_PROJECT: '/profile-settings',
-  PROJECT_SETTINGS: '/project-settings'
+  PROJECT_SETTINGS: '/project-settings/:storeId'
 };
 
 export const STATUS_BUTTON = {
@@ -14,7 +14,8 @@ export const STATUS_BUTTON = {
 };
 
 export const API_URLS = {
-  GET_STORES: '/user/stores'
+  GET_STORES: '/user/stores',
+  GET_STORE: (id: string) => `/user/stores/${id}/configuration/response`
 };
 
 export const STORES_MARKETPLACE = [
