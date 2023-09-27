@@ -78,6 +78,9 @@ body{
 .c-white{
   color: #fff !important;
 }
+.c-green{
+  color: #61CDA6 !important;
+}
 
 .fs-18{
   font-size: 18px;
@@ -87,6 +90,10 @@ body{
 }
 .fs-14{
   font-size: 14px;
+}
+.px-99{
+  padding-left: 6.1875rem !important;
+  padding-right: 6.1875rem !important;
 }
 
 .container{
@@ -133,6 +140,18 @@ body{
     color: #61CDA6 !important;
     padding: 0.9375rem 2.125rem !important;
   }
+}
+
+.btn-blue{
+  border-radius: 3.125rem !important;
+  background: #4B4AEF !important;
+  line-height: unset !important;
+  box-shadow: unset !important;
+  color: #FFF !important;
+  text-align: center !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
 }
 
 .purple-gray-button{
