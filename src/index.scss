@@ -108,6 +108,15 @@ body{
   }
 }
 
+.wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  border: 1px solid #BFBFD9;
+  background: #FFF;
+  padding: 40px;
+}
+
 .fa-flip-horizontal {
   transform: scaleX(-1) !important;
 }

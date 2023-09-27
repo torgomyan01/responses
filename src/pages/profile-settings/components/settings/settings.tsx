@@ -7,6 +7,7 @@ import telegram from '../../../../assets/images/telegram.svg';
 import viber from '../../../../assets/images/viber.svg';
 import imgUpload from '../../../../assets/images/img-upload.svg';
 import { Button, Checkbox } from '@mui/material';
+import './settings.css';
 
 const label = {
   inputProps: { 'aria-label': 'Checkbox demo' },

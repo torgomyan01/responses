@@ -1,0 +1,13 @@
+.info-waldberis .info-head {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.info-waldberis .info-title {
+  margin: 0;
+}
+.info-waldberis .info-title a {
+  color: #4B4AEF;
+  text-decoration: underline !important;
+}
+
+/*# sourceMappingURL=info-waldberis.css.map */

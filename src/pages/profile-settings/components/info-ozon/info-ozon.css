@@ -1,0 +1,13 @@
+.info-ozon .info-head {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.info-ozon .info-title {
+  margin: 0;
+}
+.info-ozon .info-title a {
+  color: #4B4AEF;
+  text-decoration: underline !important;
+}
+
+/*# sourceMappingURL=info-ozon.css.map */

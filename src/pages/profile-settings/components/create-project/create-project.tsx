@@ -4,6 +4,8 @@ import Interrogative from '../../../../features/Interrogative/Interrogative';
 import './create-project.css';
 import DefaultInputs from '../../../../features/defultinputs/Defultinputs';
 import { RandomKey } from '../../../../utils/helpers';
+import InfoOzon from '../info-ozon/info-ozon';
+import InfoWaldberis from '../info-waldberis/info-waldberis';
 
 const label = {
   inputProps: { 'aria-label': 'Checkbox demo', name: 'marketplace' },
@@ -37,6 +39,8 @@ const arrSelectMarketplace = [
 
 function CreateProject({ change }: ICreateProject) {
   const [checkboxActive, setCheckboxActive] = useState<number>(0);
+  const infoMarketplace = [<InfoOzon key={RandomKey()} />, '', <InfoWaldberis key={RandomKey()} />];
+
   return (
     <>
       <h2 className="def-section-title mb-4">выберите маркетплейс</h2>
@@ -85,7 +89,7 @@ function CreateProject({ change }: ICreateProject) {
             </Button>
           </div>
         </div>
-        <div className="col-5">right</div>
+        <div className="col-5">{infoMarketplace[checkboxActive]}</div>
       </div>
     </>
   );
