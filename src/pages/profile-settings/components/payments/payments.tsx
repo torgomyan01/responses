@@ -5,7 +5,7 @@ import xmark from '../../../../assets/images/xmark.svg';
 import checked from '../../../../assets/images/checked.svg';
 import { Button } from '@mui/material';
 
-function Payments() {
+function Payments({ change }: IPayments) {
   return (
     <>
       <h2 className="def-section-title mb-4">Баланс</h2>
@@ -50,7 +50,7 @@ function Payments() {
             <div className="price-list-col-item">14</div>
             <div className="price-list-col-item">1 ₽</div>
             <div className="price-list-col-item">
-              <Button variant="contained" className="btn-green py-2 px-4">
+              <Button variant="contained" className="btn-green py-2 px-4" onClick={() => change(2)}>
                 купить
               </Button>
             </div>
@@ -64,7 +64,7 @@ function Payments() {
             <div className="price-list-col-item">30</div>
             <div className="price-list-col-item">500 ₽</div>
             <div className="price-list-col-item">
-              <Button variant="contained" className="btn-green py-2 px-4">
+              <Button variant="contained" className="btn-green py-2 px-4" onClick={() => change(2)}>
                 купить
               </Button>
             </div>
@@ -78,7 +78,7 @@ function Payments() {
             <div className="price-list-col-item">30</div>
             <div className="price-list-col-item">990 ₽</div>
             <div className="price-list-col-item">
-              <Button variant="contained" className="btn-green py-2 px-4">
+              <Button variant="contained" className="btn-green py-2 px-4" onClick={() => change(2)}>
                 купить
               </Button>
             </div>
@@ -92,7 +92,7 @@ function Payments() {
             <div className="price-list-col-item">30</div>
             <div className="price-list-col-item">1 990 ₽</div>
             <div className="price-list-col-item">
-              <Button variant="contained" className="btn-green py-2 px-4">
+              <Button variant="contained" className="btn-green py-2 px-4" onClick={() => change(2)}>
                 купить
               </Button>
             </div>
@@ -106,7 +106,7 @@ function Payments() {
             <div className="price-list-col-item">30</div>
             <div className="price-list-col-item">7 900 ₽</div>
             <div className="price-list-col-item">
-              <Button variant="contained" className="btn-green py-2 px-4">
+              <Button variant="contained" className="btn-green py-2 px-4" onClick={() => change(2)}>
                 купить
               </Button>
             </div>
@@ -120,7 +120,7 @@ function Payments() {
             <div className="price-list-col-item">30</div>
             <div className="price-list-col-item">8 900 ₽</div>
             <div className="price-list-col-item">
-              <Button variant="contained" className="btn-green py-2 px-4">
+              <Button variant="contained" className="btn-green py-2 px-4" onClick={() => change(2)}>
                 купить
               </Button>
             </div>
