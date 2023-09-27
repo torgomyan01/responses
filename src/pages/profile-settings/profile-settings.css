@@ -28,6 +28,10 @@
   margin-bottom: 30px;
 }
 
+.wrapper-fix-h {
+  height: 400px !important;
+}
+
 .wrapper {
   width: 100%;
   height: 100%;
@@ -56,6 +60,41 @@
 .wrapper .inner .input-box_Last {
   margin-bottom: 0;
 }
+.wrapper .input-inn {
+  max-width: 290px;
+  width: 100%;
+  margin-top: 30px;
+}
+.wrapper .label-upload {
+  border-radius: 5px;
+  background: #E5E5F8;
+  width: 100%;
+  height: 3.125rem;
+  display: flex;
+  align-items: center;
+  color: #A8A8BE;
+  font-size: 16px;
+  padding: 0.9375rem 0 0.9375rem 1.25rem;
+}
+.wrapper .label-upload img {
+  margin-right: 10px;
+}
+.wrapper .label-upload .input-upload {
+  display: none;
+}
+.wrapper .check-label {
+  border-radius: 5px;
+  background: #E5E5F8;
+  width: 100%;
+  height: 3.125rem;
+  display: flex;
+  align-items: center;
+  padding: 0.9375rem 0 0.9375rem 1.25rem;
+}
+.wrapper .check-label span {
+  color: #A8A8BE;
+  font-size: 16px;
+}
 
 .DropDown-step {
   width: 100%;
@@ -72,6 +111,9 @@
 }
 .DropDown-step .DropDownBtn-step:after {
   display: none;
+}
+.DropDown-step .DropDownBtn-step:active {
+  background: transparent;
 }
 .DropDown-step .DropDownBtn-step.show i {
   display: inline-block;

@@ -9,6 +9,17 @@ import whatsapp from '../../assets/images/whatcap.svg';
 import viber from '../../assets/images/viber.svg';
 import Payments from './components/payments/payments';
 import CreateProject from './components/create-project/create-project';
+import imgUpload from '../../assets/images/img-upload.svg';
+import { Checkbox } from '@mui/material';
+
+const label = {
+  inputProps: { 'aria-label': 'Checkbox demo' },
+  sx: {
+    '& .MuiSvgIcon-root': {
+      color: '#61CDA6'
+    }
+  }
+};
 
 function ProfileSettings() {
   return (
@@ -31,19 +42,19 @@ function ProfileSettings() {
                 <h3 className="wrapperTitle">Личные данные</h3>
                 <div className="inner">
                   <div className="input-box input-box2">
-                    <DefaultInputs placeholder={'Имя'} />
+                    <DefaultInputs placeholder="Имя" />
                   </div>
                   <div className="input-box">
-                    <DefaultInputs placeholder={'E-mail'} />
+                    <DefaultInputs placeholder="E-mail" />
                   </div>
                   <div className="input-box input-box2">
-                    <DefaultInputs placeholder={'Отчество'} />
+                    <DefaultInputs placeholder="Отчество" />
                   </div>
                   <div className="input-box">
-                    <DefaultInputs placeholder={'Телефон'} />
+                    <DefaultInputs placeholder="Телефон" />
                   </div>
                   <div className="input-box input-box2 input-box_Last">
-                    <DefaultInputs placeholder={'Фамилия'} />
+                    <DefaultInputs placeholder="Фамилия" />
                   </div>
                   <div className="input-box input-box_Last">
                     <Dropdown className="DropDown-step">
@@ -79,9 +90,13 @@ function ProfileSettings() {
                 </div>
               </div>
             </div>
-            <div className="col-12">
+            <div className="col-12 mt-5">
               <div className="wrapper">
                 <h3 className="wrapperTitle">Реквизиты компании (для юрлиц)</h3>
+                <DefaultInputs placeholder="Наименование" />
+                <div className="input-inn">
+                  <DefaultInputs placeholder="ИНН" />
+                </div>
               </div>
             </div>
           </div>
@@ -89,11 +104,20 @@ function ProfileSettings() {
             <div className="col-12">
               <div className="wrapper">
                 <h3 className="wrapperTitle">Аватар</h3>
+                <label className="label-upload">
+                  <img src={imgUpload} alt="upload" />
+                  Загрузить фото
+                  <input type="file" className="input-upload" />
+                </label>
               </div>
             </div>
-            <div className="col-12">
-              <div className="wrapper">
+            <div className="col-12 mt-5">
+              <div className="wrapper wrapper-fix-h">
                 <h3 className="wrapperTitle">Подключенные банковские карты (автоплатёж)</h3>
+                <label className="check-label">
+                  <Checkbox {...label} defaultChecked />
+                  <span>Привязать банковскую карту</span>
+                </label>
               </div>
             </div>
           </div>
