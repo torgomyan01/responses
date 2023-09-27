@@ -56,6 +56,10 @@
     content: "\f0d7"
 }
 
+.fa-chevron-down:before {
+    content: "\f078"
+}
+
 .fa-circle-question:before {
     content: "\f059"
 }
