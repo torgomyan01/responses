@@ -35,7 +35,7 @@ const arrSelectMarketplace = [
   }
 ];
 
-function CreateProject() {
+function CreateProject({ change }: ICreateProject) {
   const [checkboxActive, setCheckboxActive] = useState<number>(0);
   return (
     <>
@@ -80,7 +80,7 @@ function CreateProject() {
           </div>
 
           <div className="mt-5">
-            <Button variant="contained" className="btn-blue py-4 px-99">
+            <Button variant="contained" className="btn-blue py-4 px-99" onClick={() => change(2)}>
               Сохранить
             </Button>
           </div>

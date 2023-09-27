@@ -19,7 +19,6 @@ function Navbar() {
     return res ? res.image : '';
   }
 
-  console.log(stores);
   return (
     <div className="nav">
       <div className="container h-100 d-flex justify-content-between align-items-center">
@@ -90,8 +89,11 @@ function Navbar() {
               <i className="fa-sharp fa-solid fa-bell" />
             </IconButton>
           </Badge>
-          <Link to={SITE_URL.CREATE_PROJECT}>
-            <IconButton aria-label="setting" className="nav-user ms-3">
+          <Link to={SITE_URL.CREATE_PROJECT} style={{ minWidth: 50, maxHeight: 50 }}>
+            <IconButton
+              aria-label="setting"
+              className="nav-user ms-3"
+              style={{ minWidth: 50, maxHeight: 50 }}>
               <i className="fa-regular fa-user" />
             </IconButton>
           </Link>

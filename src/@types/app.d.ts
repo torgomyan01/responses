@@ -68,3 +68,15 @@ declare interface IInterrogative {
   title: string;
   className?: string;
 }
+
+declare interface ISettings {
+  change: any;
+}
+
+declare interface IPayments {
+  change: any;
+}
+
+declare interface ICreateProject {
+  change: any;
+}
