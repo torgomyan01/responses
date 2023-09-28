@@ -5,7 +5,8 @@ import DropDownYm from '../assets/images/DropDownYm.png';
 export const SITE_URL = {
   HOME: '/',
   CREATE_PROJECT: '/profile-settings',
-  PROJECT_SETTINGS: '/project-settings/:storeId'
+  PROJECT_SETTINGS: '/project-settings/:storeId',
+  CREATE_MARKETPLACE: '/create-marketplace'
 };
 
 export const STATUS_BUTTON = {
@@ -14,21 +15,26 @@ export const STATUS_BUTTON = {
 };
 
 export const API_URLS = {
-  GET_STORES: '/user/stores',
+  STORES: '/user/stores',
   GET_STORE: (id: string) => `/user/stores/${id}/configuration/response`
 };
 
 export const STORES_MARKETPLACE = [
   {
-    name: 'WB',
-    image: DropDownWb
-  },
-  {
-    name: 'OZ',
+    name: 'Ozon',
     image: DropDownOz
   },
   {
-    name: 'YM ',
+    name: 'YM',
     image: DropDownYm
+  },
+  {
+    name: 'WB',
+    image: DropDownWb
   }
 ];
+
+export const DEF_INPUT = {
+  value: '',
+  error: false
+};
