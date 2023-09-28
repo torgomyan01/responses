@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DefSwitch from '../../../features/switch/switch';
 import DefaultInputs from '../../../features/defultinputs/Defultinputs';
 import './project-settings-wrapper.css';
 import { useState } from 'react';
 import { RandomKey } from '../../../utils/helpers';
 
-function ProjectSettingsWrapper({ title }: IProjectSettingsWrapper) {
+function ProjectSettingsWrapper({ title, item }: IProjectSettingsWrapper) {
   const [todos, setTodo] = useState<any>([]);
   const [input, setInput] = useState('');
 
@@ -15,8 +15,16 @@ function ProjectSettingsWrapper({ title }: IProjectSettingsWrapper) {
       title,
       done: false
     };
-    setTodo([...todos, newTodo]);
+    setTodo((oldArr: []) => [...oldArr, newTodo]);
   };
+
+  useEffect(() => {
+    setTodo([]);
+    console.log(item);
+    item?.blacklistKeywords?.forEach((key: string) => {
+      addTodo(key);
+    });
+  }, [item]);
 
   const removeTodo: any = (id: number) => {
     const newTodo = todos.filter((to: any) => to.id != id);
@@ -36,7 +44,7 @@ function ProjectSettingsWrapper({ title }: IProjectSettingsWrapper) {
       <div className="d-flex justify-content-end mb-5">
         <div className="fs-18 c-grey d-flex justify-content-start align-items-center">
           {title}
-          <DefSwitch className="ms-2" />
+          <DefSwitch className="ms-2" status={item.autoReply} />
         </div>
       </div>
       <form onSubmit={submit}>

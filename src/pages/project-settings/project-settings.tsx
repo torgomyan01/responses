@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import MainTemplate from '../../features/main-template/main-template';
 import { Button } from '@mui/material';
 import Shape from '../../features/shape/shape';
@@ -11,6 +11,10 @@ import { Simulate } from 'react-dom/test-utils';
 import change = Simulate.change;
 import { useParams } from 'react-router-dom';
 import { GetStoreInfo } from '../../utils/api';
+import { log } from 'util';
+import { elGR } from '@mui/material/locale';
+import { RandomKey } from '../../utils/helpers';
+import Select from '../../features/select/select';
 
 const sortArray = [
   'Сначала новые',
@@ -24,16 +28,20 @@ const sortArray = [
 
 function ProjectSettings() {
   const { storeId } = useParams();
+  const [rates, setRates] = useState<IStoreRates[] | null>(null);
+  const [data, setData] = useState<IStore | null>(null);
 
   useEffect(() => {
     if (storeId) {
       GetStoreInfo(storeId).then(({ data }) => {
-        console.log(data, 2222);
+        setData(data);
+        setRates(Object.values(data.configuration.replyConfiguration.rates) || []);
       });
     }
   }, [storeId]);
 
-  console.log(storeId);
+  console.log(rates);
+
   return (
     <MainTemplate className="reviewModeration">
       <div className="d-flex justify-content-between align-items-center">
@@ -60,7 +68,7 @@ function ProjectSettings() {
         <div className="col-6 mb-5 pe-4">
           <div className="wrapper">
             <div className="d-flex justify-content-between align-items-center">
-              <DefaultInputs placeholder="Выберите тональность ответа" className="w-75" />
+              <Select title={rates ? rates[0].reviewStyle : ''} />
               <Interrogative title="Title" text="Text" />
             </div>
           </div>
@@ -79,21 +87,28 @@ function ProjectSettings() {
             </div>
           </div>
         </div>
-        <div className="col-6 mb-5 pe-4">
-          <ProjectSettingsWrapper title="Включить автоответ на отзывы с рейтингом 1" />
-        </div>
-        <div className="col-6 mb-5 pe-4">
-          <ProjectSettingsWrapper title="Включить автоответ на отзывы с рейтингом 2" />
-        </div>
-        <div className="col-6 mb-5 pe-4">
-          <ProjectSettingsWrapper title="Включить автоответ на отзывы с рейтингом 3" />
-        </div>
-        <div className="col-6 mb-5 pe-4">
-          <ProjectSettingsWrapper title="Включить автоответ на отзывы с рейтингом 4" />
-        </div>
-        <div className="col-6 mb-5 pe-4">
-          <ProjectSettingsWrapper title="Включить автоответ на отзывы с рейтингом 5" />
-        </div>
+
+        {rates?.map((el, index) => (
+          <div key={RandomKey()} className="col-6 mb-5 pe-4">
+            <ProjectSettingsWrapper
+              item={el}
+              title={`Включить автоответ на отзывы с рейтингом  ${index + 1}`}
+            />
+          </div>
+        ))}
+
+        {/*<div className="col-6 mb-5 pe-4">*/}
+        {/*  <ProjectSettingsWrapper title="Включить автоответ на отзывы с рейтингом 2" />*/}
+        {/*</div>*/}
+        {/*<div className="col-6 mb-5 pe-4">*/}
+        {/*  <ProjectSettingsWrapper title="Включить автоответ на отзывы с рейтингом 3" />*/}
+        {/*</div>*/}
+        {/*<div className="col-6 mb-5 pe-4">*/}
+        {/*  <ProjectSettingsWrapper title="Включить автоответ на отзывы с рейтингом 4" />*/}
+        {/*</div>*/}
+        {/*<div className="col-6 mb-5 pe-4">*/}
+        {/*  <ProjectSettingsWrapper title="Включить автоответ на отзывы с рейтингом 5" />*/}
+        {/*</div>*/}
         <div className="col-12">
           <Button variant="contained" className="btn-blue py-4 px-99">
             Сохранить

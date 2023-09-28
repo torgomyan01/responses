@@ -22,10 +22,15 @@ declare interface Product {
   info: Products;
 }
 
+declare interface Select {
+  title: string;
+}
+
 declare interface DefSwitch {
   status?: boolean;
   onChange?: any;
   className?: string;
+  checked?: boolean;
 }
 
 declare interface StatusButton {
@@ -89,6 +94,7 @@ declare interface ICreateProject {
 
 declare interface IProjectSettingsWrapper {
   title: string;
+  item: any;
 }
 
 declare interface IStore {
