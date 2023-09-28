@@ -7,7 +7,7 @@ import CreateProject from './components/create-project/create-project';
 import { RandomKey } from '../../utils/helpers';
 
 function ProfileSettings() {
-  const [steps, setSteps] = useState<number>(2);
+  const [steps, setSteps] = useState<number>(0);
 
   function changeStep(index: number) {
     setSteps(index);
