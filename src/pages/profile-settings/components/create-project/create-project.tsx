@@ -8,13 +8,15 @@ import InfoOzon from '../info-ozon/info-ozon';
 import InfoWaldberis from '../info-waldberis/info-waldberis';
 import { DEF_INPUT, STORES_MARKETPLACE } from '../../../../utils/const';
 import { CreateStore } from '../../../../utils/api';
-import { Spinner } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { updateStores } from '../../../../redux/user-info';
 
 const label = {
   inputProps: { 'aria-label': 'Checkbox demo', name: 'marketplace' },
   sx: {
     '& .MuiSvgIcon-root': {
-      color: '#61CDA6'
+      color: '#61CDA6',
+      fontSize: 28
     }
   }
 };
@@ -48,27 +50,33 @@ STORES_MARKETPLACE.forEach((item, index) => {
 });
 
 function CreateProject({ change }: ICreateProject) {
+  const dispatch = useDispatch();
   const [checkboxActive, setCheckboxActive] = useState<number>(0);
   const infoMarketplace = [<InfoOzon key={RandomKey()} />, '', <InfoWaldberis key={RandomKey()} />];
   const [name, setName] = useState<IDefInputs>(DEF_INPUT);
-  const [key, setKey] = useState<string>('');
+  const [key, setKey] = useState<IDefInputs>(DEF_INPUT);
   const [loading, setLoading] = useState<boolean>(false);
 
   function createMarketplace() {
     if (!name.value) {
-      console.log(name);
       setName(ChangeDefInputValue(name.value, true));
+      return;
+    }
+    if (!key.value) {
+      setKey(ChangeDefInputValue(key.value, true));
       return;
     }
     setLoading(true);
     CreateStore({
       storeType: arrSelectMarketplace[checkboxActive].inShort,
       title: name.value,
-      apiToken: key
+      apiToken: key.value
     })
       .then((res) => {
         console.log(res);
+        alert('marketplace Created');
         setLoading(false);
+        dispatch(updateStores(res.data));
       })
       .catch((err) => {
         console.log(err);
@@ -103,8 +111,8 @@ function CreateProject({ change }: ICreateProject) {
               Гарантия безопасности
               <Interrogative
                 className="ms-2"
-                title="Яндекс.Маркет"
-                text="eprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum "
+                title={arrSelectMarketplace[checkboxActive].tooltipTitle}
+                text={arrSelectMarketplace[checkboxActive].tooltipText}
               />
             </div>
             <DefaultInputs
@@ -125,9 +133,18 @@ function CreateProject({ change }: ICreateProject) {
             />
             <DefaultInputs
               className="mt-5"
-              value=""
-              onChange={(e: any) => setKey(e.target.value)}
-              title={<span className="c-grey fs-18 mb-1">Введите API ключ (стандартный)</span>}
+              onChange={(e: any) =>
+                setKey({
+                  value: e.target.value,
+                  error: false
+                })
+              }
+              error={key.error}
+              title={
+                <span className={`${key.error ? 'c-red' : 'c-grey'}  fs-18 mb-1`}>
+                  Введите API ключ (стандартный)
+                </span>
+              }
             />
           </div>
 

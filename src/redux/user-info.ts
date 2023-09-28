@@ -25,10 +25,13 @@ const UserInfo = createSlice({
   reducers: {
     setStores(state, action) {
       state.stores = action.payload;
+    },
+    updateStores(state, action) {
+      state.stores = [...state.stores, action.payload];
     }
   }
 });
 
-export const { setStores } = UserInfo.actions;
+export const { setStores, updateStores } = UserInfo.actions;
 
 export default UserInfo.reducer;

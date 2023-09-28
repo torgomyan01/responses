@@ -12,6 +12,7 @@
   font-weight: 500;
   transition: 0.3s;
   margin-right: 2rem;
+  white-space: nowrap;
 }
 .nav-item:hover {
   color: #95F5D3;
