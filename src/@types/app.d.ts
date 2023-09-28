@@ -43,7 +43,7 @@ declare interface SortingSelect {
 }
 
 declare interface IStores {
-  storeId: number;
+  storeId?: number;
   storeType: string;
   title: string;
   apiToken: string;
@@ -72,6 +72,7 @@ declare interface IDefaultInputs {
         text: string;
       }
     | undefined;
+  inpProps?: any;
 }
 
 declare interface IInterrogative {
@@ -117,4 +118,9 @@ declare interface IStoreRates {
   autoReply: boolean;
   reviewStyle: string;
   blacklistKeywords: string[];
+}
+
+declare interface IDefInputs {
+  value: string;
+  error: boolean;
 }

@@ -10,7 +10,8 @@ function DefaultInputs({
   onChange,
   value,
   title,
-  quotation
+  quotation,
+  inpProps
 }: IDefaultInputs) {
   return (
     <label
@@ -21,7 +22,8 @@ function DefaultInputs({
         type="text"
         placeholder={error ? errorMessage : placeholder}
         onChange={onChange}
-        value={value}
+        defaultValue={value}
+        {...inpProps}
       />
       {quotation && <Interrogative title={quotation.title} text={quotation.text} />}
     </label>

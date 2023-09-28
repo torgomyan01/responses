@@ -9,3 +9,10 @@ export const RandomKey = (length = 5) => {
   }
   return result;
 };
+
+export const ChangeDefInputValue = (value: string, error: boolean) => {
+  return {
+    value,
+    error
+  };
+};
