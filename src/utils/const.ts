@@ -6,7 +6,8 @@ export const SITE_URL = {
   HOME: '/',
   CREATE_PROJECT: '/profile-settings',
   PROJECT_SETTINGS: '/project-settings/:storeId',
-  CREATE_MARKETPLACE: '/create-marketplace'
+  CREATE_MARKETPLACE: '/create-marketplace',
+  MY_STORE: '/my-store'
 };
 
 export const STATUS_BUTTON = {

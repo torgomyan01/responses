@@ -10,6 +10,7 @@ import { setStores } from './redux/user-info';
 import ProfileSettings from './pages/profile-settings/profile-settings';
 import ProjectSettings from './pages/project-settings/project-settings';
 import CreateMarketplace from './pages/create-marketplace/create-marketplace';
+import MyStore from './pages/myStore/myStore';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
         <Route path={SITE_URL.CREATE_PROJECT} element={<ProfileSettings />} />
         <Route path={SITE_URL.PROJECT_SETTINGS} element={<ProjectSettings />} />
         <Route path={SITE_URL.CREATE_MARKETPLACE} element={<CreateMarketplace />} />
+        <Route path={SITE_URL.MY_STORE} element={<MyStore />} />
       </Routes>
     </Router>
   );
