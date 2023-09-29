@@ -8,6 +8,9 @@ export const CreateUser = (data: { username: string; password: string }) =>
 
 export const GetUserStores = () => axios.get(`${API_URL}${API_URLS.STORES}`);
 
+export const DeleteUserStores = (id: number | undefined) =>
+  axios.delete(`${API_URL}${API_URLS.STORES}/${id}`);
+
 export const GetStoreInfo = (id: string) => axios.get(`${API_URL}${API_URLS.GET_STORE(id)}`);
 
 export const CreateStore = (data: IStores) => axios.post(`${API_URL}${API_URLS.STORES}`, data);

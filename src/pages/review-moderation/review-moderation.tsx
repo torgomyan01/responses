@@ -69,7 +69,7 @@ function ReviewModeration() {
         </div>
         <div className="pagination">
           <Pagination
-            count={products.length / paginationCount}
+            count={Math.floor(products.length / paginationCount)}
             shape="rounded"
             page={activePage}
             onChange={(e, active) => setActivePage(active)}
@@ -89,7 +89,7 @@ function ReviewModeration() {
         />
         <div className="pagination">
           <Pagination
-            count={products.length / paginationCount}
+            count={Math.floor(products.length / paginationCount)}
             shape="rounded"
             page={activePage}
             onChange={(e, active) => setActivePage(active)}

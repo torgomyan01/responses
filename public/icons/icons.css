@@ -80,6 +80,14 @@
     content: "\f06a"
 }
 
+.fa-pen:before {
+    content: "\f304"
+}
+
+.fa-trash:before {
+    content: "\f1f8"
+}
+
 /*---------------------------------*/
 
 

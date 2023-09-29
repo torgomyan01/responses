@@ -93,6 +93,7 @@
 }
 .nav .DropDown .DropDownItem .addShop .IconPlus i {
   color: #61CDA6;
+  margin-top: 1px;
 }
 .nav .DropDown .DropDownItem .DropDownItems {
   transition: 0.2s linear;
