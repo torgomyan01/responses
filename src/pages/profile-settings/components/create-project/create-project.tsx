@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Checkbox, CircularProgress } from '@mui/material';
 import Interrogative from '../../../../features/Interrogative/Interrogative';
 import './create-project.css';
 import DefaultInputs from '../../../../features/defultinputs/Defultinputs';
-import { ChangeDefInputValue, RandomKey } from '../../../../utils/helpers';
+import { ChangeDefInputValue, checkNumberOfString, RandomKey } from '../../../../utils/helpers';
 import InfoOzon from '../info-ozon/info-ozon';
 import InfoWaldberis from '../info-waldberis/info-waldberis';
 import { DEF_INPUT, STORES_MARKETPLACE } from '../../../../utils/const';
@@ -16,7 +16,9 @@ const label = {
   sx: {
     '& .MuiSvgIcon-root': {
       color: '#61CDA6',
-      fontSize: 28
+      fontSize: 28,
+      position: 'relative',
+      top: -1
     }
   }
 };
@@ -62,7 +64,7 @@ function CreateProject({ change }: ICreateProject) {
       setName(ChangeDefInputValue(name.value, true));
       return;
     }
-    if (!key.value) {
+    if (!key.value || checkNumberOfString(key.value)) {
       setKey(ChangeDefInputValue(key.value, true));
       return;
     }
@@ -135,10 +137,13 @@ function CreateProject({ change }: ICreateProject) {
               className="mt-5"
               onChange={(e: any) =>
                 setKey({
-                  value: e.target.value,
+                  value: e.target.value.replace(/\d/g, ''),
                   error: false
                 })
               }
+              inpProps={{
+                value: key.value
+              }}
               error={key.error}
               title={
                 <span className={`${key.error ? 'c-red' : 'c-grey'}  fs-18 mb-1`}>

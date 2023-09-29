@@ -16,3 +16,5 @@ export const ChangeDefInputValue = (value: string, error: boolean) => {
     error
   };
 };
+
+export const checkNumberOfString = (str: string) => /\d/.test(str);

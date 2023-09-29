@@ -11,6 +11,7 @@ import ProfileSettings from './pages/profile-settings/profile-settings';
 import ProjectSettings from './pages/project-settings/project-settings';
 import CreateMarketplace from './pages/create-marketplace/create-marketplace';
 import MyStore from './pages/myStore/myStore';
+import Login from './pages/login/login';
 
 function App() {
   const dispatch = useDispatch();
@@ -25,7 +26,8 @@ function App() {
     <Router>
       <Routes>
         <Route path={SITE_URL.HOME} element={<ReviewModeration />} />
-        <Route path={SITE_URL.CREATE_PROJECT} element={<ProfileSettings />} />
+        <Route path={SITE_URL.LOGIN} element={<Login />} />
+        <Route path={SITE_URL.PROFILE_SETTINGS} element={<ProfileSettings />} />
         <Route path={SITE_URL.PROJECT_SETTINGS} element={<ProjectSettings />} />
         <Route path={SITE_URL.CREATE_MARKETPLACE} element={<CreateMarketplace />} />
         <Route path={SITE_URL.MY_STORE} element={<MyStore />} />

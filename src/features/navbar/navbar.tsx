@@ -49,7 +49,7 @@ function Navbar() {
                 </Dropdown.Item>
               ))}
 
-              <Link to="#" className="addShop">
+              <Link to={SITE_URL.CREATE_MARKETPLACE} className="addShop">
                 <div className="IconPlus">
                   <i className="fa-solid fa-plus" />
                 </div>
@@ -89,11 +89,11 @@ function Navbar() {
               <i className="fa-sharp fa-solid fa-bell" />
             </IconButton>
           </Badge>
-          <Link to={SITE_URL.CREATE_PROJECT} style={{ minWidth: 50, maxHeight: 50 }}>
+          <Link to={SITE_URL.PROFILE_SETTINGS} style={{ minWidth: 40, maxHeight: 40 }}>
             <IconButton
               aria-label="setting"
               className="nav-user ms-3"
-              style={{ minWidth: 50, maxHeight: 50 }}>
+              style={{ minWidth: 40, maxHeight: 40 }}>
               <i className="fa-regular fa-user" />
             </IconButton>
           </Link>
