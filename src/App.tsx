@@ -17,8 +17,8 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    GetUserStores().then(({ data }) => {
-      dispatch(setStores(data));
+    GetUserStores(5, 0).then(({ data }) => {
+      dispatch(setStores(data.items));
     });
   }, []);
 
@@ -28,7 +28,7 @@ function App() {
         <Route path={SITE_URL.HOME} element={<ReviewModeration />} />
         <Route path={SITE_URL.LOGIN} element={<Login />} />
         <Route path={SITE_URL.PROFILE_SETTINGS} element={<ProfileSettings />} />
-        <Route path={SITE_URL.PROJECT_SETTINGS} element={<ProjectSettings />} />
+        <Route path={`${SITE_URL.PROJECT_SETTINGS}/:storeId`} element={<ProjectSettings />} />
         <Route path={SITE_URL.CREATE_MARKETPLACE} element={<CreateMarketplace />} />
         <Route path={SITE_URL.MY_STORE} element={<MyStore />} />
       </Routes>

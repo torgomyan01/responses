@@ -6,7 +6,13 @@ const API_URL = process.env.REACT_APP_API_URL;
 export const CreateUser = (data: { username: string; password: string }) =>
   axios.post(`${API_URL}${API_URLS.USER_PROFILE}`, data);
 
-export const GetUserStores = () => axios.get(`${API_URL}${API_URLS.STORES}`);
+// STORES API
+export const GetUserStores = (limit: number, startFrom: number, statistics: boolean = false) =>
+  axios.get(
+    `${API_URL}${API_URLS.STORES}${
+      statistics ? '/statistics' : ''
+    }?limit=${limit}&startFrom=${startFrom}`
+  );
 
 export const DeleteUserStores = (id: number | undefined) =>
   axios.delete(`${API_URL}${API_URLS.STORES}/${id}`);

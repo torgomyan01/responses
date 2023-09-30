@@ -1,3 +1,5 @@
+import { STORES_MARKETPLACE } from './const';
+
 export const RandomKey = (length = 5) => {
   let result = '';
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -18,3 +20,14 @@ export const ChangeDefInputValue = (value: string, error: boolean) => {
 };
 
 export const checkNumberOfString = (str: string) => /\d/.test(str);
+
+export const GetStoreImage = (type: string | undefined) => {
+  const res = STORES_MARKETPLACE.find((_type) => _type.name === type);
+  return res ? res.image : '';
+};
+
+export const CreatePageCount = (count: number, pageCount: number) => {
+  const remaining = count % pageCount;
+  const calcPages = count / pageCount;
+  return remaining ? Math.ceil(calcPages) : calcPages;
+};

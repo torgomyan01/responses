@@ -6,9 +6,9 @@ export const SITE_URL = {
   HOME: '/',
   LOGIN: '/login',
   PROFILE_SETTINGS: '/profile-settings',
-  PROJECT_SETTINGS: '/project-settings/:storeId',
+  PROJECT_SETTINGS: '/project-settings',
   CREATE_MARKETPLACE: '/create-marketplace',
-  MY_STORE: '/my-store'
+  MY_STORE: '/my-stores'
 };
 
 export const STATUS_BUTTON = {

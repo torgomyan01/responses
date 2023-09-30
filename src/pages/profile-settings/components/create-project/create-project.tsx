@@ -6,10 +6,11 @@ import DefaultInputs from '../../../../features/defultinputs/Defultinputs';
 import { ChangeDefInputValue, checkNumberOfString, RandomKey } from '../../../../utils/helpers';
 import InfoOzon from '../info-ozon/info-ozon';
 import InfoWaldberis from '../info-waldberis/info-waldberis';
-import { DEF_INPUT, STORES_MARKETPLACE } from '../../../../utils/const';
+import { DEF_INPUT, SITE_URL, STORES_MARKETPLACE } from '../../../../utils/const';
 import { CreateStore } from '../../../../utils/api';
 import { useDispatch } from 'react-redux';
 import { updateStores } from '../../../../redux/user-info';
+import { useNavigate } from 'react-router-dom';
 
 const label = {
   inputProps: { 'aria-label': 'Checkbox demo', name: 'marketplace' },
@@ -58,6 +59,7 @@ function CreateProject({ change }: ICreateProject) {
   const [name, setName] = useState<IDefInputs>(DEF_INPUT);
   const [key, setKey] = useState<IDefInputs>(DEF_INPUT);
   const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   function createMarketplace() {
     if (!name.value) {
@@ -75,8 +77,7 @@ function CreateProject({ change }: ICreateProject) {
       apiToken: key.value
     })
       .then((res) => {
-        console.log(res);
-        alert('marketplace Created');
+        navigate(SITE_URL.MY_STORE);
         setLoading(false);
         dispatch(updateStores(res.data));
       })
@@ -94,7 +95,7 @@ function CreateProject({ change }: ICreateProject) {
           <div className="select-marketplace">
             {arrSelectMarketplace.map((item, index) => (
               <div key={RandomKey()} className="select-marketplace-item">
-                <label>
+                <label className="d-flex justify-content-start align-items-center me-2">
                   <Checkbox
                     {...label}
                     checked={checkboxActive === index}

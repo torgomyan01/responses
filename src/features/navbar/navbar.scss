@@ -47,31 +47,40 @@
     background: transparent;
     margin-right: 1.9rem;
 
-    .DropDownBtn{
+    .DropDownBtn-nav{
       border-radius: 5px;
       background: #7675F9;
       border: 0;
       color: #FAFAFF;
       font-size: 0.875rem;
       font-weight: 500;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 180px;
+      padding-right: 25px;
       &:after{
         display: none;
       }
+      &:before{
+        content: "\f078";
+        font-family: FontAwesome;
+        position: absolute;
+        right: 10px;
+        transition: 0.3s;
+        transform:  rotate(0);
+      }
       &.show{
-        i{
-          display: inline-block;
+        &:before{
           transform: rotate(-180deg);
         }
-      }
-      i{
-        margin-left: 10px;
       }
       img{
         margin-right: 10px;
       }
     }
 
-    .DropDownItem{
+    .DropDownItem-nav{
       margin-top: 5px;
       width: 350px;
       border-radius: 5px;
@@ -80,7 +89,7 @@
       padding: 20px 0 20px 0;
 
       .addShop{
-        margin-top: 40px;
+        margin-top: 1.875rem;
         padding: 5px 0 5px 20px;
         display: flex;
         align-items: center;

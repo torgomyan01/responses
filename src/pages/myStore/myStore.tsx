@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './myStore.css';
-import { Button, Pagination } from '@mui/material';
+import { Button, CircularProgress, Pagination } from '@mui/material';
 import Shape from '../../features/shape/shape';
 import MainTemplate from '../../features/main-template/main-template';
 import SortingSelect from '../../features/sorting-select/sorting-select';
 import checked from '../../assets/images/checked.svg';
-import { useSelector } from 'react-redux';
-import { RandomKey } from '../../utils/helpers';
+import close from '../../assets/images/xmark.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { CreatePageCount, GetStoreImage, RandomKey } from '../../utils/helpers';
 import PaginationCount from '../../features/pagination-count/pagination-count';
-import { DeleteUserStores } from '../../utils/api';
+import { DeleteUserStores, GetUserStores } from '../../utils/api';
+import { Link } from 'react-router-dom';
+import { SITE_URL } from '../../utils/const';
+import ProductStorePage from './components/product-store-page/product-store-page';
+import { removeStore, setStores } from '../../redux/user-info';
 
 const sortArray = [
   'Сначала новые',
@@ -22,31 +27,44 @@ const sortArray = [
 const pageSize = [3, 50, 100];
 
 function MyStore() {
-  const stores = useSelector((state: IUserInfo) => state.UserInfo.stores);
-  const [paginationCount, setPaginationCount] = useState<number>(pageSize[0]);
-  const [activePage, setActivePage] = useState<number>(1);
-  const [activePageArray, setActivePageArray] = useState<IStores[]>(
-    [...stores].slice(0, paginationCount)
+  const dispatch = useDispatch();
+  const [stores, setStoresPage] = useState<null | { statistics: IStatistics; store: IStores }[]>(
+    null
   );
 
+  const [paginationCount, setPaginationCount] = useState<number>(pageSize[0]);
+  const [totalCount, setTotalCount] = useState<number>(0);
+  const [activePage, setActivePage] = useState<number>(0);
+
   useEffect(() => {
-    const firstPageIndex = (activePage - 1) * paginationCount;
-    const lastPageIndex = firstPageIndex + paginationCount;
-    setActivePageArray(stores.slice(firstPageIndex, lastPageIndex));
-  }, [paginationCount, activePage, stores]);
+    GetProducts(0);
+  }, [activePage]);
 
-  console.log(stores);
-
+  function GetProducts(id: number) {
+    setStoresPage(null);
+    GetUserStores(paginationCount, activePage ? activePage - 1 : activePage, true)
+      .then(({ data }) => {
+        console.log(data);
+        setTotalCount(data.totalCount);
+        setStoresPage(data.items);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    dispatch(removeStore(id));
+  }
   return (
     <div className="Mystore">
       <MainTemplate className="reviewModeration">
         <div className="d-flex justify-content-between align-items-center">
-          <Button variant="contained" className="btn-green py-3 px-4">
-            <div className="IconPlus">
-              <i className="fa-solid fa-plus" />
-            </div>
-            добавить магазин
-          </Button>
+          <Link to={SITE_URL.CREATE_MARKETPLACE}>
+            <Button variant="contained" className="btn-green py-3 px-4">
+              <div className="IconPlus">
+                <i className="fa-solid fa-plus" />
+              </div>
+              добавить магазин
+            </Button>
+          </Link>
           <Shape />
         </div>
         <hr className="mt-5 mb-5" />
@@ -60,64 +78,48 @@ function MyStore() {
           </div>
           <div className="pagination">
             <Pagination
-              count={Math.floor(stores.length / paginationCount)}
+              count={CreatePageCount(totalCount, paginationCount)}
               shape="rounded"
-              page={activePage}
+              page={activePage > 0 ? activePage : 1}
               onChange={(e, active) => setActivePage(active)}
             />
           </div>
         </div>
         <h2 className="def-section-title title-myStore">Все магазины</h2>
-        <div className="table-box">
-          <table className="my-store-table">
-            <thead>
-              <tr>
-                <th style={{ borderRadius: 20 }} className="th1">
-                  Наименование организации
-                </th>
-                <th>Авторизовано</th>
-                <th>Товаров в отзывах </th>
-                <th>Отзывы без ответа</th>
-                <th>Неотправленных ответов </th>
-                <th>Действия</th>
-              </tr>
-            </thead>
-            <tbody>
-              {activePageArray.map((el) => (
-                <tr key={RandomKey()}>
-                  <td>{el.storeType}</td>
-                  <td>{el.title}</td>
-                  <td>
-                    <div className="text-center">
-                      <img src={checked} alt="img" />
-                    </div>
-                  </td>
-                  <td>
-                    <div className="text-center">101</div>
-                  </td>
-                  <td>
-                    <div className="text-center">210</div>
-                  </td>
-                  <td className="ACTIONS">
-                    <button className="btn-icons">
-                      <div className="icons">
-                        <i className="fa-light fa-pen" />
-                      </div>
-                    </button>
-                    <button className="btn-icons ms-4">
-                      <div className="icons">
-                        <i
-                          className="fa-light fa-trash"
-                          onClick={() => DeleteUserStores(el.storeId)}
-                        />
-                      </div>
-                    </button>
-                  </td>
+        {stores ? (
+          <div className="table-box">
+            <table className="my-store-table">
+              <thead>
+                <tr>
+                  <th style={{ borderRadius: 20 }} className="th1">
+                    Наименование организации
+                  </th>
+                  <th>Авторизовано</th>
+                  <th>Товаров в отзывах </th>
+                  <th>Отзывы без ответа</th>
+                  <th>Неотправленных ответов </th>
+                  <th>Действия</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {stores.map((el) => (
+                  <ProductStorePage key={RandomKey()} el={el} change={GetProducts} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="d-flex justify-content-center align-items-center mt-5">
+            <CircularProgress
+              size={50}
+              sx={{
+                color: '#4B4AEF'
+              }}
+              className="mt-1"
+            />
+          </div>
+        )}
+
         <div className="d-flex justify-content-between align-items-center mt-5">
           <PaginationCount
             array={pageSize}
@@ -126,7 +128,7 @@ function MyStore() {
           />
           <div className="pagination">
             <Pagination
-              count={Math.floor(stores.length / paginationCount)}
+              count={CreatePageCount(totalCount, paginationCount)}
               shape="rounded"
               page={activePage}
               onChange={(e, active) => setActivePage(active)}

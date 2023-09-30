@@ -43,10 +43,11 @@ declare interface SortingSelect {
 }
 
 declare interface IStores {
+  isAuthorized?: boolean;
   storeId?: number;
   storeType: string;
   title: string;
-  apiToken: string;
+  apiToken?: string;
 }
 
 interface IUserInfo {
@@ -123,4 +124,10 @@ declare interface IStoreRates {
 declare interface IDefInputs {
   value: string;
   error: boolean;
+}
+
+declare interface IStatistics {
+  productsCount: number;
+  unrocessedFeedbacksCount: number;
+  unsetResponsesCount: number;
 }

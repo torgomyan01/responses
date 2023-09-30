@@ -28,10 +28,13 @@ const UserInfo = createSlice({
     },
     updateStores(state, action) {
       state.stores = [...state.stores, action.payload];
+    },
+    removeStore(state, action) {
+      state.stores = state.stores?.filter((store) => store.storeId !== action.payload);
     }
   }
 });
 
-export const { setStores, updateStores } = UserInfo.actions;
+export const { setStores, updateStores, removeStore } = UserInfo.actions;
 
 export default UserInfo.reducer;

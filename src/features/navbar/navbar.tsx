@@ -3,21 +3,14 @@ import './navbar.css';
 import Logo from '../../assets/images/logo-site.svg';
 import rubleIcon from '../../assets/images/ruble-icon.svg';
 import { Link } from 'react-router-dom';
-import { Badge, Button, IconButton } from '@mui/material';
+import { Badge, Button, CircularProgress, IconButton } from '@mui/material';
 import Dropdown from 'react-bootstrap/Dropdown';
-import DropDownWb from '../../assets/images/DropDownWb.svg';
 import { useSelector } from 'react-redux';
-import { RandomKey } from '../../utils/helpers';
-import { STORES_MARKETPLACE } from '../../utils/const';
+import { GetStoreImage, RandomKey } from '../../utils/helpers';
 import { SITE_URL } from '../../utils/const';
 
 function Navbar() {
   const stores = useSelector((state: IUserInfo) => state.UserInfo.stores);
-
-  function GetStoreImage(type: string) {
-    const res = STORES_MARKETPLACE.find((_type) => _type.name === type);
-    return res ? res.image : '';
-  }
 
   return (
     <div className="nav">
@@ -34,27 +27,51 @@ function Navbar() {
           {/*  <i className="fa-regular fa-chevron-down ms-2" />*/}
           {/*</Link>*/}
           <Dropdown className="DropDown">
-            <Dropdown.Toggle className="DropDownBtn" variant="success" id="dropdown-basic">
-              <img src={DropDownWb} alt="img" />
-              WB ИП ФИО...(№ 1111)
-              <i className="fa-solid fa-chevron-down" />
+            <Dropdown.Toggle className="DropDownBtn-nav" variant="success" id="dropdown-basic">
+              {stores.length ? (
+                <>
+                  <img src={GetStoreImage(stores[0]?.storeType)} alt="img" />
+                  {stores[0]?.title}
+                </>
+              ) : (
+                <CircularProgress
+                  size={15}
+                  sx={{
+                    color: '#fff'
+                  }}
+                  className="mt-1"
+                />
+              )}
             </Dropdown.Toggle>
 
-            <Dropdown.Menu className="DropDownItem">
-              {stores.map((store: IStores) => (
-                <Dropdown.Item key={RandomKey()} className="DropDownItems">
-                  <img src={GetStoreImage(store.storeType)} alt="img" />
+            <Dropdown.Menu className="DropDownItem-nav">
+              {stores.length ? (
+                <>
+                  {stores.map((store: IStores) => (
+                    <Dropdown.Item key={RandomKey()} className="DropDownItems">
+                      <img src={GetStoreImage(store.storeType)} alt="img" />
 
-                  {store.title}
-                </Dropdown.Item>
-              ))}
-
-              <Link to={SITE_URL.CREATE_MARKETPLACE} className="addShop">
-                <div className="IconPlus">
-                  <i className="fa-solid fa-plus" />
+                      {store.title}
+                    </Dropdown.Item>
+                  ))}
+                  <Link to={SITE_URL.CREATE_MARKETPLACE} className="addShop">
+                    <div className="IconPlus">
+                      <i className="fa-solid fa-plus" />
+                    </div>
+                    добавить МАГАЗИН
+                  </Link>
+                </>
+              ) : (
+                <div className="d-flex justify-content-center align-items-center">
+                  <CircularProgress
+                    size={30}
+                    sx={{
+                      color: '#4B4AEF'
+                    }}
+                    className="mt-1"
+                  />
                 </div>
-                добавить МАГАЗИН
-              </Link>
+              )}
             </Dropdown.Menu>
           </Dropdown>
           <Link to="#" className="nav-item">
