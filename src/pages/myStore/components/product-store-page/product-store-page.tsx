@@ -43,7 +43,7 @@ function ProductStorePage({
         </div>
       </td>
       <td>
-        <div className="text-center">{el.statistics.productsCount}</div>
+        <div className="text-center">{el.statistics.productsWithFeedbacksCount}</div>
       </td>
       <td>
         <div className="text-center">{el.statistics.unrocessedFeedbacksCount}</div>

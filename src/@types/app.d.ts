@@ -127,7 +127,7 @@ declare interface IDefInputs {
 }
 
 declare interface IStatistics {
-  productsCount: number;
+  productsWithFeedbacksCount: number;
   unrocessedFeedbacksCount: number;
   unsetResponsesCount: number;
 }
