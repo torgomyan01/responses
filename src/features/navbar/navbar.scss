@@ -13,6 +13,10 @@
     margin-right: 2rem;
     white-space: nowrap;
 
+    &.active{
+      color: #95F5D3;
+    }
+
     &:hover{
       color: #95F5D3;
     }
@@ -59,6 +63,7 @@
       overflow: hidden;
       width: 180px;
       padding-right: 25px;
+      text-align: left;
       &:after{
         display: none;
       }
@@ -89,7 +94,6 @@
       padding: 20px 0 20px 0;
 
       .addShop{
-        margin-top: 1.875rem;
         padding: 5px 0 5px 20px;
         display: flex;
         align-items: center;
@@ -98,6 +102,9 @@
         font-weight: 700;
         text-transform: uppercase;
         .IconPlus{
+          width: 20px;
+          height: 20px;
+          min-width: 20px;
           margin-right: 10px;
           display: flex;
           justify-content: center;

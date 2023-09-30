@@ -34,7 +34,6 @@ function ProjectSettings() {
   useEffect(() => {
     if (storeId) {
       GetStoreInfo(storeId).then(({ data }) => {
-        console.log(data);
         setData(data);
         setRates(Object.values(data.configuration.replyConfiguration.rates) || []);
       });

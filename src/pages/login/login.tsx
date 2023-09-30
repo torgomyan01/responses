@@ -18,9 +18,9 @@ function Login() {
       setLoading(true);
 
       setTimeout(() => {
-        navigation(SITE_URL.PROFILE_SETTINGS);
+        navigation(SITE_URL.MY_STORE);
         setLoading(false);
-      }, 3000);
+      }, 2000);
 
       // CreateUser({
       //   username: username.value,

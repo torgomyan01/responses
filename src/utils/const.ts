@@ -4,7 +4,7 @@ import DropDownYm from '../assets/images/DropDownYm.png';
 
 export const SITE_URL = {
   HOME: '/',
-  LOGIN: '/login',
+  SETTINGS_REVIEWS: '/settings-reviews',
   PROFILE_SETTINGS: '/profile-settings',
   PROJECT_SETTINGS: '/project-settings',
   CREATE_MARKETPLACE: '/create-marketplace',

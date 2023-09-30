@@ -12,6 +12,7 @@ import ProjectSettings from './pages/project-settings/project-settings';
 import CreateMarketplace from './pages/create-marketplace/create-marketplace';
 import MyStore from './pages/myStore/myStore';
 import Login from './pages/login/login';
+import Navbar from './features/navbar/navbar';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,9 +25,10 @@ function App() {
 
   return (
     <Router>
+      <Navbar />
       <Routes>
-        <Route path={SITE_URL.HOME} element={<ReviewModeration />} />
-        <Route path={SITE_URL.LOGIN} element={<Login />} />
+        <Route path={SITE_URL.HOME} element={<Login />} />
+        <Route path={SITE_URL.SETTINGS_REVIEWS} element={<ReviewModeration />} />
         <Route path={SITE_URL.PROFILE_SETTINGS} element={<ProfileSettings />} />
         <Route path={`${SITE_URL.PROJECT_SETTINGS}/:storeId`} element={<ProjectSettings />} />
         <Route path={SITE_URL.CREATE_MARKETPLACE} element={<CreateMarketplace />} />
