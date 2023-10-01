@@ -88,6 +88,10 @@
     content: "\f1f8"
 }
 
+.fa-calendar-range:before {
+    content: "\e0d6"
+}
+
 /*---------------------------------*/
 
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import ReviewModeration from './pages/review-moderation/review-moderation';
 import { SITE_URL } from './utils/const';
 import './App.css';
@@ -12,7 +12,7 @@ import ProjectSettings from './pages/project-settings/project-settings';
 import CreateMarketplace from './pages/create-marketplace/create-marketplace';
 import MyStore from './pages/myStore/myStore';
 import Login from './pages/login/login';
-import Navbar from './features/navbar/navbar';
+import StoresProduct from './pages/stores-product/stores-product';
 
 function App() {
   const dispatch = useDispatch();
@@ -25,7 +25,6 @@ function App() {
 
   return (
     <Router>
-      <Navbar />
       <Routes>
         <Route path={SITE_URL.HOME} element={<Login />} />
         <Route path={SITE_URL.SETTINGS_REVIEWS} element={<ReviewModeration />} />
@@ -33,6 +32,7 @@ function App() {
         <Route path={`${SITE_URL.PROJECT_SETTINGS}/:storeId`} element={<ProjectSettings />} />
         <Route path={SITE_URL.CREATE_MARKETPLACE} element={<CreateMarketplace />} />
         <Route path={SITE_URL.MY_STORE} element={<MyStore />} />
+        <Route path={SITE_URL.STORE_PRODUCTS} element={<StoresProduct />} />
       </Routes>
     </Router>
   );

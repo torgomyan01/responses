@@ -1,0 +1,40 @@
+.def-calendar{
+ position: relative;
+  &-btn{
+    border-radius: 5px;
+    border: 1px solid #A8A8BE;
+    background: #FAFAFF ;
+    padding: 11px 20px ;
+    color: #A8A8BE ;
+    text-align: center;
+    font-size: 16px;
+    box-shadow: unset;
+    &:after{
+      display: none;
+    }
+  }
+  &-body{
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 4px 5px 20px 0 rgba(74, 105, 165, 0.16);
+    top: calc(100% + 8px);
+    right: 0;
+    position: absolute;
+    margin-top: 5px;
+    padding: 20px;
+    width: 18.75rem;
+    border: 0;
+  }
+  &-input{
+    width: 100%;
+    border-radius: 5px;
+    background: #E5E5F8;
+    color: #A8A8BE;
+    font-size: 16px;
+  }
+  label{
+    background: #E5E5F8;
+    padding: 0 5px;
+    border-radius: 5px;
+  }
+}

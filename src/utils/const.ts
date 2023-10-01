@@ -8,7 +8,8 @@ export const SITE_URL = {
   PROFILE_SETTINGS: '/profile-settings',
   PROJECT_SETTINGS: '/project-settings',
   CREATE_MARKETPLACE: '/create-marketplace',
-  MY_STORE: '/my-stores'
+  MY_STORE: '/my-stores',
+  STORE_PRODUCTS: '/store-products'
 };
 
 export const STATUS_BUTTON = {

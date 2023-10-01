@@ -175,6 +175,11 @@ body {
   font-weight: 700 !important;
   text-transform: uppercase !important;
 }
+.btn-blue.outline {
+  border: 1px solid #4B4AEF;
+  background: #FFF !important;
+  color: #4B4AEF !important;
+}
 
 .purple-gray-button {
   background: #E5E5F8 !important;
