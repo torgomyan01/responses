@@ -1,41 +1,32 @@
-import react, { useState } from 'react';
-import './selectt.css';
+import React, { useState } from 'react';
+import './select.css';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { Link } from 'react-router-dom';
-import whatsapp from '../../assets/images/whatcap.svg';
-import telegram from '../../assets/images/telegram.svg';
-import viber from '../../assets/images/viber.svg';
-import React from 'react';
+import { RandomKey } from '../../utils/helpers';
 
-function Select({ title }: Select) {
-  const [value, setvalue] = useState<string>('');
+function Select({ selected, className = '', items = [] }: Select) {
+  const [value, setValue] = useState<any>(selected);
+
+  function changeSelect(item: any) {
+    setValue(item);
+  }
 
   return (
-    <div className="select">
-      <Dropdown className="DropDown">
-        <Dropdown.Toggle className="DropDownBtn" variant="success" id="dropdown-basic">
-          {title}
+    <div className={`def-select ${className}`}>
+      <Dropdown>
+        <Dropdown.Toggle variant="success">
+          {value ? value : items[0]}
           <i className="fa-solid fa-chevron-down" />
         </Dropdown.Toggle>
-        <Dropdown.Menu className="DropDownItem">
-          <Dropdown.Item className="DropDownItems">
-            <div className="links">
-              <img src={whatsapp} alt="whatsapp" />
-              <span>Whats App</span>
-            </div>
-          </Dropdown.Item>
-          <Dropdown.Item className="DropDownItems">
-            <div className="links">
-              <img src={telegram} alt="whatsapp" />
-              <span>Telegram</span>
-            </div>
-          </Dropdown.Item>
-          <Dropdown.Item className="DropDownItems">
-            <div className="links">
-              <img src={viber} alt="whatsapp" />
-              <span>Viber</span>
-            </div>
-          </Dropdown.Item>
+
+        <Dropdown.Menu>
+          {items.map((item) => (
+            <Dropdown.Item
+              key={RandomKey()}
+              className={value === item ? 'active' : ''}
+              onClick={() => changeSelect(item)}>
+              {item}
+            </Dropdown.Item>
+          ))}
         </Dropdown.Menu>
       </Dropdown>
     </div>

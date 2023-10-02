@@ -92,6 +92,14 @@
     content: "\e0d6"
 }
 
+.fa-file-export:before {
+    content: "\f56e"
+}
+
+.fa-gear:before {
+    content: "\f013"
+}
+
 /*---------------------------------*/
 
 

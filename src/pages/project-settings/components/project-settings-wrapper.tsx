@@ -5,7 +5,7 @@ import './project-settings-wrapper.css';
 import { useState } from 'react';
 import { RandomKey } from '../../../utils/helpers';
 
-function ProjectSettingsWrapper({ title, item }: IProjectSettingsWrapper) {
+function ProjectSettingsWrapper({ index, title, item, onChange }: IProjectSettingsWrapper) {
   const [todos, setTodo] = useState<any>([]);
   const [input, setInput] = useState('');
 
@@ -20,7 +20,6 @@ function ProjectSettingsWrapper({ title, item }: IProjectSettingsWrapper) {
 
   useEffect(() => {
     setTodo([]);
-    console.log(item);
     item?.blacklistKeywords?.forEach((key: string) => {
       addTodo(key);
     });
@@ -36,6 +35,7 @@ function ProjectSettingsWrapper({ title, item }: IProjectSettingsWrapper) {
     if (input) {
       addTodo(input);
       setInput('');
+      onChange(index, todos);
     }
   };
 
@@ -55,8 +55,10 @@ function ProjectSettingsWrapper({ title, item }: IProjectSettingsWrapper) {
             text: 'text',
             title: 'title'
           }}
-          value={input}
           onChange={(e: any) => setInput(e.target.value)}
+          inpProps={{
+            value: input
+          }}
         />
       </form>
       <div className="todos">

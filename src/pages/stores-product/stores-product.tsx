@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import './stores-product.css';
-import { Button, Pagination } from '@mui/material';
+import { Button, Pagination, Rating } from '@mui/material';
 import Shape from '../../features/shape/shape';
 import SortingSelect from '../../features/sorting-select/sorting-select';
 import MainTemplate from '../../features/main-template/main-template';
-import product from '../../assets/images/product.png';
 import { STATUS_BUTTON } from '../../utils/const';
 import Calendar from '../../features/calendar/calendar';
+import Select from '../../features/select/select';
+import product from '../../assets/images/product.png';
+import PaginationCount from '../../features/pagination-count/pagination-count';
+import { RandomKey } from '../../utils/helpers';
+import { useParams } from 'react-router-dom';
+import { GetFeedbacksResponse } from '../../utils/api';
+import StProduct from './components/st-product';
 
 const products: Products[] = Array.from({ length: 100 }).map((item, index) => {
   return {
@@ -34,8 +40,10 @@ const sortArray = [
 ];
 
 const pageSize = [10, 50, 100];
+const selectItems = ['Сегодня', 'Вчера', '7 дней', '30 дней'];
 
 function StoresProduct() {
+  const { storeId } = useParams();
   const [paginationCount, setPaginationCount] = useState<number>(pageSize[0]);
   const [activePage, setActivePage] = useState<number>(1);
   const [activePageArray, setActivePageArray] = useState<Products[]>(
@@ -47,6 +55,19 @@ function StoresProduct() {
     const lastPageIndex = firstPageIndex + paginationCount;
     setActivePageArray(products.slice(firstPageIndex, lastPageIndex));
   }, [paginationCount, activePage]);
+
+  useEffect(() => {
+    if (storeId) {
+      GetFeedbacksResponse(storeId)
+        .then(({ data }) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [storeId]);
+
   return (
     <MainTemplate className="reviewModeration">
       <div className="d-flex justify-content-between align-items-center">
@@ -74,33 +95,50 @@ function StoresProduct() {
         </div>
       </div>
 
-      <div className="d-flex justify-content-between align-items-center mt-5">
+      <div className="d-flex justify-content-between align-items-center mt-5 mb-4">
         <div>
           <h3 className="fs-3 c-grey mb-2 text-uppercase">все товары проекта</h3>
           <p className="fs-18 c-grey">
             <b>Организация:</b> ИП Шишкова О.П.
           </p>
         </div>
-        <div>
+        <div className="d-lg-flex justify-content-between align-items-center">
           <Calendar />
+          <Select selected={selectItems[0]} className="ms-3" items={selectItems} />
+          <div>
+            <Button
+              variant="contained"
+              className="btn-green ms-3"
+              sx={{
+                height: 40,
+                width: 160
+              }}>
+              <i className="fa-solid fa-file-export me-2" />
+              Экспорт
+            </Button>
+          </div>
         </div>
       </div>
 
-      {/*<div className="d-flex justify-content-between align-items-center mt-5">*/}
-      {/*  <PaginationCount*/}
-      {/*    array={pageSize}*/}
-      {/*    active={paginationCount}*/}
-      {/*    onChange={(value: number) => setPaginationCount(value)}*/}
-      {/*  />*/}
-      {/*  <div className="pagination">*/}
-      {/*    <Pagination*/}
-      {/*      count={Math.floor(products.length / paginationCount)}*/}
-      {/*      shape="rounded"*/}
-      {/*      page={activePage}*/}
-      {/*      onChange={(e, active) => setActivePage(active)}*/}
-      {/*    />*/}
-      {/*  </div>*/}
-      {/*</div>*/}
+      {Array.from({ length: 3 }).map(() => (
+        <StProduct key={RandomKey()} />
+      ))}
+
+      <div className="d-flex justify-content-between align-items-center mt-5">
+        <PaginationCount
+          array={pageSize}
+          active={paginationCount}
+          onChange={(value: number) => setPaginationCount(value)}
+        />
+        <div className="pagination">
+          <Pagination
+            count={Math.floor(products.length / paginationCount)}
+            shape="rounded"
+            page={activePage}
+            onChange={(e, active) => setActivePage(active)}
+          />
+        </div>
+      </div>
     </MainTemplate>
   );
 }

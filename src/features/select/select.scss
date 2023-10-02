@@ -1,50 +1,57 @@
 
 
-.DropDown{
+.def-select{
   width: 100%;
-  .DropDownBtn{
+  .dropdown-toggle{
     width: 100%;
-    height: 3.125rem;
+    height: 40px;
     border-radius: 5px;
-    background: #E5E5F8;
-    padding: 0.9375rem 1.3rem 0.9375rem 1.2rem;
+    border: 1px solid #A8A8BE;
+    background: #FAFAFF;
     color: #A8A8BE;
     font-size: 16px;
-    border: 0;
+    position: relative;
+    padding-right: 35px;
     &:after{
       display: none;
     }
     &:active{
-      background: transparent;
-    }
-    &.show{
-      i{
-        display: inline-block;
-        transform: rotate(-180deg);
-      }
+      background: #E5E5F8;
+      color: #A8A8BE;
     }
     i{
       margin-left: 10px;
+      transition: 0.3s;
+      display: inline-block;
+      position: absolute;
+      right: 12px;
+      font-size: 14px;
+      top: 12px;
+    }
+    &.show{
+      i{
+        transform: rotate(-180deg);
+      }
     }
     img{
       margin-right: 10px;
     }
   }
 
-  .DropDownItem{
+  .dropdown-menu{
     margin-top: 5px;
     width: 160px;
     border-radius: 5px;
     background: #FFF;
     box-shadow: 4px 5px 20px 0 rgba(74, 105, 165, 0.16);
-    padding: 30px 0 30px 0;
-    margin-left: 120px;
-    .DropDownItems{
-      transition: .2s linear;
+    padding: 20px 0;
+    border: 0;
+    .dropdown-item{
+      transition: .3s;
       color: #666676;
-      font-size: 1rem;
+      font-size: 16px;
       font-weight: 400;
-      padding: 10px 0 10px 0;
+      padding: 5px 10 5px 20px;
       margin-bottom: 5px;
       &:hover{
         background: #E5E5F8;

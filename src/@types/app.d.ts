@@ -23,7 +23,9 @@ declare interface Product {
 }
 
 declare interface Select {
-  title: string;
+  selected?: string;
+  className?: string;
+  items: any[];
 }
 
 declare interface DefSwitch {
@@ -95,8 +97,10 @@ declare interface ICreateProject {
 }
 
 declare interface IProjectSettingsWrapper {
+  index: number;
   title: string;
   item: any;
+  onChange?: any;
 }
 
 declare interface IStore {

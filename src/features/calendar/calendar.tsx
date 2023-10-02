@@ -31,7 +31,6 @@ function Calendar() {
       setOpenClose(false);
     }
   }
-
   console.log(dayjs(valueStart).format());
 
   return (
@@ -53,6 +52,7 @@ function Calendar() {
         <div className="def-calendar-body">
           <div className="mb-4">
             <DatePicker
+              format="MM-DD-YYYY"
               label="Начало периода"
               className="def-calendar-input"
               value={valueStart}
@@ -62,6 +62,7 @@ function Calendar() {
           </div>
           <div>
             <DatePicker
+              format="MM-DD-YYYY"
               label="Начало периода"
               className="def-calendar-input"
               value={valueEnd}

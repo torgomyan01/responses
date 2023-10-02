@@ -32,7 +32,7 @@ function App() {
         <Route path={`${SITE_URL.PROJECT_SETTINGS}/:storeId`} element={<ProjectSettings />} />
         <Route path={SITE_URL.CREATE_MARKETPLACE} element={<CreateMarketplace />} />
         <Route path={SITE_URL.MY_STORE} element={<MyStore />} />
-        <Route path={SITE_URL.STORE_PRODUCTS} element={<StoresProduct />} />
+        <Route path={`${SITE_URL.STORE_PRODUCTS}/:storeId`} element={<StoresProduct />} />
       </Routes>
     </Router>
   );

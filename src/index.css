@@ -85,6 +85,10 @@ body {
   color: #FF6C6C !important;
 }
 
+.fs-24 {
+  font-size: 24px;
+}
+
 .fs-18 {
   font-size: 18px;
 }
@@ -104,6 +108,10 @@ body {
 
 .mt-70 {
   margin-top: 4.375rem;
+}
+
+.w-200 {
+  width: 12.5rem;
 }
 
 .container {

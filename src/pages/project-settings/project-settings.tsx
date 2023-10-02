@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import MainTemplate from '../../features/main-template/main-template';
 import { Button } from '@mui/material';
 import Shape from '../../features/shape/shape';
 import SortingSelect from '../../features/sorting-select/sorting-select';
-import DefaultInputs from '../../features/defultinputs/Defultinputs';
 import Interrogative from '../../features/Interrogative/Interrogative';
 import DefSwitch from '../../features/switch/switch';
 import ProjectSettingsWrapper from './components/project-settings-wrapper';
-import { Simulate } from 'react-dom/test-utils';
-import change = Simulate.change;
 import { useParams } from 'react-router-dom';
 import { GetStoreInfo } from '../../utils/api';
-import { log } from 'util';
-import { elGR } from '@mui/material/locale';
 import { RandomKey } from '../../utils/helpers';
 import Select from '../../features/select/select';
+import whatsapp from '../../assets/images/whatcap.svg';
+import telegram from '../../assets/images/telegram.svg';
+import viber from '../../assets/images/viber.svg';
 
 const sortArray = [
   'Сначала новые',
@@ -25,6 +23,23 @@ const sortArray = [
   'Рейтинг по убыванию',
   'Группировка по товару'
 ];
+
+const selectItems = [
+  <div key={RandomKey()} className="links">
+    <img src={whatsapp} alt="whatsapp" />
+    <span>Whats App</span>
+  </div>,
+  <div key={RandomKey()} className="links">
+    <img src={telegram} alt="whatsapp" />
+    <span>Telegram</span>
+  </div>,
+  <div key={RandomKey()} className="links">
+    <img src={viber} alt="whatsapp" />
+    <span>Viber</span>
+  </div>
+];
+
+const ProjectSettingsContext = createContext(null);
 
 function ProjectSettings() {
   const { storeId } = useParams();
@@ -39,6 +54,10 @@ function ProjectSettings() {
       });
     }
   }, [storeId]);
+
+  function ChangeRate(rateTitle: string, rateArray: []) {
+    console.log(rateTitle, rateArray);
+  }
 
   return (
     <MainTemplate className="reviewModeration">
@@ -66,7 +85,11 @@ function ProjectSettings() {
         <div className="col-6 mb-5 pe-4">
           <div className="wrapper">
             <div className="d-flex justify-content-between align-items-center">
-              <Select title={rates ? rates[0].reviewStyle : ''} />
+              <Select
+                className="w-75 select-project-settings"
+                selected="Выберите тональность ответа"
+                items={selectItems}
+              />
               <Interrogative title="Title" text="Text" />
             </div>
           </div>
@@ -90,6 +113,8 @@ function ProjectSettings() {
           <div key={RandomKey()} className="col-6 mb-5 pe-4">
             <ProjectSettingsWrapper
               item={el}
+              index={index}
+              onChange={ChangeRate}
               title={`Включить автоответ на отзывы с рейтингом  ${index + 1}`}
             />
           </div>
