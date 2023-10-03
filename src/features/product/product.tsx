@@ -14,9 +14,9 @@ function Product({ info }: Product) {
   const getResponse = info.feedback.responses[0];
 
   function openCloseReview() {
-    setReview(!review);
-    // if (getResponse.status !== 10) {
-    // }
+    if (getResponse.status !== 10) {
+      setReview(!review);
+    }
   }
 
   function statusChangedResponse() {
