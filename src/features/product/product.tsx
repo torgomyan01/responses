@@ -14,9 +14,9 @@ function Product({ info }: Product) {
   const getResponse = info.feedback.responses[0];
 
   function openCloseReview() {
-    if (info.feedback.status !== 10) {
-      setReview(!review);
-    }
+    setReview(!review);
+    // if (getResponse.status !== 10) {
+    // }
   }
 
   function statusChangedResponse() {
@@ -99,16 +99,7 @@ function Product({ info }: Product) {
         </label>
         <label className="def-label mt-5">
           <span className="def-label-title">Ответ</span>
-          <textarea
-            disabled={statusChangedResponse()}
-            defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum."
-          />
+          <textarea disabled={!statusChangedResponse()} defaultValue={getResponse.message} />
         </label>
         <div className="d-flex justify-content-between align-items-center mt-5">
           <span className="fs-14 c-grey">Дата отзыва: 10.08.2023, 11:10:00</span>
