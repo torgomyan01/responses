@@ -9,7 +9,8 @@ export const SITE_URL = {
   PROJECT_SETTINGS: '/project-settings',
   CREATE_MARKETPLACE: '/create-marketplace',
   MY_STORE: '/my-stores',
-  STORE_PRODUCTS: '/store-products'
+  STORE_PRODUCTS: '/store-products',
+  SETTINGS_EXPANDED: '/settings-expanded'
 };
 
 export const STATUS_BUTTON = {
@@ -21,7 +22,7 @@ export const API_URLS = {
   STORES: '/user/stores',
   USER_PROFILE: '/user/profile',
   GET_STORE: (id: string) => `/user/stores/${id}/configuration/response`,
-  FEEDBACKS_RESPONSE: (id: string) => `/user/stores/${id}/feedbacks-response`
+  FEEDBACKS_RESPONSE: (id: number | undefined) => `/user/stores/${id}/feedbacks-response`
 };
 
 export const STORES_MARKETPLACE = [

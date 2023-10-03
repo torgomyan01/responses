@@ -19,7 +19,7 @@ declare interface MainTemplate {
 }
 
 declare interface Product {
-  info: Products;
+  info: IReviewItem;
 }
 
 declare interface Select {
@@ -36,8 +36,7 @@ declare interface DefSwitch {
 }
 
 declare interface StatusButton {
-  status: string;
-  text: string;
+  status: number;
 }
 
 declare interface SortingSelect {
@@ -58,6 +57,7 @@ interface IUserInfo {
     username: string;
     email: string;
     stores: IStores[];
+    activeStore: IStores | null;
   };
 }
 
@@ -134,4 +134,36 @@ declare interface IStatistics {
   productsWithFeedbacksCount: number;
   unrocessedFeedbacksCount: number;
   unsetResponsesCount: number;
+}
+
+declare interface IReviewItem {
+  feedback: {
+    createdAt: string;
+    feedbackId: number;
+    message: string;
+    product: {
+      categoryTitle: string;
+      externalProductId: string;
+      image: string;
+      productId: number;
+      sku: string | number;
+      title: string;
+    };
+    productId: number;
+    rate: number;
+    responses: IResponses[];
+    status: number;
+    storeId: number;
+    userName: string;
+  };
+}
+
+declare interface IResponses {
+  createdAt: string;
+  feedbackId: number;
+  message: string;
+  publishedAt: string;
+  responseId: number;
+  status: number;
+  responseType?: number;
 }

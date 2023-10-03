@@ -4,11 +4,15 @@ import MainTemplate from '../../features/main-template/main-template';
 import { Button, Pagination } from '@mui/material';
 import Shape from '../../features/shape/shape';
 import product from '../../assets/images/product.png';
-import { STATUS_BUTTON } from '../../utils/const';
+import { SITE_URL, STATUS_BUTTON } from '../../utils/const';
 import Product from '../../features/product/product';
 import { RandomKey } from '../../utils/helpers';
 import PaginationCount from '../../features/pagination-count/pagination-count';
 import SortingSelect from '../../features/sorting-select/sorting-select';
+import { useSelector } from 'react-redux';
+import { GetFeedbacksResponse } from '../../utils/api';
+import { log } from 'util';
+import { Link } from 'react-router-dom';
 
 const products: Products[] = Array.from({ length: 100 }).map((item, index) => {
   return {
@@ -38,6 +42,9 @@ const sortArray = [
 const pageSize = [10, 50, 100];
 
 function ReviewModeration() {
+  const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
+  const [reviews, setReviews] = useState<IReviewItem[] | null>(null);
+
   const [paginationCount, setPaginationCount] = useState<number>(pageSize[0]);
   const [activePage, setActivePage] = useState<number>(1);
   const [activePageArray, setActivePageArray] = useState<Products[]>(
@@ -50,12 +57,27 @@ function ReviewModeration() {
     setActivePageArray(products.slice(firstPageIndex, lastPageIndex));
   }, [paginationCount, activePage]);
 
+  useEffect(() => {
+    if (store) {
+      GetFeedbacksResponse(store.storeId)
+        .then(({ data }) => {
+          console.log(data);
+          setReviews(data.items);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [store]);
+
   return (
     <MainTemplate className="reviewModeration">
       <div className="d-flex justify-content-between align-items-center">
-        <Button variant="contained" className="btn-green py-3 px-4">
-          вернуться к списку товаров
-        </Button>
+        <Link to={SITE_URL.MY_STORE}>
+          <Button variant="contained" className="btn-green py-3 px-4">
+            вернуться к списку товаров
+          </Button>
+        </Link>
         <Shape />
       </div>
       <hr className="mt-5 mb-5" />
@@ -77,9 +99,11 @@ function ReviewModeration() {
         </div>
       </div>
       <div className="products">
-        {activePageArray.map((info) => (
-          <Product key={RandomKey()} info={info} />
-        ))}
+        {reviews ? (
+          reviews.map((info) => <Product key={RandomKey()} info={info} />)
+        ) : (
+          <div>loading...</div>
+        )}
       </div>
       <div className="d-flex justify-content-between align-items-center mt-5">
         <PaginationCount

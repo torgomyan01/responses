@@ -4,24 +4,16 @@ import { GetStoreImage, RandomKey } from '../../../../utils/helpers';
 import { CircularProgress, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { SITE_URL } from '../../../../utils/const';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setActiveStore } from '../../../../redux/user-info';
 
 function DropdownNavbar() {
+  const dispatch = useDispatch();
   const stores = useSelector((state: IUserInfo) => state.UserInfo.stores);
-  const [selected, setSelected] = useState<{ type: string; title: string } | null>(null);
-
-  useEffect(() => {
-    setSelected({
-      type: stores[0]?.storeType,
-      title: stores[0]?.title
-    });
-  }, [stores]);
+  const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
 
   function changeSelect(store: IStores) {
-    setSelected({
-      type: store.storeType,
-      title: store.title
-    });
+    dispatch(dispatch(setActiveStore(store)));
   }
 
   return (
@@ -29,8 +21,8 @@ function DropdownNavbar() {
       <Dropdown.Toggle className="DropDownBtn-nav" variant="success" id="dropdown-basic">
         {stores.length ? (
           <>
-            <img src={GetStoreImage(selected?.type)} alt="img" />
-            {selected?.title}
+            <img src={GetStoreImage(store?.storeType)} alt="img" />
+            {store?.title}
           </>
         ) : (
           <CircularProgress

@@ -2,7 +2,7 @@ import React from 'react';
 import product from '../../../assets/images/product.png';
 import { Button, Rating } from '@mui/material';
 
-function StProduct() {
+function StProduct({ analyticReview = true }: { analyticReview?: boolean }) {
   return (
     <div className="product-store mb-4">
       <div className="product-store-info">
@@ -87,20 +87,22 @@ function StProduct() {
           </div>
         </div>
       </div>
-      <div className="product-store-text">
-        <h3 className="product-store-text-title">Аналитика отзывов</h3>
-        <div className="product-store-text-subtitle">Рекомендации:</div>
-        <div className="product-store-text-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum
-          dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      {analyticReview && (
+        <div className="product-store-text">
+          <h3 className="product-store-text-title">Аналитика отзывов</h3>
+          <div className="product-store-text-subtitle">Рекомендации:</div>
+          <div className="product-store-text-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

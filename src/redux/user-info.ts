@@ -10,13 +10,15 @@ interface IUserInfo {
     title: string;
     apiToken: string;
   }[];
+  activeStore: IStores | null;
 }
 
 const initialState: IUserInfo = {
   userId: '',
   username: '',
   email: '',
-  stores: []
+  stores: [],
+  activeStore: null
 };
 
 const UserInfo = createSlice({
@@ -31,10 +33,13 @@ const UserInfo = createSlice({
     },
     removeStore(state, action) {
       state.stores = state.stores?.filter((store) => store.storeId !== action.payload);
+    },
+    setActiveStore(state, action) {
+      state.activeStore = action.payload;
     }
   }
 });
 
-export const { setStores, updateStores, removeStore } = UserInfo.actions;
+export const { setStores, updateStores, removeStore, setActiveStore } = UserInfo.actions;
 
 export default UserInfo.reducer;

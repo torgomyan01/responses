@@ -56,17 +56,17 @@ function StoresProduct() {
     setActivePageArray(products.slice(firstPageIndex, lastPageIndex));
   }, [paginationCount, activePage]);
 
-  useEffect(() => {
-    if (storeId) {
-      GetFeedbacksResponse(storeId)
-        .then(({ data }) => {
-          console.log(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [storeId]);
+  // useEffect(() => {
+  //   if (storeId) {
+  //     GetFeedbacksResponse(storeId)
+  //       .then(({ data }) => {
+  //         console.log(data);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }, [storeId]);
 
   return (
     <MainTemplate className="reviewModeration">

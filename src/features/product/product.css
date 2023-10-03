@@ -63,4 +63,13 @@
   align-items: center;
 }
 
-/*# sourceMappingURL=product-store-page.css.map */
+.copy-number i {
+  cursor: pointer;
+  opacity: 0;
+  transition: 0.3s;
+}
+.copy-number:hover i {
+  opacity: 1;
+}
+
+/*# sourceMappingURL=product.css.map */

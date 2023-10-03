@@ -62,3 +62,17 @@
     }
   }
 }
+
+.copy-number{
+
+  i{
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.3s;
+  }
+  &:hover{
+    i{
+      opacity: 1;
+    }
+  }
+}

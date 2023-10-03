@@ -50,7 +50,8 @@ function ProjectSettings() {
     if (storeId) {
       GetStoreInfo(storeId).then(({ data }) => {
         setData(data);
-        setRates(Object.values(data.configuration.replyConfiguration.rates) || []);
+        console.log(data);
+        // setRates(Object.values(data.configuration.replyConfiguration.rates) || []);
       });
     }
   }, [storeId]);

@@ -19,7 +19,7 @@ export const DeleteUserStores = (id: number | undefined) =>
 
 export const GetStoreInfo = (id: string) => axios.get(`${API_URL}${API_URLS.GET_STORE(id)}`);
 
-export const GetFeedbacksResponse = (id: string) =>
+export const GetFeedbacksResponse = (id: number | undefined) =>
   axios.get(`${API_URL}${API_URLS.FEEDBACKS_RESPONSE(id)}`);
 
 export const CreateStore = (data: IStores) => axios.post(`${API_URL}${API_URLS.STORES}`, data);
