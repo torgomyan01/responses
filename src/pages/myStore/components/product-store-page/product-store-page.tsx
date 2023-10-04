@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { GetStoreImage, RandomKey } from '../../../../utils/helpers';
 import checked from '../../../../assets/images/checked.svg';
 import close from '../../../../assets/images/xmark.svg';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { SITE_URL } from '../../../../utils/const';
 import { CircularProgress } from '@mui/material';
 import { DeleteUserStores } from '../../../../utils/api';
-import { useDispatch } from 'react-redux';
-import { setActiveStore } from '../../../../redux/user-info';
 
 function ProductStorePage({
   el,
@@ -17,8 +15,6 @@ function ProductStorePage({
   change: any;
 }) {
   const [loadingRemove, setLoadingRemove] = useState<boolean>(false);
-  const dispatch = useDispatch(),
-    navigate = useNavigate();
 
   function removeStores(id: number | undefined) {
     if (id) {
@@ -33,18 +29,10 @@ function ProductStorePage({
     }
   }
 
-  const handleGoToStore = (store: IStores) => {
-    dispatch(dispatch(setActiveStore(store)));
-    navigate(SITE_URL.FEEDBACKS);
-  };
-
   return (
     <tr>
       <td>
-        <div
-          className="d-flex justify-content-start align-items-start"
-          style={{ cursor: 'pointer' }}
-          onClick={() => handleGoToStore(el.store)}>
+        <div className="d-flex justify-content-start align-items-start">
           <img src={GetStoreImage(el.store.storeType)} alt="img" className="me-2 mt-1" />
           {el.store.title}
         </div>
@@ -64,7 +52,7 @@ function ProductStorePage({
         <div className="text-center">{el.statistics.unsetResponsesCount}</div>
       </td>
       <td className="ACTIONS">
-        <Link to={`${SITE_URL.STORE_SETTINGS}/${el.store.storeId}`}>
+        <Link to={`${SITE_URL.PROJECT_SETTINGS}/${el.store.storeId}`}>
           <button className="btn-icons">
             <div className="icons">
               <i className="fa-light fa-pen" />
