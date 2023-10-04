@@ -3,31 +3,14 @@ import './review-moderation.css';
 import MainTemplate from '../../features/main-template/main-template';
 import { Button, Pagination } from '@mui/material';
 import Shape from '../../features/shape/shape';
-import product from '../../assets/images/product.png';
-import { SITE_URL, STATUS_BUTTON } from '../../utils/const';
+import { SITE_URL } from '../../utils/const';
 import Product from '../../features/product/product';
-import { RandomKey } from '../../utils/helpers';
+import { CreatePageCount, RandomKey } from '../../utils/helpers';
 import PaginationCount from '../../features/pagination-count/pagination-count';
 import SortingSelect from '../../features/sorting-select/sorting-select';
 import { useSelector } from 'react-redux';
 import { GetFeedbacksResponse } from '../../utils/api';
-import { log } from 'util';
 import { Link } from 'react-router-dom';
-
-const products: Products[] = Array.from({ length: 100 }).map((item, index) => {
-  return {
-    image: product,
-    title: `Шпатели для депиляции, шугаринга, воска, бровей деревянные -----${index + 1}`,
-    list: [
-      'Организация: ВБ ИП Шишкова О.П.',
-      'Артикул: 123123123 ',
-      'Артикул поставщика: Узкие-шпатели-100-ИП-Шишкова-О-П'
-    ],
-    status: STATUS_BUTTON.CLOSED,
-    autoSend: false,
-    reviews: 2
-  };
-});
 
 const sortArray = [
   'Сначала новые',
@@ -39,36 +22,28 @@ const sortArray = [
   'Группировка по товару'
 ];
 
-const pageSize = [10, 50, 100];
+const pageSize = [2, 50, 100];
 
 function ReviewModeration() {
   const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
   const [reviews, setReviews] = useState<IReviewItem[] | null>(null);
 
   const [paginationCount, setPaginationCount] = useState<number>(pageSize[0]);
-  const [activePage, setActivePage] = useState<number>(1);
-  const [activePageArray, setActivePageArray] = useState<Products[]>(
-    [...products].slice(0, paginationCount)
-  );
-
-  useEffect(() => {
-    const firstPageIndex = (activePage - 1) * paginationCount;
-    const lastPageIndex = firstPageIndex + paginationCount;
-    setActivePageArray(products.slice(firstPageIndex, lastPageIndex));
-  }, [paginationCount, activePage]);
+  const [totalCount, setTotalCount] = useState<number>(0);
+  const [activePage, setActivePage] = useState<number>(0);
 
   useEffect(() => {
     if (store) {
-      GetFeedbacksResponse(store.storeId)
+      GetFeedbacksResponse(store.storeId, paginationCount, activePage ? activePage - 1 : activePage)
         .then(({ data }) => {
-          console.log(data);
+          setTotalCount(data.totalCount);
           setReviews(data.items);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [store]);
+  }, [store, activePage, paginationCount]);
 
   return (
     <MainTemplate className="reviewModeration">
@@ -91,9 +66,9 @@ function ReviewModeration() {
         </div>
         <div className="pagination">
           <Pagination
-            count={Math.floor(products.length / paginationCount)}
+            count={CreatePageCount(totalCount, paginationCount)}
             shape="rounded"
-            page={activePage}
+            page={activePage > 0 ? activePage : 1}
             onChange={(e, active) => setActivePage(active)}
           />
         </div>
@@ -113,9 +88,9 @@ function ReviewModeration() {
         />
         <div className="pagination">
           <Pagination
-            count={Math.floor(products.length / paginationCount)}
+            count={CreatePageCount(totalCount, paginationCount)}
             shape="rounded"
-            page={activePage}
+            page={activePage > 0 ? activePage : 1}
             onChange={(e, active) => setActivePage(active)}
           />
         </div>

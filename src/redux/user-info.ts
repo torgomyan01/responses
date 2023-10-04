@@ -36,6 +36,9 @@ const UserInfo = createSlice({
     },
     setActiveStore(state, action) {
       state.activeStore = action.payload;
+    },
+    setUserInfo(state, action) {
+      state.activeStore = action.payload;
     }
   }
 });

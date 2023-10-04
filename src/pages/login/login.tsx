@@ -4,7 +4,7 @@ import Logo from '../../assets/images/logo-site.svg';
 import DefaultInputs from '../../features/defultinputs/Defultinputs';
 import { Button, CircularProgress } from '@mui/material';
 import { DEF_INPUT, SITE_URL } from '../../utils/const';
-import { CreateUser } from '../../utils/api';
+import { CreateUser, UserLogin } from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -17,31 +17,25 @@ function Login() {
     if (username && password) {
       setLoading(true);
 
-      setTimeout(() => {
-        navigation(SITE_URL.MY_STORE);
-        setLoading(false);
-      }, 2000);
-
-      // CreateUser({
-      //   username: username.value,
-      //   password: password.value
-      // })
-      //   .then(({ data }) => {
-      //     alert('User Created');
-      //     navigation(SITE_URL.PROFILE_SETTINGS);
-      //     setLoading(false);
-      //   })
-      //   .catch(() => {
-      //     setLoading(false);
-      //     setUsername({
-      //       value: username.value,
-      //       error: true
-      //     });
-      //     setPassword({
-      //       value: password.value,
-      //       error: true
-      //     });
-      //   });
+      UserLogin({
+        username: username.value,
+        password: password.value
+      })
+        .then(({ data }) => {
+          navigation(SITE_URL.PROFILE_SETTINGS);
+          setLoading(false);
+        })
+        .catch(() => {
+          setLoading(false);
+          setUsername({
+            value: username.value,
+            error: true
+          });
+          setPassword({
+            value: password.value,
+            error: true
+          });
+        });
     }
   }, [username, password]);
 

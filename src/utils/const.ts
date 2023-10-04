@@ -19,8 +19,10 @@ export const STATUS_BUTTON = {
 };
 
 export const API_URLS = {
+  USER_LOGIN: '/user/login',
   STORES: '/user/stores',
   USER_PROFILE: '/user/profile',
+  GET_RESPONSE_RENEW: (responseId: number | string) => `/user/responses/${responseId}/renew`,
   GET_STORE: (id: string) => `/user/stores/${id}/configuration/response`,
   FEEDBACKS_RESPONSE: (id: number | undefined) => `/user/stores/${id}/feedbacks-response`
 };

@@ -5,22 +5,30 @@ import DefSwitch from '../switch/switch';
 import './product.css';
 import img from '../../assets/images/product.png';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { GenerateNewResponseRenew } from '../../utils/api';
 
 function Product({ info }: Product) {
+  const getResponse = info.feedback.responses[0];
   const [value, setValue] = useState<number | null>(info.feedback.rate);
-  const [review, setReview] = useState<boolean>(false);
+  const [review, setReview] = useState<boolean>(getResponse.status === 10);
   const [copyNumber, setCopyNumber] = useState(false);
 
-  const getResponse = info.feedback.responses[0];
-
   function openCloseReview() {
-    if (getResponse.status !== 10) {
-      setReview(!review);
-    }
+    setReview(!review);
   }
 
   function statusChangedResponse() {
     return getResponse.status === 1 && getResponse.responseType === 1;
+  }
+
+  function StartGenerateNewResponse() {
+    GenerateNewResponseRenew(getResponse.responseId)
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
@@ -95,7 +103,7 @@ function Product({ info }: Product) {
       <div className="overflow-hidden trans" style={{ height: review ? 450 : 0 }}>
         <label className="def-label mt-5">
           <span className="def-label-title">Отзыв</span>
-          <input type="text" defaultValue={'ss'} disabled />
+          <input type="text" defaultValue={info.feedback.message} disabled />
         </label>
         <label className="def-label mt-5">
           <span className="def-label-title">Ответ</span>
@@ -104,7 +112,10 @@ function Product({ info }: Product) {
         <div className="d-flex justify-content-between align-items-center mt-5">
           <span className="fs-14 c-grey">Дата отзыва: 10.08.2023, 11:10:00</span>
           <div className="d-flex justify-content-end align-items-center">
-            <Button variant="outlined" className="btn-green outlined me-5">
+            <Button
+              variant="outlined"
+              className="btn-green outlined me-5"
+              onClick={StartGenerateNewResponse}>
               Сгенерировать новый отзыв
             </Button>
             <Button variant="contained" className="btn-green py-3 px-5">

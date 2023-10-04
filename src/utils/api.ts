@@ -6,6 +6,9 @@ const API_URL = process.env.REACT_APP_API_URL;
 export const CreateUser = (data: { username: string; password: string }) =>
   axios.post(`${API_URL}${API_URLS.USER_PROFILE}`, data);
 
+export const UserLogin = (data: { username: string; password: string }) =>
+  axios.post(`${API_URL}${API_URLS.USER_LOGIN}`, data);
+
 // STORES API
 export const GetUserStores = (limit: number, startFrom: number, statistics: boolean = false) =>
   axios.get(
@@ -19,7 +22,14 @@ export const DeleteUserStores = (id: number | undefined) =>
 
 export const GetStoreInfo = (id: string) => axios.get(`${API_URL}${API_URLS.GET_STORE(id)}`);
 
-export const GetFeedbacksResponse = (id: number | undefined) =>
-  axios.get(`${API_URL}${API_URLS.FEEDBACKS_RESPONSE(id)}`);
+export const GetFeedbacksResponse = (
+  id: number | undefined,
+  limit: number | string,
+  startFrom: number
+) =>
+  axios.get(`${API_URL}${API_URLS.FEEDBACKS_RESPONSE(id)}?limit=${limit}&startFrom=${startFrom}`);
+
+export const GenerateNewResponseRenew = (id: number) =>
+  axios.get(`${API_URL}${API_URLS.GET_RESPONSE_RENEW(id)}`);
 
 export const CreateStore = (data: IStores) => axios.post(`${API_URL}${API_URLS.STORES}`, data);
