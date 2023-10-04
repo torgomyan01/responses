@@ -31,7 +31,7 @@ function SettingsExpanded() {
   return (
     <MainTemplate className="reviewModeration">
       <div className="d-flex justify-content-between align-items-center">
-        <Link to={SITE_URL.MY_STORES}>
+        <Link to={SITE_URL.MY_STORE}>
           <Button variant="contained" className="btn-green py-3 px-4">
             вернуться к списку товаров
           </Button>

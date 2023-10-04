@@ -77,7 +77,7 @@ function CreateProject({ change }: ICreateProject) {
       apiToken: key.value
     })
       .then((res) => {
-        navigate(SITE_URL.MY_STORES);
+        navigate(SITE_URL.MY_STORE);
         setLoading(false);
         dispatch(updateStores(res.data));
       })

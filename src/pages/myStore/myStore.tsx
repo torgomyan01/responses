@@ -24,7 +24,7 @@ const sortArray = [
   'Рейтинг по убыванию',
   'Группировка по товару'
 ];
-const pageSize = [10, 20, 50, 100];
+const pageSize = [3, 50, 100];
 
 function MyStore() {
   const dispatch = useDispatch();
@@ -42,11 +42,7 @@ function MyStore() {
 
   function GetProducts(id: number) {
     setStoresPage(null);
-    GetUserStores(
-      paginationCount,
-      activePage ? (activePage - 1) * paginationCount : activePage,
-      true
-    )
+    GetUserStores(paginationCount, activePage ? activePage - 1 : activePage, true)
       .then(({ data }) => {
         console.log(data);
         setTotalCount(data.totalCount);
@@ -60,8 +56,6 @@ function MyStore() {
   return (
     <div className="Mystore">
       <MainTemplate className="reviewModeration">
-        {/* 
-        TODO на странице со списком магазинов меню не нужно
         <div className="d-flex justify-content-between align-items-center">
           <Link to={SITE_URL.CREATE_MARKETPLACE}>
             <Button variant="contained" className="btn-green py-3 px-4">
@@ -73,12 +67,12 @@ function MyStore() {
           </Link>
           <Shape />
         </div>
-        <hr className="mt-5 mb-5" /> */}
+        <hr className="mt-5 mb-5" />
         <div className="filter-block">
           <div className="d-flex justify-content-start align-items-center">
             <label className="def-search me-5">
               <i className="fa-solid fa-magnifying-glass" />
-              <input type="text" placeholder="Найти магазин" />
+              <input type="text" placeholder="Найти товар" />
             </label>
             <SortingSelect items={sortArray} />
           </div>

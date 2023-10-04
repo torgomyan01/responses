@@ -35,16 +35,13 @@ function App() {
     <Router>
       <Routes>
         <Route path={SITE_URL.HOME} element={<Login />} />
-        <Route path={SITE_URL.FEEDBACKS} element={<ReviewModeration />} />
+        <Route path={SITE_URL.SETTINGS_REVIEWS} element={<ReviewModeration />} />
         <Route path={SITE_URL.PROFILE_SETTINGS} element={<ProfileSettings />} />
-        <Route path={`${SITE_URL.STORE_SETTINGS}/:storeId`} element={<ProjectSettings />} />
+        <Route path={`${SITE_URL.PROJECT_SETTINGS}/:storeId`} element={<ProjectSettings />} />
         <Route path={SITE_URL.CREATE_MARKETPLACE} element={<CreateMarketplace />} />
-        <Route path={SITE_URL.MY_STORES} element={<MyStore />} />
+        <Route path={SITE_URL.MY_STORE} element={<MyStore />} />
         <Route path={`${SITE_URL.STORE_PRODUCTS}/:storeId`} element={<StoresProduct />} />
-        <Route
-          path={`${SITE_URL.SETTINGS_EXPANDED}/:storeId/:productId`}
-          element={<SettingsExpanded />}
-        />
+        <Route path={SITE_URL.SETTINGS_EXPANDED} element={<SettingsExpanded />} />
       </Routes>
     </Router>
   );
