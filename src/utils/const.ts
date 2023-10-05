@@ -4,11 +4,11 @@ import DropDownYm from '../assets/images/DropDownYm.png';
 
 export const SITE_URL = {
   HOME: '/',
-  SETTINGS_REVIEWS: '/settings-reviews',
-  PROFILE_SETTINGS: '/profile-settings',
-  PROJECT_SETTINGS: '/project-settings',
-  CREATE_MARKETPLACE: '/create-marketplace',
-  MY_STORE: '/my-stores',
+  FEEDBACKS: '/feedbacks',
+  PROFILE_SETTINGS: '/user/profile',
+  STORE_SETTINGS: '/store/settings',
+  CREATE_MARKETPLACE: '/stores/new',
+  MY_STORES: '/stores',
   STORE_PRODUCTS: '/store-products',
   SETTINGS_EXPANDED: '/settings-expanded'
 };
