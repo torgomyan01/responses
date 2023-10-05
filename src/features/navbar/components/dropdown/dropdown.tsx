@@ -56,7 +56,7 @@ function DropdownNavbar() {
                 </Link>
               </Tooltip>
               <Tooltip title="Смотреть все" placement="top">
-                <Link to={SITE_URL.MY_STORE} className="addShop">
+                <Link to={SITE_URL.MY_STORES} className="addShop">
                   Все
                 </Link>
               </Tooltip>

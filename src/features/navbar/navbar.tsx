@@ -6,9 +6,13 @@ import { Link } from 'react-router-dom';
 import { Badge, Button, IconButton } from '@mui/material';
 import { SITE_URL } from '../../utils/const';
 import DropdownNavbar from './components/dropdown/dropdown';
+import { useSelector } from 'react-redux';
+
 
 function Navbar() {
   const pathName = window.location.pathname;
+  const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
+
   return (
     <div className="nav">
       <div className="container h-100 d-flex justify-content-between align-items-center">
@@ -17,8 +21,8 @@ function Navbar() {
         </Link>
         <div className="d-flex justify-content-between align-items-center">
           <Link
-            to={SITE_URL.SETTINGS_REVIEWS}
-            className={`nav-item ${pathName === SITE_URL.SETTINGS_REVIEWS ? 'active' : ''}`}>
+            to={`${SITE_URL.STORE_SETTINGS}/${store?.storeId}`}
+            className={`nav-item ${pathName === SITE_URL.FEEDBACKS ? 'active' : ''}`}>
             Настройка отзывов
           </Link>
           {/*<Link to="#" className="nav-item">*/}

@@ -22,7 +22,7 @@ const sortArray = [
   'Группировка по товару'
 ];
 
-const pageSize = [2, 50, 100];
+const pageSize = [10, 20, 50, 100];
 
 function ReviewModeration() {
   const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
@@ -34,7 +34,11 @@ function ReviewModeration() {
 
   useEffect(() => {
     if (store) {
-      GetFeedbacksResponse(store.storeId, paginationCount, activePage ? activePage - 1 : activePage)
+      GetFeedbacksResponse(
+        store.storeId,
+        paginationCount,
+        activePage ? (activePage - 1) * paginationCount : activePage
+      )
         .then(({ data }) => {
           setTotalCount(data.totalCount);
           setReviews(data.items);
@@ -48,9 +52,9 @@ function ReviewModeration() {
   return (
     <MainTemplate className="reviewModeration">
       <div className="d-flex justify-content-between align-items-center">
-        <Link to={SITE_URL.MY_STORE}>
+        <Link to={SITE_URL.MY_STORES}>
           <Button variant="contained" className="btn-green py-3 px-4">
-            вернуться к списку товаров
+            вернуться к списку магазинов
           </Button>
         </Link>
         <Shape />
