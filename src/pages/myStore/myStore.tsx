@@ -24,7 +24,7 @@ const sortArray = [
   'Рейтинг по убыванию',
   'Группировка по товару'
 ];
-const pageSize = [3, 50, 100];
+const pageSize = [10, 20, 50, 100];
 
 function MyStore() {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ function MyStore() {
 
   useEffect(() => {
     GetProducts(0);
-  }, [activePage]);
+  }, [activePage, totalCount]);
 
   function GetProducts(id: number) {
     setStoresPage(null);

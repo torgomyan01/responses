@@ -13,6 +13,8 @@ import Select from '../../features/select/select';
 import whatsapp from '../../assets/images/whatcap.svg';
 import telegram from '../../assets/images/telegram.svg';
 import viber from '../../assets/images/viber.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { setInfoStore } from '../../redux/project-settings';
 
 const sortArray = [
   'Сначала новые',
@@ -39,26 +41,23 @@ const selectItems = [
   </div>
 ];
 
-const ProjectSettingsContext = createContext(null);
-
 function ProjectSettings() {
+  const dispatch = useDispatch();
   const { storeId } = useParams();
-  const [rates, setRates] = useState<IStoreRates[] | null>(null);
-  const [data, setData] = useState<IStore | null>(null);
+  const rt = useSelector((state: IConfigurationResponse) => state.ConfigurationResponse.infoStore);
+
+  // const [rates, setRates] = useState<IStoreRates[] | null>(null);
+  // const [data, setData] = useState<IStore | null>(null);
 
   useEffect(() => {
     if (storeId) {
       GetStoreInfo(storeId).then(({ data }) => {
-        setData(data);
-        console.log(data);
+        dispatch(setInfoStore(data));
+        // setData(data);
         // setRates(Object.values(data.configuration.replyConfiguration.rates) || []);
       });
     }
   }, [storeId]);
-
-  function ChangeRate(rateTitle: string, rateArray: []) {
-    console.log(rateTitle, rateArray);
-  }
 
   return (
     <MainTemplate className="reviewModeration">
@@ -110,12 +109,11 @@ function ProjectSettings() {
           </div>
         </div>
 
-        {rates?.map((el, index) => (
+        {Object.values(rt.configuration.replyConfiguration.rates).map((el, index) => (
           <div key={RandomKey()} className="col-6 mb-5 pe-4">
             <ProjectSettingsWrapper
               item={el}
               index={index}
-              onChange={ChangeRate}
               title={`Включить автоответ на отзывы с рейтингом  ${index + 1}`}
             />
           </div>

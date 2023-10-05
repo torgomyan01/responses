@@ -4,7 +4,7 @@ import Logo from '../../assets/images/logo-site.svg';
 import DefaultInputs from '../../features/defultinputs/Defultinputs';
 import { Button, CircularProgress } from '@mui/material';
 import { DEF_INPUT, SITE_URL } from '../../utils/const';
-import { CreateUser, UserLogin } from '../../utils/api';
+import { UserLogin } from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {

@@ -61,6 +61,12 @@ interface IUserInfo {
   };
 }
 
+interface IConfigurationResponse {
+  ConfigurationResponse: {
+    infoStore: IStore;
+  };
+}
+
 declare interface IDefaultInputs {
   error?: boolean;
   errorMessage?: string;
@@ -100,7 +106,6 @@ declare interface IProjectSettingsWrapper {
   index: number;
   title: string;
   item: any;
-  onChange?: any;
 }
 
 declare interface IStore {

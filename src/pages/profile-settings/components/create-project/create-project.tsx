@@ -66,7 +66,7 @@ function CreateProject({ change }: ICreateProject) {
       setName(ChangeDefInputValue(name.value, true));
       return;
     }
-    if (!key.value || checkNumberOfString(key.value)) {
+    if (!key.value) {
       setKey(ChangeDefInputValue(key.value, true));
       return;
     }
@@ -138,7 +138,7 @@ function CreateProject({ change }: ICreateProject) {
               className="mt-5"
               onChange={(e: any) =>
                 setKey({
-                  value: e.target.value.replace(/\d/g, ''),
+                  value: e.target.value,
                   error: false
                 })
               }

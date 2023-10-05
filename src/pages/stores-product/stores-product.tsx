@@ -39,7 +39,7 @@ const sortArray = [
   'Группировка по товару'
 ];
 
-const pageSize = [10, 50, 100];
+const pageSize = [10, 20, 50, 100];
 const selectItems = ['Сегодня', 'Вчера', '7 дней', '30 дней'];
 
 function StoresProduct() {

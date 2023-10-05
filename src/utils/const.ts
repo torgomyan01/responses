@@ -24,7 +24,11 @@ export const API_URLS = {
   USER_PROFILE: '/user/profile',
   GET_RESPONSE_RENEW: (responseId: number | string) => `/user/responses/${responseId}/renew`,
   GET_STORE: (id: string) => `/user/stores/${id}/configuration/response`,
-  FEEDBACKS_RESPONSE: (id: number | undefined) => `/user/stores/${id}/feedbacks-response`
+  FEEDBACKS_RESPONSE: (id: number | undefined) => `/user/stores/${id}/feedbacks-response`,
+  UPDATE_FEEDBACKS_RESPONSE: (storeId: number, feedbackId: number, responseId: number) =>
+    `/user/stores/${storeId}/feedbacks-response/${feedbackId}/responses/${responseId}/renew`,
+  APPROVE_FEEDBACKS_RESPONSE: (storeId: number, feedbackId: number, responseId: number) =>
+    `/user/stores/${storeId}/feedbacks-response/${feedbackId}/responses/${responseId}/approve`
 };
 
 export const STORES_MARKETPLACE = [

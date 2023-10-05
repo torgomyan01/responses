@@ -32,4 +32,16 @@ export const GetFeedbacksResponse = (
 export const GenerateNewResponseRenew = (id: number) =>
   axios.get(`${API_URL}${API_URLS.GET_RESPONSE_RENEW(id)}`);
 
+export const UpdateGenerateNewResponseRenew = (
+  storeId: number,
+  feedbackId: number,
+  responseId: number
+) => axios.get(`${API_URL}${API_URLS.UPDATE_FEEDBACKS_RESPONSE(storeId, feedbackId, responseId)}`);
+
+export const ApproveGenerateNewResponseRenew = (
+  storeId: number,
+  feedbackId: number,
+  responseId: number
+) => axios.get(`${API_URL}${API_URLS.APPROVE_FEEDBACKS_RESPONSE(storeId, feedbackId, responseId)}`);
+
 export const CreateStore = (data: IStores) => axios.post(`${API_URL}${API_URLS.STORES}`, data);

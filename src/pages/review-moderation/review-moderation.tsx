@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './review-moderation.css';
 import MainTemplate from '../../features/main-template/main-template';
-import { Button, Pagination } from '@mui/material';
+import { Button, CircularProgress, Pagination } from '@mui/material';
 import Shape from '../../features/shape/shape';
 import { SITE_URL } from '../../utils/const';
 import Product from '../../features/product/product';
@@ -22,7 +22,7 @@ const sortArray = [
   'Группировка по товару'
 ];
 
-const pageSize = [2, 50, 100];
+const pageSize = [10, 20, 50, 100];
 
 function ReviewModeration() {
   const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
@@ -34,6 +34,7 @@ function ReviewModeration() {
 
   useEffect(() => {
     if (store) {
+      setReviews(null);
       GetFeedbacksResponse(store.storeId, paginationCount, activePage ? activePage - 1 : activePage)
         .then(({ data }) => {
           setTotalCount(data.totalCount);
@@ -64,20 +65,30 @@ function ReviewModeration() {
           </label>
           <SortingSelect items={sortArray} />
         </div>
-        <div className="pagination">
-          <Pagination
-            count={CreatePageCount(totalCount, paginationCount)}
-            shape="rounded"
-            page={activePage > 0 ? activePage : 1}
-            onChange={(e, active) => setActivePage(active)}
-          />
-        </div>
+        {reviews && (
+          <div className="pagination">
+            <Pagination
+              count={CreatePageCount(totalCount, paginationCount)}
+              shape="rounded"
+              page={activePage > 0 ? activePage : 1}
+              onChange={(e, active) => setActivePage(active)}
+            />
+          </div>
+        )}
       </div>
       <div className="products">
         {reviews ? (
           reviews.map((info) => <Product key={RandomKey()} info={info} />)
         ) : (
-          <div>loading...</div>
+          <div className="d-flex justify-content-center align-items-center mt-5">
+            <CircularProgress
+              size={50}
+              sx={{
+                color: '#4B4AEF'
+              }}
+              className="mt-1"
+            />
+          </div>
         )}
       </div>
       <div className="d-flex justify-content-between align-items-center mt-5">
@@ -86,14 +97,16 @@ function ReviewModeration() {
           active={paginationCount}
           onChange={(value: number) => setPaginationCount(value)}
         />
-        <div className="pagination">
-          <Pagination
-            count={CreatePageCount(totalCount, paginationCount)}
-            shape="rounded"
-            page={activePage > 0 ? activePage : 1}
-            onChange={(e, active) => setActivePage(active)}
-          />
-        </div>
+        {reviews && (
+          <div className="pagination">
+            <Pagination
+              count={CreatePageCount(totalCount, paginationCount)}
+              shape="rounded"
+              page={activePage > 0 ? activePage : 1}
+              onChange={(e, active) => setActivePage(active)}
+            />
+          </div>
+        )}
       </div>
     </MainTemplate>
   );
