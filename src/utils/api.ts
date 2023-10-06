@@ -9,6 +9,8 @@ export const CreateUser = (data: { username: string; password: string }) =>
 export const UserLogin = (data: { username: string; password: string }) =>
   axios.post(`${API_URL}${API_URLS.USER_LOGIN}`, data);
 
+export const UserLogout = () => axios.get(`${API_URL}${API_URLS.USER_LOGOUT}`);
+
 // STORES API
 export const GetUserStores = (limit: number, startFrom: number, statistics: boolean = false) =>
   axios.get(

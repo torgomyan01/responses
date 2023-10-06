@@ -1,4 +1,4 @@
-import { STORES_MARKETPLACE } from './const';
+import { LocalStorageKeys, STORES_MARKETPLACE } from './const';
 
 export const RandomKey = (length = 5) => {
   let result = '';
@@ -30,4 +30,12 @@ export const CreatePageCount = (count: number, pageCount: number) => {
   const remaining = count % pageCount;
   const calcPages = count / pageCount;
   return remaining ? Math.ceil(calcPages) : calcPages;
+};
+
+export const GetUserAuth = () => {
+  return localStorage.getItem(LocalStorageKeys.userAuth as string) === '1';
+};
+
+export const changeUserAuth = (value: string) => {
+  return localStorage.setItem(LocalStorageKeys.userAuth as string, value);
 };

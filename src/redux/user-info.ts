@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { GetUserAuth } from '../utils/helpers';
 
 interface IUserInfo {
   userId: number | string;
@@ -11,6 +12,7 @@ interface IUserInfo {
     apiToken: string;
   }[];
   activeStore: IStores | null;
+  userAuth: boolean;
 }
 
 const initialState: IUserInfo = {
@@ -18,7 +20,8 @@ const initialState: IUserInfo = {
   username: '',
   email: '',
   stores: [],
-  activeStore: null
+  activeStore: null,
+  userAuth: GetUserAuth()
 };
 
 const UserInfo = createSlice({
@@ -39,10 +42,14 @@ const UserInfo = createSlice({
     },
     setUserInfo(state, action) {
       state.activeStore = action.payload;
+    },
+    setUserAuth(state, action) {
+      state.userAuth = action.payload;
     }
   }
 });
 
-export const { setStores, updateStores, removeStore, setActiveStore } = UserInfo.actions;
+export const { setStores, updateStores, removeStore, setActiveStore, setUserAuth } =
+  UserInfo.actions;
 
 export default UserInfo.reducer;

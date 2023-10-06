@@ -6,14 +6,19 @@ import { Button, CircularProgress } from '@mui/material';
 import { DEF_INPUT, SITE_URL } from '../../utils/const';
 import { UserLogin } from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUserAuth } from '../../redux/user-info';
+import { changeUserAuth } from '../../utils/helpers';
 
 function Login() {
+  const dispatch = useDispatch();
   const navigation = useNavigate();
   const [username, setUsername] = useState<IDefInputs>(DEF_INPUT);
   const [password, setPassword] = useState<IDefInputs>(DEF_INPUT);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const LoginUser = useCallback(() => {
+  function LoginUser(e: any) {
+    e.preventDefault();
     if (username && password) {
       setLoading(true);
 
@@ -22,8 +27,11 @@ function Login() {
         password: password.value
       })
         .then(({ data }) => {
-          navigation(SITE_URL.PROFILE_SETTINGS);
+          console.log(data);
+          navigation(SITE_URL.MY_STORES);
           setLoading(false);
+          dispatch(setUserAuth(true));
+          changeUserAuth('1');
         })
         .catch(() => {
           setLoading(false);
@@ -35,9 +43,11 @@ function Login() {
             value: password.value,
             error: true
           });
+          dispatch(setUserAuth(false));
+          changeUserAuth('0');
         });
     }
-  }, [username, password]);
+  }
 
   return (
     <div className="login">
@@ -57,7 +67,7 @@ function Login() {
           </p>
         </div>
       </div>
-      <div className="login-block">
+      <form onSubmit={LoginUser} className="login-block">
         <div className="login-block-wrapper">
           <p className="login-block-wrapper-title">Авторизация</p>
           <div className="mb-4">
@@ -100,7 +110,7 @@ function Login() {
             />
           </div>
           <div className="d-flex justify-content-center align-items-center mt-4">
-            <Button variant="contained" className="btn-green py-3 px-5" onClick={LoginUser}>
+            <Button variant="contained" className="btn-green py-3 px-5" type="submit">
               Войти
               {loading && (
                 <CircularProgress
@@ -114,7 +124,7 @@ function Login() {
             </Button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

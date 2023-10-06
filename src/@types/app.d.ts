@@ -58,6 +58,7 @@ interface IUserInfo {
     email: string;
     stores: IStores[];
     activeStore: IStores | null;
+    userAuth: boolean;
   };
 }
 
@@ -106,6 +107,7 @@ declare interface IProjectSettingsWrapper {
   index: number;
   title: string;
   item: any;
+  onChange: any;
 }
 
 declare interface IStore {

@@ -4,12 +4,8 @@ import DefaultInputs from '../../../features/defultinputs/Defultinputs';
 import './project-settings-wrapper.css';
 import { useState } from 'react';
 import { RandomKey } from '../../../utils/helpers';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeRate } from '../../../redux/project-settings';
 
-function ProjectSettingsWrapper({ index, title, item }: IProjectSettingsWrapper) {
-  const dispatch = useDispatch();
-
+function ProjectSettingsWrapper({ index, title, item, onChange }: IProjectSettingsWrapper) {
   const [todos, setTodo] = useState<any>([]);
   const [input, setInput] = useState('');
 
@@ -38,16 +34,7 @@ function ProjectSettingsWrapper({ index, title, item }: IProjectSettingsWrapper)
     e.preventDefault();
     if (input) {
       addTodo(input);
-      dispatch(
-        changeRate({
-          keyNumber: index + 1,
-          rate: {
-            autoReply: true,
-            blacklistKeywords: todos.map((text: any) => text.title).push(input),
-            reviewStyle: 'friendly'
-          }
-        })
-      );
+      onChange(input, index + 1);
       setInput('');
     }
   };

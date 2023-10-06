@@ -64,7 +64,6 @@ const ConfigurationResponse = createSlice({
       state.infoStore = action.payload;
     },
     changeRate(state, action) {
-      console.log(action.payload);
       if (action.payload.keyNumber === 1) {
         state.infoStore.configuration.replyConfiguration.rates['1'] = action.payload.rate;
       } else if (action.payload.keyNumber === 2) {

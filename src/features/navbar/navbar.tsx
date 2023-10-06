@@ -2,15 +2,32 @@ import React, { useState } from 'react';
 import './navbar.css';
 import Logo from '../../assets/images/logo-site.svg';
 import rubleIcon from '../../assets/images/ruble-icon.svg';
-import { Link } from 'react-router-dom';
-import { Badge, Button, IconButton } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
+import { Badge, Button, CircularProgress, IconButton } from '@mui/material';
 import { SITE_URL } from '../../utils/const';
 import DropdownNavbar from './components/dropdown/dropdown';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserAuth } from '../../redux/user-info';
+import { changeUserAuth } from '../../utils/helpers';
+import { UserLogout } from '../../utils/api';
 
 function Navbar() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [loadingLogout, setLoadingLogout] = useState<boolean>(false);
   const pathName = window.location.pathname;
   const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
+
+  function LogoutUser() {
+    setLoadingLogout(true);
+    UserLogout().then(({ data }) => {
+      console.log(data);
+      setLoadingLogout(false);
+      dispatch(setUserAuth(false));
+      changeUserAuth('0');
+      navigate(SITE_URL.HOME);
+    });
+  }
 
   return (
     <div className="nav">
@@ -69,8 +86,18 @@ function Navbar() {
               <i className="fa-regular fa-user" />
             </IconButton>
           </Link>
-          <IconButton aria-label="setting" className="c-white ms-3">
-            <i className="fa-regular fa-right-to-bracket" />
+          <IconButton aria-label="setting" className="c-white ms-3" onClick={LogoutUser}>
+            {loadingLogout ? (
+              <CircularProgress
+                size={25}
+                sx={{
+                  color: '#FFF'
+                }}
+                className="ms-2"
+              />
+            ) : (
+              <i className="fa-regular fa-right-to-bracket" />
+            )}
           </IconButton>
         </div>
       </div>

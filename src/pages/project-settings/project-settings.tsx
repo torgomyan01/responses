@@ -8,7 +8,7 @@ import DefSwitch from '../../features/switch/switch';
 import ProjectSettingsWrapper from './components/project-settings-wrapper';
 import { useParams } from 'react-router-dom';
 import { GetStoreInfo } from '../../utils/api';
-import { RandomKey } from '../../utils/helpers';
+import { GetUserAuth, RandomKey } from '../../utils/helpers';
 import Select from '../../features/select/select';
 import whatsapp from '../../assets/images/whatcap.svg';
 import telegram from '../../assets/images/telegram.svg';
@@ -44,20 +44,28 @@ const selectItems = [
 function ProjectSettings() {
   const dispatch = useDispatch();
   const { storeId } = useParams();
-  const rt = useSelector((state: IConfigurationResponse) => state.ConfigurationResponse.infoStore);
-
-  // const [rates, setRates] = useState<IStoreRates[] | null>(null);
-  // const [data, setData] = useState<IStore | null>(null);
+  const [productSettings, setProductSettings] = useState<IStore | null>(null);
 
   useEffect(() => {
     if (storeId) {
       GetStoreInfo(storeId).then(({ data }) => {
         dispatch(setInfoStore(data));
-        // setData(data);
-        // setRates(Object.values(data.configuration.replyConfiguration.rates) || []);
+        setProductSettings(data);
       });
     }
   }, [storeId]);
+
+  function changeRate(value: string, keyNumber: number) {
+    const _productSettings = { ...productSettings };
+    if (_productSettings.configuration) {
+      const BlackList = [
+        ..._productSettings.configuration.replyConfiguration.rates['2'].blacklistKeywords
+      ];
+
+      console.log([...BlackList].push('gggg'));
+    }
+    console.log(value, 2222);
+  }
 
   return (
     <MainTemplate className="reviewModeration">
@@ -109,15 +117,22 @@ function ProjectSettings() {
           </div>
         </div>
 
-        {Object.values(rt.configuration.replyConfiguration.rates).map((el, index) => (
-          <div key={RandomKey()} className="col-6 mb-5 pe-4">
-            <ProjectSettingsWrapper
-              item={el}
-              index={index}
-              title={`Включить автоответ на отзывы с рейтингом  ${index + 1}`}
-            />
-          </div>
-        ))}
+        {productSettings ? (
+          Object.values(productSettings.configuration.replyConfiguration.rates)?.map(
+            (el, index) => (
+              <div key={RandomKey()} className="col-6 mb-5 pe-4">
+                <ProjectSettingsWrapper
+                  item={el}
+                  index={index}
+                  onChange={changeRate}
+                  title={`Включить автоответ на отзывы с рейтингом  ${index + 1}`}
+                />
+              </div>
+            )
+          )
+        ) : (
+          <h1>loading...</h1>
+        )}
 
         {/*<div className="col-6 mb-5 pe-4">*/}
         {/*  <ProjectSettingsWrapper title="Включить автоответ на отзывы с рейтингом 2" />*/}

@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 import './info-waldberis.css';
 import infoWaldberis1 from '../../../../assets/images/info-walberis1.png';
 import infoWaldberis2 from '../../../../assets/images/info-walberis2.png';

@@ -20,6 +20,7 @@ export const STATUS_BUTTON = {
 
 export const API_URLS = {
   USER_LOGIN: '/user/login',
+  USER_LOGOUT: '/user/logout',
   STORES: '/user/stores',
   USER_PROFILE: '/user/profile',
   GET_RESPONSE_RENEW: (responseId: number | string) => `/user/responses/${responseId}/renew`,
@@ -49,4 +50,8 @@ export const STORES_MARKETPLACE = [
 export const DEF_INPUT = {
   value: '',
   error: false
+};
+
+export const LocalStorageKeys = {
+  userAuth: 'userAuthSuccess'
 };
