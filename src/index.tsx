@@ -7,6 +7,10 @@ import { Provider } from 'react-redux';
 import store from './app/store.js';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import axios from 'axios';
+
+//Without this cookies does not send
+axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(

@@ -8,7 +8,6 @@ import { SITE_URL } from '../../utils/const';
 import DropdownNavbar from './components/dropdown/dropdown';
 import { useSelector } from 'react-redux';
 
-
 function Navbar() {
   const pathName = window.location.pathname;
   const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
