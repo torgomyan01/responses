@@ -82,7 +82,7 @@ function ReviewModeration() {
       </div>
       <div className="products">
         {reviews ? (
-          reviews.map((info) => <Product key={RandomKey()} info={info} />)
+          reviews.map((info) => <Product key={info.feedback.feedbackId} info={info} />)
         ) : (
           <div className="d-flex justify-content-center align-items-center mt-5">
             <CircularProgress
