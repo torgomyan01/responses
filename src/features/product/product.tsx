@@ -113,7 +113,7 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ info })
   return (
     <div className="products-item">
       <div className="products-item-header">
-        {info.feedback.feedbackId}
+        {/* {info.feedback.feedbackId} */}
         <div className="d-flex justify-content-start align-items-start">
           <div className="products-item-header-image">
             <img src={info.feedback.product.image} alt="product" />
