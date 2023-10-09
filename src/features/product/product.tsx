@@ -142,14 +142,10 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ info })
           </div>
         </div>
         <div className="d-flex justify-content-end align-items-end flex-column">
-          {!hasResponse && (
-            <StatusLabel type="warning" message="Подготовка ответа" spinner></StatusLabel>
-          )}
-          {isAwaitingModeration && <StatusLabel type="danger" message="Не отправлен"></StatusLabel>}
-          {isAwaitingPublication && (
-            <StatusLabel type="warning" message="Публикация" spinner></StatusLabel>
-          )}
-          {isPublished && <StatusLabel type="success" message="Отправлен"></StatusLabel>}
+          {!hasResponse && <StatusLabel type="warning" message="Подготовка ответа" spinner />}
+          {isAwaitingModeration && <StatusLabel type="danger" message="Не отправлен" />}
+          {isAwaitingPublication && <StatusLabel type="warning" message="Публикация" spinner />}
+          {isPublished && <StatusLabel type="success" message="Отправлен" />}
           {/* <StatusButton status={info.feedback.responses[0]?.status} /> */}
           <div className="products-item-review">
             <span className="products-item-review-name">Оценка:</span>

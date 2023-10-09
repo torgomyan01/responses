@@ -22,9 +22,9 @@ import PageNotFound from './pages/404/404';
 axios.defaults.withCredentials = true;
 
 function App() {
+  const dispatch = useDispatch();
   const userAuth = useSelector((state: IUserInfo) => state.UserInfo.userAuth);
   const stores = useSelector((state: IUserInfo) => state.UserInfo.stores);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (userAuth) {
@@ -46,7 +46,7 @@ function App() {
         <Route path={SITE_URL.HOME} element={userAuth ? <MyStore /> : <Login />} />
         {userAuth && (
           <>
-            <Route path="/login" element={<Login />}></Route>
+            <Route path="/login" element={<Login />} />
             <Route path={SITE_URL.FEEDBACKS} element={<ReviewModeration />} />
             <Route path={SITE_URL.PROFILE_SETTINGS} element={<ProfileSettings />} />
             <Route path={`${SITE_URL.STORE_SETTINGS}/:storeId`} element={<ProjectSettings />} />
