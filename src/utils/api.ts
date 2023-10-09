@@ -1,7 +1,26 @@
 import axios from 'axios';
 import { API_URLS } from './const';
+import { GetUserAuth } from './helpers';
 
 const API_URL = process.env.REACT_APP_API_URL;
+
+//Without this cookies does not send
+axios.defaults.withCredentials = true;
+
+axios.interceptors.request.use(async function (conf) {
+  if (GetUserAuth()) {
+    await fetch(`${API_URL}${API_URLS.USER_STATUS}`)
+      .then((res) => res.json())
+      .then((res) => {
+        if (!res.isAuth && GetUserAuth()) {
+          window.location.replace('/');
+          console.log(res.isAuth, 'user status false');
+        }
+      });
+  }
+
+  return conf;
+});
 
 export const CreateUser = (data: { username: string; password: string }) =>
   axios.post(`${API_URL}${API_URLS.USER_PROFILE}`, data);
@@ -22,7 +41,9 @@ export const GetUserStores = (limit: number, startFrom: number, statistics: bool
 export const DeleteUserStores = (id: number | undefined) =>
   axios.delete(`${API_URL}${API_URLS.STORES}/${id}`);
 
-export const GetStoreInfo = (id: string) => axios.get(`${API_URL}${API_URLS.GET_STORE(id)}`);
+export const GetStoreInfo = (id: number) => axios.get(`${API_URL}${API_URLS.GET_STORE(id)}`);
+export const SaveStoreInfo = (id: number, data: any) =>
+  axios.put(`${API_URL}${API_URLS.GET_STORE(id)}`, data);
 
 export const GetFeedbacksResponse = (
   id: number | undefined,

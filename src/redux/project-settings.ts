@@ -27,27 +27,27 @@ const initialState: IConfigurationResponse = {
           '1': {
             autoReply: true,
             reviewStyle: 'friendly',
-            blacklistKeywords: ['word1', 'word2']
+            blacklistKeywords: []
           },
           '2': {
             autoReply: true,
             reviewStyle: 'friendly',
-            blacklistKeywords: ['word1', 'word2', 'ssss']
+            blacklistKeywords: []
           },
           '3': {
             autoReply: true,
             reviewStyle: 'friendly',
-            blacklistKeywords: ['word1', 'word2']
+            blacklistKeywords: []
           },
           '4': {
             autoReply: true,
             reviewStyle: 'friendly',
-            blacklistKeywords: ['word1', 'word2']
+            blacklistKeywords: []
           },
           '5': {
             autoReply: true,
             reviewStyle: 'friendly',
-            blacklistKeywords: ['word1', 'word2']
+            blacklistKeywords: []
           }
         },
         version: '1.0'
@@ -62,23 +62,10 @@ const ConfigurationResponse = createSlice({
   reducers: {
     setInfoStore(state, action) {
       state.infoStore = action.payload;
-    },
-    changeRate(state, action) {
-      if (action.payload.keyNumber === 1) {
-        state.infoStore.configuration.replyConfiguration.rates['1'] = action.payload.rate;
-      } else if (action.payload.keyNumber === 2) {
-        state.infoStore.configuration.replyConfiguration.rates['2'] = action.payload.rate;
-      } else if (action.payload.keyNumber === 3) {
-        state.infoStore.configuration.replyConfiguration.rates['3'] = action.payload.rate;
-      } else if (action.payload.keyNumber === 4) {
-        state.infoStore.configuration.replyConfiguration.rates['4'] = action.payload.rate;
-      } else if (action.payload.keyNumber === 5) {
-        state.infoStore.configuration.replyConfiguration.rates['5'] = action.payload.rate;
-      }
     }
   }
 });
 
-export const { setInfoStore, changeRate } = ConfigurationResponse.actions;
+export const { setInfoStore } = ConfigurationResponse.actions;
 
 export default ConfigurationResponse.reducer;

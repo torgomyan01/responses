@@ -4,7 +4,7 @@ import checked from '../../../../assets/images/checked.svg';
 import close from '../../../../assets/images/xmark.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { SITE_URL } from '../../../../utils/const';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Tooltip } from '@mui/material';
 import { DeleteUserStores } from '../../../../utils/api';
 import { useDispatch } from 'react-redux';
 import { setActiveStore } from '../../../../redux/user-info';
@@ -64,13 +64,14 @@ function ProductStorePage({
         <div className="text-center">{el.statistics.unsetResponsesCount}</div>
       </td>
       <td className="ACTIONS">
-        <Link to={`${SITE_URL.STORE_SETTINGS}/${el.store.storeId}`}>
+        <Tooltip title="Редактировать" placement="top">
           <button className="btn-icons">
             <div className="icons">
               <i className="fa-light fa-pen" />
             </div>
           </button>
-        </Link>
+        </Tooltip>
+
         {loadingRemove ? (
           <CircularProgress
             size={18}

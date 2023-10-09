@@ -26,11 +26,12 @@ declare interface Select {
   selected?: string;
   className?: string;
   items: any[];
+  onChange?: (value: any) => void;
 }
 
 declare interface DefSwitch {
   status?: boolean;
-  onChange?: any;
+  onChangeProps?: (changeValue: boolean) => void;
   className?: string;
   checked?: boolean;
 }
@@ -108,6 +109,20 @@ declare interface IProjectSettingsWrapper {
   title: string;
   item: any;
   onChange: any;
+  changeAutoReply: (checked: boolean, keyNumber: number) => void;
+  removeTalentItem: (array: string[], keyNumber: number) => void;
+}
+
+declare interface IAlertSite {
+  AlertSite: {
+    open: {
+      status: any;
+      go: boolean;
+    };
+    vertical: string;
+    horizontal: string;
+    message: string;
+  };
 }
 
 declare interface IStore {

@@ -21,10 +21,11 @@ export const STATUS_BUTTON = {
 export const API_URLS = {
   USER_LOGIN: '/user/login',
   USER_LOGOUT: '/user/logout',
+  USER_STATUS: '/user/status',
   STORES: '/user/stores',
   USER_PROFILE: '/user/profile',
   GET_RESPONSE_RENEW: (responseId: number | string) => `/user/responses/${responseId}/renew`,
-  GET_STORE: (id: string) => `/user/stores/${id}/configuration/response`,
+  GET_STORE: (id: number) => `/user/stores/${id}/configuration/response`,
   FEEDBACKS_RESPONSE: (id: number | undefined) => `/user/stores/${id}/feedbacks-response`,
   RENEW_FEEDBACK_RESPONSE: (storeId: number, feedbackId: number, responseId: number) =>
     `/user/stores/${storeId}/feedbacks-response/${feedbackId}/responses/${responseId}/renew`,

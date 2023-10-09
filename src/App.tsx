@@ -14,12 +14,8 @@ import MyStore from './pages/myStore/myStore';
 import Login from './pages/login/login';
 import StoresProduct from './pages/stores-product/stores-product';
 import SettingsExpanded from './pages/settings-expanded/settings-expanded';
-import { GetUserAuth } from './utils/helpers';
-import axios from 'axios';
 import PageNotFound from './pages/404/404';
-
-//Without this cookies does not send
-axios.defaults.withCredentials = true;
+import AlertSite from './features/alert/alert';
 
 function App() {
   const dispatch = useDispatch();
@@ -49,7 +45,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path={SITE_URL.FEEDBACKS} element={<ReviewModeration />} />
             <Route path={SITE_URL.PROFILE_SETTINGS} element={<ProfileSettings />} />
-            <Route path={`${SITE_URL.STORE_SETTINGS}/:storeId`} element={<ProjectSettings />} />
+            <Route path={SITE_URL.STORE_SETTINGS} element={<ProjectSettings />} />
             <Route path={SITE_URL.CREATE_MARKETPLACE} element={<CreateMarketplace />} />
             <Route path={SITE_URL.MY_STORES} element={<MyStore />} />
             <Route path={`${SITE_URL.STORE_PRODUCTS}/:storeId`} element={<StoresProduct />} />
@@ -61,6 +57,7 @@ function App() {
         )}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+      <AlertSite />
     </Router>
   );
 }

@@ -5,15 +5,21 @@ import './project-settings-wrapper.css';
 import { useState } from 'react';
 import { RandomKey } from '../../../utils/helpers';
 
-function ProjectSettingsWrapper({ index, title, item, onChange }: IProjectSettingsWrapper) {
+function ProjectSettingsWrapper({
+  index,
+  title,
+  item,
+  onChange,
+  changeAutoReply,
+  removeTalentItem
+}: IProjectSettingsWrapper) {
   const [todos, setTodo] = useState<any>([]);
   const [input, setInput] = useState('');
 
   const addTodo: any = (title: any) => {
     const newTodo = {
       id: Math.random(),
-      title,
-      done: false
+      title
     };
     setTodo((oldArr: []) => [...oldArr, newTodo]);
   };
@@ -28,6 +34,7 @@ function ProjectSettingsWrapper({ index, title, item, onChange }: IProjectSettin
   const removeTodo: any = (id: number) => {
     const newTodo = todos.filter((to: any) => to.id != id);
     setTodo(newTodo);
+    removeTalentItem(todos.find((to: any) => to.id === id).title, index + 1);
   };
 
   const submit = (e: any) => {
@@ -39,12 +46,16 @@ function ProjectSettingsWrapper({ index, title, item, onChange }: IProjectSettin
     }
   };
 
+  function changeAutoR(val: boolean) {
+    changeAutoReply(val, index + 1);
+  }
+
   return (
     <div className="wrapper">
       <div className="d-flex justify-content-end mb-5">
         <div className="fs-18 c-grey d-flex justify-content-start align-items-center">
           {title}
-          <DefSwitch className="ms-2" status={item.autoReply} />
+          <DefSwitch className="ms-2" status={item.autoReply} onChangeProps={changeAutoR} />
         </div>
       </div>
       <form onSubmit={submit}>

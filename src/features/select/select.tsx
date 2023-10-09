@@ -3,11 +3,12 @@ import './select.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { RandomKey } from '../../utils/helpers';
 
-function Select({ selected, className = '', items = [] }: Select) {
+function Select({ selected, className = '', items = [], onChange }: Select) {
   const [value, setValue] = useState<any>(selected);
 
   function changeSelect(item: any) {
     setValue(item);
+    onChange && onChange(item);
   }
 
   return (

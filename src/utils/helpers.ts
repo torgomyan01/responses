@@ -39,3 +39,59 @@ export const GetUserAuth = () => {
 export const changeUserAuth = (value: string) => {
   return localStorage.setItem(LocalStorageKeys.userAuth as string, value);
 };
+
+export const setNumberChangeRate = (number: number) => {
+  switch (number) {
+    case 1:
+      return '1';
+    case 2:
+      return '2';
+    case 3:
+      return '3';
+    case 4:
+      return '4';
+    case 5:
+      return '5';
+    default:
+      return 1;
+  }
+};
+
+export const changeProductSettings = (
+  key: 'blacklistKeywords' | 'autoReply' | 'reviewStyle' | 'blacklistKeywords-remove',
+  productSettings: IStore | null,
+  index: number,
+  value: any,
+  callBack: (result: IStore) => void
+) => {
+  if (productSettings) {
+    const _productSettings = { ...productSettings };
+    const configuration = { ..._productSettings.configuration };
+    const replyConfiguration = { ...configuration.replyConfiguration };
+    const rates = {
+      ...replyConfiguration.rates
+    };
+
+    const rate = {
+      ...rates[setNumberChangeRate(index)]
+    };
+    if (key === 'blacklistKeywords') {
+      rate.blacklistKeywords = [...rate.blacklistKeywords, value];
+    }
+    if (key === 'blacklistKeywords-remove') {
+      rate.blacklistKeywords = [...rate.blacklistKeywords].filter((item) => item !== value);
+    }
+    if (key === 'autoReply') {
+      rate.autoReply = value;
+    }
+    if (key === 'reviewStyle') {
+      rate.reviewStyle = value;
+    }
+    rates[setNumberChangeRate(index)] = rate;
+
+    replyConfiguration.rates = rates;
+    configuration.replyConfiguration = replyConfiguration;
+    _productSettings.configuration = configuration;
+    callBack(_productSettings);
+  }
+};

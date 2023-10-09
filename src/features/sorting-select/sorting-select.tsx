@@ -7,8 +7,8 @@ function SortingSelect({ items }: SortingSelect) {
   const [selectValue, setSelectValue] = useState<string>(items[0]);
   const changeSelect = (value: string) => setSelectValue(value);
   return (
-    <Dropdown className="sorting-select">
-      <Dropdown.Toggle variant="outline-dark">
+    <Dropdown className="sorting-select ">
+      <Dropdown.Toggle variant="outline-dark text-start">
         {selectValue}
         <i className="fa-regular fa-chevron-down ms-2 trans" />
       </Dropdown.Toggle>

@@ -21,7 +21,6 @@ function Navbar() {
   function LogoutUser() {
     setLoadingLogout(true);
     UserLogout().then(({ data }) => {
-      console.log(data);
       setLoadingLogout(false);
       dispatch(setUserAuth(false));
       changeUserAuth('0');
@@ -37,8 +36,8 @@ function Navbar() {
         </Link>
         <div className="d-flex justify-content-between align-items-center">
           <Link
-            to={`${SITE_URL.STORE_SETTINGS}/${store?.storeId}`}
-            className={`nav-item ${pathName === SITE_URL.FEEDBACKS ? 'active' : ''}`}>
+            to={SITE_URL.STORE_SETTINGS}
+            className={`nav-item ${pathName === SITE_URL.STORE_SETTINGS ? 'active' : ''}`}>
             Настройка отзывов
           </Link>
           {/*<Link to="#" className="nav-item">*/}
