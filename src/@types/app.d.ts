@@ -173,4 +173,5 @@ declare interface IResponses {
   responseId: number;
   status: number;
   responseType?: number;
+  approveType?: number;
 }
