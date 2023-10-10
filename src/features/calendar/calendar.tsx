@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './calendar.css';
+import './calendar.scss';
 
 import dayjs from 'dayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -31,7 +31,6 @@ function Calendar() {
       setOpenClose(false);
     }
   }
-  console.log(dayjs(valueStart).format());
 
   return (
     <div className="def-calendar">

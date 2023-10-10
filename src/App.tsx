@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import ReviewModeration from './pages/review-moderation/review-moderation';
 import { SITE_URL } from './utils/const';
-import './App.css';
+import './App.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetUserStores } from './utils/api';
 import { setActiveStore, setStores, setUserAuth } from './redux/user-info';
@@ -40,15 +40,15 @@ function App() {
     <Router>
       <Routes>
         <Route path={SITE_URL.HOME} element={userAuth ? <MyStore /> : <Login />} />
+        <Route path={SITE_URL.LOGIN} element={<Login />} />
         {userAuth && (
           <>
-            <Route path={SITE_URL.LOGIN} element={<Login />} />
             <Route path={SITE_URL.FEEDBACKS} element={<ReviewModeration />} />
             <Route path={SITE_URL.PROFILE_SETTINGS} element={<ProfileSettings />} />
             <Route path={SITE_URL.STORE_SETTINGS} element={<ProjectSettings />} />
             <Route path={SITE_URL.CREATE_MARKETPLACE} element={<CreateMarketplace />} />
             <Route path={SITE_URL.MY_STORES} element={<MyStore />} />
-            <Route path={`${SITE_URL.STORE_PRODUCTS}/:storeId`} element={<StoresProduct />} />
+            <Route path={SITE_URL.STORE_PRODUCTS} element={<StoresProduct />} />
             <Route
               path={`${SITE_URL.SETTINGS_EXPANDED}/:storeId/:productId`}
               element={<SettingsExpanded />}

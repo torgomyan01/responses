@@ -1,5 +1,5 @@
 import React from 'react';
-import './status-button.css';
+import './status-button.scss';
 import { STATUS_BUTTON } from '../../utils/const';
 
 function StatusButton({ status }: StatusButton) {

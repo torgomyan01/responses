@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './stores-product.css';
-import { Button, Pagination, Rating } from '@mui/material';
+import './stores-product.scss';
+import { Button, CircularProgress, Pagination } from '@mui/material';
 import Shape from '../../features/shape/shape';
 import SortingSelect from '../../features/sorting-select/sorting-select';
 import MainTemplate from '../../features/main-template/main-template';
@@ -9,10 +9,11 @@ import Calendar from '../../features/calendar/calendar';
 import Select from '../../features/select/select';
 import product from '../../assets/images/product.png';
 import PaginationCount from '../../features/pagination-count/pagination-count';
-import { RandomKey } from '../../utils/helpers';
+import { CreatePageCount, RandomKey } from '../../utils/helpers';
 import { useParams } from 'react-router-dom';
-import { GetFeedbacksResponse } from '../../utils/api';
+import { GetFeedbacksResponse, GetProductsStatistics } from '../../utils/api';
 import StProduct from './components/st-product';
+import { useSelector } from 'react-redux';
 
 const products: Products[] = Array.from({ length: 100 }).map((item, index) => {
   return {
@@ -43,30 +44,33 @@ const pageSize = [10, 20, 50, 100];
 const selectItems = ['Сегодня', 'Вчера', '7 дней', '30 дней'];
 
 function StoresProduct() {
-  const { storeId } = useParams();
+  const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
+  const [products, setProducts] = useState<IStaticsProducts[] | null>(null);
   const [paginationCount, setPaginationCount] = useState<number>(pageSize[0]);
-  const [activePage, setActivePage] = useState<number>(1);
-  const [activePageArray, setActivePageArray] = useState<Products[]>(
-    [...products].slice(0, paginationCount)
-  );
+  const [totalCount, setTotalCount] = useState<number>(0);
+  const [activePage, setActivePage] = useState<number>(0);
 
   useEffect(() => {
-    const firstPageIndex = (activePage - 1) * paginationCount;
-    const lastPageIndex = firstPageIndex + paginationCount;
-    setActivePageArray(products.slice(firstPageIndex, lastPageIndex));
-  }, [paginationCount, activePage]);
+    StartGetProducts();
+  }, [store, activePage, totalCount]);
 
-  // useEffect(() => {
-  //   if (storeId) {
-  //     GetFeedbacksResponse(storeId)
-  //       .then(({ data }) => {
-  //         console.log(data);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }, [storeId]);
+  function StartGetProducts() {
+    if (store && store.storeId) {
+      GetProductsStatistics(
+        store.storeId,
+        paginationCount,
+        activePage ? (activePage - 1) * paginationCount : activePage
+      )
+        .then(({ data }) => {
+          setTotalCount(data.totalCount);
+          setProducts(data.items);
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
 
   return (
     <MainTemplate className="reviewModeration">
@@ -87,9 +91,9 @@ function StoresProduct() {
         </div>
         <div className="pagination">
           <Pagination
-            count={Math.floor(products.length / paginationCount)}
+            count={CreatePageCount(totalCount, paginationCount)}
             shape="rounded"
-            page={activePage}
+            page={activePage > 0 ? activePage : 1}
             onChange={(e, active) => setActivePage(active)}
           />
         </div>
@@ -120,9 +124,19 @@ function StoresProduct() {
         </div>
       </div>
 
-      {Array.from({ length: 3 }).map(() => (
-        <StProduct key={RandomKey()} />
-      ))}
+      {products ? (
+        products.map((product) => <StProduct key={RandomKey()} product={product} />)
+      ) : (
+        <div className="d-flex justify-content-center align-items-center mt-5">
+          <CircularProgress
+            size={50}
+            sx={{
+              color: '#4B4AEF'
+            }}
+            className="mt-1"
+          />
+        </div>
+      )}
 
       <div className="d-flex justify-content-between align-items-center mt-5">
         <PaginationCount
@@ -132,9 +146,9 @@ function StoresProduct() {
         />
         <div className="pagination">
           <Pagination
-            count={Math.floor(products.length / paginationCount)}
+            count={CreatePageCount(totalCount, paginationCount)}
             shape="rounded"
-            page={activePage}
+            page={activePage > 0 ? activePage : 1}
             onChange={(e, active) => setActivePage(active)}
           />
         </div>

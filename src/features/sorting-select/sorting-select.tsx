@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './sorting-select.css';
+import './sorting-select.scss';
 import { Dropdown } from 'react-bootstrap';
 import { RandomKey } from '../../utils/helpers';
 

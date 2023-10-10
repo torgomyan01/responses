@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './review-moderation.css';
+import './review-moderation.scss';
 import MainTemplate from '../../features/main-template/main-template';
 import { Button, CircularProgress, Pagination } from '@mui/material';
 import Shape from '../../features/shape/shape';

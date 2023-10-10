@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Checkbox, CircularProgress } from '@mui/material';
 import Interrogative from '../../../../features/Interrogative/Interrogative';
-import './create-project.css';
+import './create-project.scss';
 import DefaultInputs from '../../../../features/defultinputs/Defultinputs';
 import { ChangeDefInputValue, checkNumberOfString, RandomKey } from '../../../../utils/helpers';
 import InfoOzon from '../info-ozon/info-ozon';

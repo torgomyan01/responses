@@ -10,7 +10,7 @@ export const SITE_URL = {
   STORE_SETTINGS: '/store/settings',
   CREATE_MARKETPLACE: '/stores/new',
   MY_STORES: '/stores',
-  STORE_PRODUCTS: '/store-products',
+  STORE_PRODUCTS: '/store/product',
   SETTINGS_EXPANDED: '/settings-expanded'
 };
 
@@ -27,6 +27,7 @@ export const API_URLS = {
   USER_PROFILE: '/user/profile',
   GET_RESPONSE_RENEW: (responseId: number | string) => `/user/responses/${responseId}/renew`,
   GET_STORE: (id: number) => `/user/stores/${id}/configuration/response`,
+  PRODUCTS_STATISTICS: (id: number) => `/user/stores/${id}/products-statistics`,
   FEEDBACKS_RESPONSE: (id: number | undefined) => `/user/stores/${id}/feedbacks-response`,
   RENEW_FEEDBACK_RESPONSE: (storeId: number, feedbackId: number, responseId: number) =>
     `/user/stores/${storeId}/feedbacks-response/${feedbackId}/responses/${responseId}/renew`,

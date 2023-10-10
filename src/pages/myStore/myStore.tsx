@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import './myStore.css';
+import './myStore.scss';
 import { Button, CircularProgress, Pagination } from '@mui/material';
 import Shape from '../../features/shape/shape';
 import MainTemplate from '../../features/main-template/main-template';

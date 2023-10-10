@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Button, CircularProgress, Rating, Tooltip } from '@mui/material';
-import './product.css';
+import './product.scss';
 import img from '../../assets/images/product.png';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import ApproveResponse, { RenewResponse } from '../../utils/api';

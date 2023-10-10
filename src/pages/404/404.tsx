@@ -1,5 +1,5 @@
 import React from 'react';
-import './404.css';
+import './404.scss';
 import { Link } from 'react-router-dom';
 import { SITE_URL } from '../../utils/const';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import './shape.css';
+import './shape.scss';
 import updateButton from '../../assets/images/update-button.svg';
 
 function Shape() {

@@ -1,22 +1,28 @@
 import React from 'react';
-import product from '../../../assets/images/product.png';
+import productImage from '../../../assets/images/product.png';
 import { Button, Rating } from '@mui/material';
+import { useSelector } from 'react-redux';
 
-function StProduct({ analyticReview = true }: { analyticReview?: boolean }) {
+function StProduct({
+  analyticReview = true,
+  product
+}: {
+  analyticReview?: boolean;
+  product?: IStaticsProducts;
+}) {
+  const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
   return (
     <div className="product-store mb-4">
       <div className="product-store-info">
         <div className="d-flex justify-content-between align-items-start">
           <div>
             <div className="d-flex justify-content-start align-items-start">
-              <img src={product} alt="Product image" />
-              <h3 className="product-store-info-title">
-                Шпатели для депиляции, шугаринга, воска, бровей деревянные
-              </h3>
+              <img src={product?.product.image} alt="Product image" />
+              <h3 className="product-store-info-title">{product?.product.title}</h3>
             </div>
             <ul className="list-unstyled mt-3">
-              <li className="fs-18 c-grey mb-2">Организация: ВБ ИП Шишкова О.П.</li>
-              <li className="fs-18 c-grey mb-2">Артикул: 123123123 </li>
+              <li className="fs-18 c-grey mb-2">Организация: {store?.title}</li>
+              <li className="fs-18 c-grey mb-2">Артикул: {product?.product.sku} </li>
               <li className="fs-18 c-grey mb-2">
                 Артикул поставщика: Узкие-шпатели-100-ИП-Шишкова-О-П
               </li>
@@ -26,42 +32,78 @@ function StProduct({ analyticReview = true }: { analyticReview?: boolean }) {
             <ul className="list-unstyled">
               <li className="d-flex justify-content-between align-items-center mb-3">
                 <span className="fs-16 c-grey fw-bolder w-200">Всего отзывов</span>
-                <span className="fs-16 c-grey fw-bolder me-5">8</span>
+                <span className="fs-16 c-grey fw-bolder me-5">
+                  {product?.staistics.feedbacksCount}
+                </span>
                 <div className="d-flex justify-content-end align-items-center">
-                  <Rating name="read-only" value={1} readOnly />
-                  <span className="fs-16 c-grey ms-3 fw-bolder">0</span>
+                  <Rating
+                    name="read-only"
+                    value={product?.staistics.ratesStatisctics['1']}
+                    readOnly
+                  />
+                  <span className="fs-16 c-grey ms-3 fw-bolder w-35 text-end">
+                    {product?.staistics.ratesStatisctics['1']}
+                  </span>
                 </div>
               </li>
               <li className="d-flex justify-content-between align-items-center mb-3">
                 <span className="fs-16 c-grey fw-bolder w-200">Отвеченных отзывов</span>
-                <span className="fs-16 c-grey fw-bolder me-5">5</span>
+                <span className="fs-16 c-grey fw-bolder me-5">
+                  {product?.staistics.processedFeedbacksCount}
+                </span>
                 <div className="d-flex justify-content-end align-items-center">
-                  <Rating name="read-only" value={2} readOnly />
-                  <span className="fs-16 c-grey ms-3 fw-bolder">0</span>
+                  <Rating
+                    name="read-only"
+                    value={product?.staistics.ratesStatisctics['2']}
+                    readOnly
+                  />
+                  <span className="fs-16 c-grey ms-3 fw-bolder w-35 text-end">
+                    {product?.staistics.ratesStatisctics['2']}
+                  </span>
                 </div>
               </li>
               <li className="d-flex justify-content-between align-items-center mb-3">
                 <span className="fs-16 c-grey fw-bolder w-200">Неотвеченных отзывов</span>
-                <span className="fs-16 c-grey fw-bolder me-5">3</span>
+                <span className="fs-16 c-grey fw-bolder me-5">
+                  {product?.staistics.unrocessedFeedbacksCount}
+                </span>
                 <div className="d-flex justify-content-end align-items-center">
-                  <Rating name="read-only" value={2} readOnly />
-                  <span className="fs-16 c-grey ms-3 fw-bolder">0</span>
+                  <Rating
+                    name="read-only"
+                    value={product?.staistics.ratesStatisctics['3']}
+                    readOnly
+                  />
+                  <span className="fs-16 c-grey ms-3 fw-bolder w-35 text-end">
+                    {product?.staistics.ratesStatisctics['3']}
+                  </span>
                 </div>
               </li>
               <li className="d-flex justify-content-between align-items-center mb-3">
                 <span className="fs-16 c-grey fw-bolder w-200">Средний рейтинг</span>
-                <span className="fs-16 c-grey fw-bolder me-5">4,91</span>
+                <span className="fs-16 c-grey fw-bolder me-5">{product?.staistics.avgRate}</span>
                 <div className="d-flex justify-content-end align-items-center">
-                  <Rating name="read-only" value={4} readOnly />
-                  <span className="fs-16 c-grey ms-3 fw-bolder">2</span>
+                  <Rating
+                    name="read-only"
+                    value={product?.staistics.ratesStatisctics['4']}
+                    readOnly
+                  />
+                  <span className="fs-16 c-grey ms-3 fw-bolder w-35 text-end">
+                    {product?.staistics.ratesStatisctics['4']}
+                  </span>
                 </div>
               </li>
               <li className="d-flex justify-content-between align-items-center mb-3">
                 <span className="fs-16 c-grey fw-bolder w-200">Автоответ</span>
                 <span className="fs-16 c-grey fw-bolder me-5">Включен</span>
                 <div className="d-flex justify-content-end align-items-center">
-                  <Rating name="read-only" value={5} readOnly />
-                  <span className="fs-16 c-grey ms-3 fw-bolder">6</span>
+                  <Rating
+                    name="read-only"
+                    value={product?.staistics.ratesStatisctics['5']}
+                    readOnly
+                  />
+                  <span className="fs-16 c-grey ms-3 fw-bolder w-35 text-end">
+                    {product?.staistics.ratesStatisctics['5']}
+                  </span>
                 </div>
               </li>
             </ul>

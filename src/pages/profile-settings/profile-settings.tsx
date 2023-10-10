@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './profile-settings.css';
+import './profile-settings.scss';
 import MainTemplate from '../../features/main-template/main-template';
 import Settings from './components/settings/settings';
 import Payments from './components/payments/payments';

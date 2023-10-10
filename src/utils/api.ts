@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URLS, SITE_URL } from './const';
+import { API_URLS } from './const';
 import { changeUserAuth, GetUserAuth } from './helpers';
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -48,6 +48,9 @@ export const GetFeedbacksResponse = (
   startFrom: number
 ) =>
   axios.get(`${API_URL}${API_URLS.FEEDBACKS_RESPONSE(id)}?limit=${limit}&startFrom=${startFrom}`);
+
+export const GetProductsStatistics = (id: number, limit: number | string, startFrom: number) =>
+  axios.get(`${API_URL}${API_URLS.PRODUCTS_STATISTICS(id)}?limit=${limit}&startFrom=${startFrom}`);
 
 // export const GenerateNewResponseRenew = (id: number) =>
 //   axios.get(`${API_URL}${API_URLS.GET_RESPONSE_RENEW(id)}`);

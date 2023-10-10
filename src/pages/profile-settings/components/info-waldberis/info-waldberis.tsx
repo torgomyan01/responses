@@ -1,5 +1,5 @@
 import React from 'react';
-import './info-waldberis.css';
+import './info-waldberis.scss';
 import infoWaldberis1 from '../../../../assets/images/info-walberis1.png';
 import infoWaldberis2 from '../../../../assets/images/info-walberis2.png';
 import infoWaldberis3 from '../../../../assets/images/info-walberis3.png';

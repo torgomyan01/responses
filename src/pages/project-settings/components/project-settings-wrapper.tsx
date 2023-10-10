@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import DefSwitch from '../../../features/switch/switch';
 import DefaultInputs from '../../../features/defultinputs/Defultinputs';
-import './project-settings-wrapper.css';
+import './project-settings-wrapper.scss';
 import { useState } from 'react';
 import { RandomKey } from '../../../utils/helpers';
 

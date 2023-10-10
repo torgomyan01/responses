@@ -1,5 +1,5 @@
 import react from 'react';
-import './info-ozon.css';
+import './info-ozon.scss';
 import infozon1 from '../../../../assets/images/info-ozon1.png';
 import infoozon2 from '../../../../assets/images/info-ozon2.png';
 import infoozon3 from '../../../../assets/images/info-ozon3.png';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Interrogative.css';
+import './Interrogative.scss';
 
 function Interrogative({ text, title, className }: IInterrogative) {
   const [openTooltip, setOpenTooltip] = useState<boolean>(false);

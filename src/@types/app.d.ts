@@ -7,6 +7,29 @@ declare interface Products {
   reviews: number;
 }
 
+declare interface IStaticsProduct {
+  image: string;
+  isActive: boolean;
+  productId: number;
+  sku: number | string;
+  storeId: number;
+  title: string;
+}
+
+declare interface IStatics {
+  avgRate: number;
+  feedbacksCount: number;
+  processedFeedbacksCount: number;
+  unrocessedFeedbacksCount: number;
+  productId: number;
+  ratesStatisctics: { 1: number; 2: number; 3: number; 4: number; 5: number };
+}
+
+declare interface IStaticsProducts {
+  product: IStaticsProduct;
+  staistics: IStatics;
+}
+
 declare interface PaginationCount {
   array: number[];
   active: number;

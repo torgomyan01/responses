@@ -1,5 +1,5 @@
 import React from 'react';
-import './DefultInputs.css';
+import './DefultInputs.scss';
 import Interrogative from '../Interrogative/Interrogative';
 
 function DefaultInputs({

@@ -1,5 +1,5 @@
 import React from 'react';
-import './status-label.css';
+import './status-label.scss';
 import { CircularProgress } from '@mui/material';
 
 type StatusLabelType = 'success' | 'danger' | 'warning';

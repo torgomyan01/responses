@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './project-settings.css';
+import './project-settings.scss';
 import MainTemplate from '../../features/main-template/main-template';
 import { Button, CircularProgress } from '@mui/material';
 import Shape from '../../features/shape/shape';

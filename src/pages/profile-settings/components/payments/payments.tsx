@@ -1,6 +1,6 @@
 import React from 'react';
 import DefaultInputs from '../../../../features/defultinputs/Defultinputs';
-import './payments.css';
+import './payments.scss';
 import xmark from '../../../../assets/images/xmark.svg';
 import checked from '../../../../assets/images/checked.svg';
 import { Button } from '@mui/material';
