@@ -9,33 +9,15 @@ axios.defaults.withCredentials = true;
 
 axios.interceptors.request.use(async function (conf) {
   if (GetUserAuth()) {
-    await fetch(`${API_URL}${API_URLS.USER_STATUS}`)
-      .then((res) => res.json())
-      .then((res) => {
-        if (!res.isAuth && GetUserAuth()) {
-          window.location.replace('/');
-          changeUserAuth('0');
-          console.log(res.isAuth, 'user status false');
-        }
-      });
+    const response = await fetch(`${API_URL}${API_URLS.USER_STATUS}`);
+    if (response.status === 401) {
+      window.location.replace('/');
+      changeUserAuth('0');
+    }
   }
 
   return conf;
 });
-
-// Add a response interceptor
-axios.interceptors.response.use(
-  function (response) {
-    return response;
-  },
-  function (error) {
-    if (String(error).includes('Authorizat')) {
-      changeUserAuth('0');
-      window.location.replace(SITE_URL.HOME);
-    }
-    return Promise.reject(error);
-  }
-);
 
 export const CreateUser = (data: { username: string; password: string }) =>
   axios.post(`${API_URL}${API_URLS.USER_PROFILE}`, data);
