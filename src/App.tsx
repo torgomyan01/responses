@@ -42,7 +42,7 @@ function App() {
         <Route path={SITE_URL.HOME} element={userAuth ? <MyStore /> : <Login />} />
         {userAuth && (
           <>
-            <Route path="/login" element={<Login />} />
+            <Route path={SITE_URL.LOGIN} element={<Login />} />
             <Route path={SITE_URL.FEEDBACKS} element={<ReviewModeration />} />
             <Route path={SITE_URL.PROFILE_SETTINGS} element={<ProfileSettings />} />
             <Route path={SITE_URL.STORE_SETTINGS} element={<ProjectSettings />} />

@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { API_URLS } from './const';
-import { GetUserAuth } from './helpers';
+import { API_URLS, SITE_URL } from './const';
+import { changeUserAuth, GetUserAuth } from './helpers';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -14,6 +14,7 @@ axios.interceptors.request.use(async function (conf) {
       .then((res) => {
         if (!res.isAuth && GetUserAuth()) {
           window.location.replace('/');
+          changeUserAuth('0');
           console.log(res.isAuth, 'user status false');
         }
       });
@@ -21,6 +22,20 @@ axios.interceptors.request.use(async function (conf) {
 
   return conf;
 });
+
+// Add a response interceptor
+axios.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    if (String(error).includes('Authorizat')) {
+      changeUserAuth('0');
+      window.location.replace(SITE_URL.HOME);
+    }
+    return Promise.reject(error);
+  }
+);
 
 export const CreateUser = (data: { username: string; password: string }) =>
   axios.post(`${API_URL}${API_URLS.USER_PROFILE}`, data);
