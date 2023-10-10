@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
+  Navigate,
   Route,
   RouterProvider,
   createBrowserRouter,
@@ -51,6 +52,8 @@ const App: React.FC = () => {
     createRoutesFromElements(
       <Route>
         <Route path="/">
+          {/* Temporary redirect / to /login */}
+          <Route index element={<Navigate to={SITE_URL.LOGIN} />} />
           <Route path={SITE_URL.LOGIN} element={<Login />} loader={AuthLoader} />
           <Route path={SITE_URL.MYACCOUNT} loader={AuthLoaderRedirect} element={<MyAccountPage />}>
             <Route
