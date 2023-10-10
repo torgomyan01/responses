@@ -16,6 +16,8 @@ import StatusLabel from '../status-label/status-label';
 
 import moment from 'moment';
 import 'moment/locale/ru'; // without this line it didn't work
+import { Link } from 'react-router-dom';
+import { SITE_URL } from '../../utils/const';
 moment.locale('ru');
 
 interface FeedbackResponseReviewProps {
@@ -155,9 +157,11 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ info })
       </div>
       <div className="products-item-change-buttons">
         <div className="d-flex justify-content-start align-items-center">
-          <Button variant="outlined" className="btn-green outlined me-5">
-            вернуться к списку товаров
-          </Button>
+          <Link to={`../${SITE_URL.PRODUCTS}`}>
+            <Button variant="outlined" className="btn-green outlined me-5">
+              вернуться к списку товаров
+            </Button>
+          </Link>
           {hasResponse && (
             <div className="fs-18 c-grey">
               <span className="me-3">Автоответ на отзывы этого товара:</span>

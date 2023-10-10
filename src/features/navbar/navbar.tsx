@@ -7,8 +7,6 @@ import { Badge, Button, CircularProgress, IconButton } from '@mui/material';
 import { SITE_URL } from '../../utils/const';
 import DropdownNavbar from './components/dropdown/dropdown';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserAuth } from '../../redux/user-info';
-import { changeUserAuth } from '../../utils/helpers';
 import { UserLogout } from '../../utils/api';
 
 function Navbar() {
@@ -22,9 +20,9 @@ function Navbar() {
     setLoadingLogout(true);
     UserLogout().then(({ data }) => {
       setLoadingLogout(false);
-      dispatch(setUserAuth(false));
-      changeUserAuth('0');
-      navigate(SITE_URL.HOME);
+      // dispatch(setUserAuth(false));
+      // changeUserAuth('0');
+      navigate(SITE_URL.LOGIN);
     });
   }
 
@@ -36,7 +34,7 @@ function Navbar() {
         </Link>
         <div className="d-flex justify-content-between align-items-center">
           <Link
-            to={SITE_URL.STORE_SETTINGS}
+            to={`../${SITE_URL.STORE_SETTINGS}`}
             className={`nav-item ${pathName === SITE_URL.STORE_SETTINGS ? 'active' : ''}`}>
             Настройка отзывов
           </Link>

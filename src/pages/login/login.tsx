@@ -5,24 +5,21 @@ import DefaultInputs from '../../features/defultinputs/Defultinputs';
 import { Button, CircularProgress } from '@mui/material';
 import { DEF_INPUT, SITE_URL } from '../../utils/const';
 import { UserLogin } from '../../utils/api';
-import { useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserAuth } from '../../redux/user-info';
-import { changeUserAuth } from '../../utils/helpers';
 
 function Login() {
-  const dispatch = useDispatch();
   const navigation = useNavigate();
-  const userAuth = useSelector((state: IUserInfo) => state.UserInfo.userAuth);
   const [username, setUsername] = useState<IDefInputs>(DEF_INPUT);
   const [password, setPassword] = useState<IDefInputs>(DEF_INPUT);
   const [loading, setLoading] = useState<boolean>(false);
+  const { isAuthenticated } = useLoaderData() as { isAuthenticated: boolean };
 
   useEffect(() => {
-    if (userAuth) {
-      navigation(SITE_URL.MY_STORES);
+    if (isAuthenticated) {
+      navigation(`${SITE_URL.MYACCOUNT}/${SITE_URL.MY_STORES}`);
     }
-  }, [userAuth]);
+  }, [isAuthenticated]);
 
   function LoginUser(e: any) {
     e.preventDefault();
@@ -35,10 +32,8 @@ function Login() {
       })
         .then(({ data }) => {
           console.log(data);
-          navigation(SITE_URL.MY_STORES);
+          navigation(`${SITE_URL.MYACCOUNT}/${SITE_URL.MY_STORES}`);
           setLoading(false);
-          dispatch(setUserAuth(true));
-          changeUserAuth('1');
         })
         .catch(() => {
           setLoading(false);
@@ -50,15 +45,13 @@ function Login() {
             value: password.value,
             error: true
           });
-          dispatch(setUserAuth(false));
-          changeUserAuth('0');
         });
     }
   }
 
   return (
     <div className="login">
-      {!userAuth && (
+      {!isAuthenticated && (
         <>
           <div className="login-left">
             <div className="login-left-body">

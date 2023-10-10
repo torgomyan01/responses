@@ -4,13 +4,13 @@ import { Button, CircularProgress, Pagination } from '@mui/material';
 import Shape from '../../features/shape/shape';
 import SortingSelect from '../../features/sorting-select/sorting-select';
 import MainTemplate from '../../features/main-template/main-template';
-import { STATUS_BUTTON } from '../../utils/const';
+import { SITE_URL, STATUS_BUTTON } from '../../utils/const';
 import Calendar from '../../features/calendar/calendar';
 import Select from '../../features/select/select';
 import product from '../../assets/images/product.png';
 import PaginationCount from '../../features/pagination-count/pagination-count';
 import { CreatePageCount, RandomKey } from '../../utils/helpers';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { GetFeedbacksResponse, GetProductsStatistics } from '../../utils/api';
 import StProduct from './components/st-product';
 import { useSelector } from 'react-redux';
@@ -75,9 +75,11 @@ function StoresProduct() {
   return (
     <MainTemplate className="reviewModeration">
       <div className="d-flex justify-content-between align-items-center">
-        <Button variant="contained" className="btn-green py-3 px-4">
-          вернуться к списку товаров
-        </Button>
+        <Link to={`../${SITE_URL.MY_STORES}`}>
+          <Button variant="contained" className="btn-green py-3 px-4">
+            вернуться к списку магазинов
+          </Button>
+        </Link>
         <Shape />
       </div>
       <hr className="mt-5 mb-5" />

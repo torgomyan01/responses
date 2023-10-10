@@ -49,15 +49,16 @@ function DropdownNavbar() {
             ))}
             <div className="d-flex justify-content-between align-items-center me-4 mt-3">
               <Tooltip title="Добавить магазин" placement="top">
-                <Link to={SITE_URL.CREATE_MARKETPLACE} className="addShop">
+                <Link to={`../${SITE_URL.CREATE_MARKETPLACE}`} className="addShop">
                   <div className="IconPlus">
                     <i className="fa-solid fa-plus" />
                   </div>
+                  добавить
                 </Link>
               </Tooltip>
               <Tooltip title="Смотреть все" placement="top">
-                <Link to={SITE_URL.MY_STORES} className="addShop">
-                  Все
+                <Link to={`../${SITE_URL.MY_STORES}`} className="addShop">
+                  Все магазины
                 </Link>
               </Tooltip>
             </div>
