@@ -16,6 +16,11 @@ declare interface IStaticsProduct {
   title: string;
 }
 
+declare interface IDefaultSelectArray {
+  value: string;
+  name: string;
+}
+
 declare interface IStatics {
   avgRate: number;
   feedbacksCount: number;

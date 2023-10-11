@@ -8,10 +8,9 @@ import Interrogative from '../../features/Interrogative/Interrogative';
 import DefSwitch from '../../features/switch/switch';
 import ProjectSettingsWrapper from './components/project-settings-wrapper';
 import { GetStoreInfo, SaveStoreInfo } from '../../utils/api';
-import { changeProductSettings, RandomKey } from '../../utils/helpers';
+import { changeProductSettings } from '../../utils/helpers';
 import Select from '../../features/select/select';
 import { useDispatch, useSelector } from 'react-redux';
-import { setInfoStore } from '../../redux/project-settings';
 import { openAlert, setMessageAlert } from '../../redux/alert-site';
 import { AlertSiteTypes } from '../../enums/enums';
 import { Link } from 'react-router-dom';
@@ -27,7 +26,19 @@ const sortArray = [
   'Группировка по товару'
 ];
 
-const selectItems = ['friendly', 'formal'];
+const selectItemsTitles = ['Дружелюбно', 'Формальный'];
+const selectItems = [
+  {
+    value: 'friendly',
+    name: selectItemsTitles[0]
+  },
+  {
+    value: 'formal',
+    name: selectItemsTitles[1]
+  }
+];
+
+// Дружелюбно Формальный
 
 let changedProductSettings: IStore | null = null;
 
@@ -36,18 +47,27 @@ function ProjectSettings() {
   const activeStore = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
   const [productSettings, setProductSettings] = useState<IStore | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [autoReplyAll, setAutoReplyAll] = useState<boolean>(false);
 
   useEffect(() => {
     if (activeStore && activeStore.storeId) {
       setProductSettings(null);
       changedProductSettings = null;
-      GetStoreInfo(activeStore.storeId).then(({ data }) => {
-        dispatch(setInfoStore(data));
+      GetStoreInfo(activeStore.storeId).then(({ data }: { data: IStore }) => {
         setProductSettings(data);
         changedProductSettings = data;
       });
     }
   }, [activeStore]);
+
+  useEffect(() => {
+    if (productSettings) {
+      const check = Object.values(productSettings.configuration.replyConfiguration.rates).some(
+        (item) => item.autoReply
+      );
+      setAutoReplyAll(check);
+    }
+  }, [productSettings]);
 
   function changeRate(value: string, keyNumber: number) {
     changeProductSettings(
@@ -68,11 +88,21 @@ function ProjectSettings() {
   }
 
   function changeTalentResponse(value: any) {
-    Array.from({ length: 5 }).forEach((item, index) => {
-      changeProductSettings('reviewStyle', changedProductSettings, index + 1, value, (result) => {
-        changedProductSettings = result;
+    const getValue = selectItems.find((item) => item.name === value);
+    if (getValue) {
+      console.log(getValue.value);
+      Array.from({ length: 5 }).forEach((item, index) => {
+        changeProductSettings(
+          'reviewStyle',
+          changedProductSettings,
+          index + 1,
+          getValue.value,
+          (result) => {
+            changedProductSettings = result;
+          }
+        );
       });
-    });
+    }
   }
 
   function removeTalentItem(array: string[], keyNumber: number) {
@@ -112,6 +142,29 @@ function ProjectSettings() {
     }
   }
 
+  function printValueSelect(value: string | undefined) {
+    if (value) {
+      switch (value) {
+        case selectItems[0].value:
+          return selectItemsTitles[0];
+        case selectItems[1].value:
+          return selectItemsTitles[1];
+      }
+    } else {
+      return '';
+    }
+  }
+
+  function changeAllReply(value: boolean) {
+    setAutoReplyAll(value);
+    Array.from({ length: 5 }).forEach((item, index) => {
+      changeProductSettings('autoReply', changedProductSettings, index + 1, value, (result) => {
+        changedProductSettings = result;
+      });
+    });
+    setProductSettings(changedProductSettings);
+  }
+
   return (
     <MainTemplate className="reviewModeration">
       <div className="d-flex justify-content-between align-items-center">
@@ -142,8 +195,10 @@ function ProjectSettings() {
             <div className="d-flex justify-content-between align-items-center">
               <Select
                 className="w-75 select-project-settings"
-                selected={productSettings?.configuration.replyConfiguration.rates['1'].reviewStyle}
-                items={selectItems}
+                selected={printValueSelect(
+                  productSettings?.configuration.replyConfiguration.rates['1'].reviewStyle
+                )}
+                items={selectItemsTitles}
                 onChange={changeTalentResponse}
               />
               <Interrogative title="Title" text="Text" />
@@ -155,7 +210,7 @@ function ProjectSettings() {
             <div className="d-flex justify-content-between align-items-center">
               <div className="fs-18 c-grey d-flex justify-content-start align-items-center">
                 Включить автоответ
-                <DefSwitch className="ms-2" />
+                <DefSwitch className="ms-2" onChangeProps={changeAllReply} status={autoReplyAll} />
               </div>
               <div className="fs-18 c-grey d-flex justify-content-start align-items-center">
                 Отвечать на старые отзывы
@@ -166,20 +221,58 @@ function ProjectSettings() {
         </div>
 
         {productSettings ? (
-          Object.values(productSettings.configuration.replyConfiguration.rates)?.map(
-            (el, index) => (
-              <div key={RandomKey()} className="col-6 mb-5">
-                <ProjectSettingsWrapper
-                  item={el}
-                  index={index}
-                  onChange={changeRate}
-                  title={`Включить автоответ на отзывы с рейтингом  ${index + 1}`}
-                  changeAutoReply={getChangeAutoReply}
-                  removeTalentItem={removeTalentItem}
-                />
-              </div>
-            )
-          )
+          <>
+            <div className="col-6 mb-5">
+              <ProjectSettingsWrapper
+                item={productSettings.configuration.replyConfiguration.rates['1']}
+                index={0}
+                onChange={changeRate}
+                title={'Включить автоответ на отзывы с рейтингом 1'}
+                changeAutoReply={getChangeAutoReply}
+                removeTalentItem={removeTalentItem}
+              />
+            </div>
+            <div className="col-6 mb-5">
+              <ProjectSettingsWrapper
+                item={productSettings.configuration.replyConfiguration.rates['2']}
+                index={1}
+                onChange={changeRate}
+                title={'Включить автоответ на отзывы с рейтингом 2'}
+                changeAutoReply={getChangeAutoReply}
+                removeTalentItem={removeTalentItem}
+              />
+            </div>
+            <div className="col-6 mb-5">
+              <ProjectSettingsWrapper
+                item={productSettings.configuration.replyConfiguration.rates['3']}
+                index={2}
+                onChange={changeRate}
+                title={'Включить автоответ на отзывы с рейтингом 3'}
+                changeAutoReply={getChangeAutoReply}
+                removeTalentItem={removeTalentItem}
+              />
+            </div>
+            <div className="col-6 mb-5">
+              <ProjectSettingsWrapper
+                item={productSettings.configuration.replyConfiguration.rates['4']}
+                index={3}
+                onChange={changeRate}
+                title={'Включить автоответ на отзывы с рейтингом 4'}
+                changeAutoReply={getChangeAutoReply}
+                removeTalentItem={removeTalentItem}
+              />
+            </div>
+            <div className="col-6 mb-5">
+              <ProjectSettingsWrapper
+                item={productSettings.configuration.replyConfiguration.rates['5']}
+                index={4}
+                onChange={changeRate}
+                title={'Включить автоответ на отзывы с рейтингом 5'}
+                changeAutoReply={getChangeAutoReply}
+                removeTalentItem={removeTalentItem}
+              />
+            </div>
+          </>
         ) : (
           <div className="d-flex justify-content-center align-items-center">
             <CircularProgress

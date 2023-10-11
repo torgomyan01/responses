@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
@@ -53,6 +53,10 @@ const IOSSwitch = styled((props) => (
 
 function DefSwitch({ status = false, onChangeProps, className }: DefSwitch) {
   const [value, setValue] = useState<boolean>(status);
+  useEffect(() => {
+    setValue(status);
+  }, [status]);
+
   function Change(e: any, _value: any) {
     setValue(_value);
     onChangeProps && onChangeProps(_value);

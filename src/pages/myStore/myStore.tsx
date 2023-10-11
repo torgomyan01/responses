@@ -38,7 +38,7 @@ function MyStore() {
 
   useEffect(() => {
     GetProducts(0);
-  }, [activePage, totalCount]);
+  }, [activePage, totalCount, paginationCount]);
 
   function GetProducts(id: number) {
     setStoresPage(null);
@@ -60,7 +60,7 @@ function MyStore() {
   return (
     <div className="Mystore">
       <MainTemplate className="reviewModeration">
-        {/* 
+        {/*
         TODO на странице со списком магазинов меню не нужно
         <div className="d-flex justify-content-between align-items-center">
           <Link to={SITE_URL.CREATE_MARKETPLACE}>
