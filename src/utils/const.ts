@@ -5,11 +5,12 @@ import DropDownYm from '../assets/images/DropDownYm.png';
 export const SITE_URL = {
   HOME: '/',
   LOGIN: '/login',
-  MYACCOUNT: '/myaccount',
+  MY_ACCOUNT: '/myaccount',
   FEEDBACKS: 'feedbacks',
   PROFILE_SETTINGS: 'user/profile',
   STORE_SETTINGS: 'store/settings',
   CREATE_MARKETPLACE: 'stores/new',
+  CHANGE_MARKETPLACE: 'stores/change',
   MY_STORES: 'stores',
   PRODUCTS: 'products',
   SETTINGS_EXPANDED: 'settings-expanded'

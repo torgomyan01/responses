@@ -22,6 +22,7 @@ import PageNotFound from './pages/404/404';
 import AlertSite from './features/alert/alert';
 import axios from 'axios';
 import MyAccountPage from './pages/myaccount/myaccount';
+import ChangeMarketplace from './pages/change-marketplace/change-marketplace';
 
 const App: React.FC = () => {
   const AuthLoader = () => {
@@ -55,7 +56,7 @@ const App: React.FC = () => {
           {/* Temporary redirect / to /login */}
           <Route index element={<Navigate to={SITE_URL.LOGIN} />} />
           <Route path={SITE_URL.LOGIN} element={<Login />} loader={AuthLoader} />
-          <Route path={SITE_URL.MYACCOUNT} loader={AuthLoaderRedirect} element={<MyAccountPage />}>
+          <Route path={SITE_URL.MY_ACCOUNT} loader={AuthLoaderRedirect} element={<MyAccountPage />}>
             <Route
               path={SITE_URL.FEEDBACKS}
               loader={AuthLoaderRedirect}
@@ -75,6 +76,11 @@ const App: React.FC = () => {
               path={SITE_URL.CREATE_MARKETPLACE}
               loader={AuthLoaderRedirect}
               element={<CreateMarketplace />}
+            />
+            <Route
+              path={SITE_URL.CHANGE_MARKETPLACE}
+              loader={AuthLoaderRedirect}
+              element={<ChangeMarketplace />}
             />
             <Route path={SITE_URL.MY_STORES} loader={AuthLoaderRedirect} element={<MyStore />} />
             <Route

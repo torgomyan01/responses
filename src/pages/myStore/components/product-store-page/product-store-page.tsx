@@ -34,8 +34,13 @@ function ProductStorePage({
   }
 
   const handleGoToStore = (store: IStores) => {
-    dispatch(dispatch(setActiveStore(store)));
+    dispatch(setActiveStore(store));
     navigate(`../${SITE_URL.FEEDBACKS}`);
+  };
+
+  const handleGoToStoreChange = (store: IStores) => {
+    dispatch(setActiveStore(store));
+    navigate(`../${SITE_URL.CHANGE_MARKETPLACE}`);
   };
 
   return (
@@ -65,7 +70,7 @@ function ProductStorePage({
       </td>
       <td className="ACTIONS">
         <Tooltip title="Редактировать" placement="top">
-          <button className="btn-icons">
+          <button className="btn-icons" onClick={() => handleGoToStoreChange(el.store)}>
             <div className="icons">
               <i className="fa-light fa-pen" />
             </div>

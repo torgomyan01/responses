@@ -17,7 +17,7 @@ function Login() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigation(`${SITE_URL.MYACCOUNT}/${SITE_URL.MY_STORES}`);
+      navigation(`${SITE_URL.MY_ACCOUNT}/${SITE_URL.MY_STORES}`);
     }
   }, [isAuthenticated]);
 
@@ -32,7 +32,7 @@ function Login() {
       })
         .then(({ data }) => {
           console.log(data);
-          navigation(`${SITE_URL.MYACCOUNT}/${SITE_URL.MY_STORES}`);
+          navigation(`${SITE_URL.MY_ACCOUNT}/${SITE_URL.MY_STORES}`);
           setLoading(false);
         })
         .catch(() => {

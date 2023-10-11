@@ -31,6 +31,10 @@ const UserInfo = createSlice({
     updateStores(state, action) {
       state.stores = [...state.stores, action.payload];
     },
+    changeStores(state, action) {
+      const stores = state.stores.filter((store) => store.storeId !== action.payload.storeId);
+      state.stores = [...stores, action.payload];
+    },
     removeStore(state, action) {
       state.stores = state.stores?.filter((store) => store.storeId !== action.payload);
     },
@@ -43,6 +47,7 @@ const UserInfo = createSlice({
   }
 });
 
-export const { setStores, updateStores, removeStore, setActiveStore } = UserInfo.actions;
+export const { setStores, updateStores, changeStores, removeStore, setActiveStore } =
+  UserInfo.actions;
 
 export default UserInfo.reducer;

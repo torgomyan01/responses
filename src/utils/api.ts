@@ -43,6 +43,9 @@ export const GetUserStores = (limit: number, startFrom: number, statistics: bool
     }?limit=${limit}&startFrom=${startFrom}`
   );
 
+export const GetUserStore = (storeId: number) =>
+  axios.get(`${API_URL}${API_URLS.STORES}/${storeId}`);
+
 export const DeleteUserStores = (id: number | undefined) =>
   axios.delete(`${API_URL}${API_URLS.STORES}/${id}`);
 
@@ -77,3 +80,13 @@ export default (
   });
 
 export const CreateStore = (data: IStores) => axios.post(`${API_URL}${API_URLS.STORES}`, data);
+
+export const ChangeStore = (
+  data: {
+    storeId: number;
+    storeType: string;
+    title: string;
+    apiToken: string;
+  },
+  id: string | number
+) => axios.put(`${API_URL}${API_URLS.STORES}/${id}`, data);
