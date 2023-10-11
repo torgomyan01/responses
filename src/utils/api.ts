@@ -9,12 +9,10 @@ axios.defaults.withCredentials = true;
 export const setupResponseInterceptor = (navigate: any) => {
   const myInterceptor = axios.interceptors.response.use(
     (response) => {
-      console.log('catch!');
       return response;
     },
     (error) => {
       if (error.response.status == 401) {
-        console.log('redirect');
         navigate('/login');
       } else {
         return Promise.reject(error);
