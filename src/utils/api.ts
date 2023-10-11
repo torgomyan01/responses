@@ -1,23 +1,31 @@
 import axios from 'axios';
 import { API_URLS } from './const';
-import { changeUserAuth, GetUserAuth } from './helpers';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 //Without this cookies does not send
 axios.defaults.withCredentials = true;
 
-axios.interceptors.request.use(async function (conf) {
-  if (GetUserAuth()) {
-    const response = await fetch(`${API_URL}${API_URLS.USER_STATUS}`);
-    if (response.status === 401) {
-      window.location.replace('/');
-      changeUserAuth('0');
+export const setupResponseInterceptor = (navigate: any) => {
+  const myInterceptor = axios.interceptors.response.use(
+    (response) => {
+      console.log('catch!');
+      return response;
+    },
+    (error) => {
+      if (error.response.status == 401) {
+        console.log('redirect');
+        navigate('/login');
+      } else {
+        return Promise.reject(error);
+      }
     }
-  }
+  );
 
-  return conf;
-});
+  return () => {
+    axios.interceptors.response.eject(myInterceptor);
+  };
+};
 
 export const CreateUser = (data: { username: string; password: string }) =>
   axios.post(`${API_URL}${API_URLS.USER_PROFILE}`, data);

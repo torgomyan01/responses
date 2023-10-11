@@ -32,14 +32,6 @@ export const CreatePageCount = (count: number, pageCount: number) => {
   return remaining ? Math.ceil(calcPages) : calcPages;
 };
 
-export const GetUserAuth = () => {
-  return localStorage.getItem(LocalStorageKeys.userAuth as string) === '1';
-};
-
-export const changeUserAuth = (value: string) => {
-  return localStorage.setItem(LocalStorageKeys.userAuth as string, value);
-};
-
 export const setNumberChangeRate = (number: number) => {
   switch (number) {
     case 1:

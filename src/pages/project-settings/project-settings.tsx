@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setInfoStore } from '../../redux/project-settings';
 import { openAlert, setMessageAlert } from '../../redux/alert-site';
 import { AlertSiteTypes } from '../../enums/enums';
+import { Link } from 'react-router-dom';
+import { SITE_URL } from '../../utils/const';
 
 const sortArray = [
   'Сначала новые',
@@ -113,9 +115,11 @@ function ProjectSettings() {
   return (
     <MainTemplate className="reviewModeration">
       <div className="d-flex justify-content-between align-items-center">
-        <Button variant="contained" className="btn-green py-3 px-4">
-          вернуться к списку товаров
-        </Button>
+        <Link to={`../${SITE_URL.MY_STORES}`}>
+          <Button variant="contained" className="btn-green py-3 px-4">
+            вернуться к списку магазинов
+          </Button>
+        </Link>
         <Shape />
       </div>
       <hr className="mt-5 mb-5" />

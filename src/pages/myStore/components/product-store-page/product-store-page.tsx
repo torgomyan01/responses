@@ -35,7 +35,7 @@ function ProductStorePage({
 
   const handleGoToStore = (store: IStores) => {
     dispatch(dispatch(setActiveStore(store)));
-    navigate(SITE_URL.FEEDBACKS);
+    navigate(`../${SITE_URL.FEEDBACKS}`);
   };
 
   return (

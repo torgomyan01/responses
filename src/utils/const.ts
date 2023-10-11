@@ -4,14 +4,15 @@ import DropDownYm from '../assets/images/DropDownYm.png';
 
 export const SITE_URL = {
   HOME: '/',
-  FEEDBACKS: '/feedbacks',
   LOGIN: '/login',
-  PROFILE_SETTINGS: '/user/profile',
-  STORE_SETTINGS: '/store/settings',
-  CREATE_MARKETPLACE: '/stores/new',
-  MY_STORES: '/stores',
-  STORE_PRODUCTS: '/store/product',
-  SETTINGS_EXPANDED: '/settings-expanded'
+  MYACCOUNT: '/myaccount',
+  FEEDBACKS: 'feedbacks',
+  PROFILE_SETTINGS: 'user/profile',
+  STORE_SETTINGS: 'store/settings',
+  CREATE_MARKETPLACE: 'stores/new',
+  MY_STORES: 'stores',
+  PRODUCTS: 'products',
+  SETTINGS_EXPANDED: 'settings-expanded'
 };
 
 export const STATUS_BUTTON = {
