@@ -26,7 +26,7 @@ const sortArray = [
   'Группировка по товару'
 ];
 
-const selectItemsTitles = ['Дружелюбно', 'Формальный'];
+const selectItemsTitles = ['Дружелюбно', 'Формально'];
 const selectItems = [
   {
     value: 'friendly',
