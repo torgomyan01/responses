@@ -37,11 +37,7 @@ function StProduct({
                   {product?.staistics.feedbacksCount}
                 </span>
                 <div className="d-flex justify-content-end align-items-center">
-                  <Rating
-                    name="read-only"
-                    value={product?.staistics.ratesStatisctics['1']}
-                    readOnly
-                  />
+                  <Rating name="read-only" value={1} readOnly />
                   <span className="fs-16 c-grey ms-3 fw-bolder w-35 text-end">
                     {product?.staistics.ratesStatisctics['1']}
                   </span>
@@ -53,11 +49,7 @@ function StProduct({
                   {product?.staistics.processedFeedbacksCount}
                 </span>
                 <div className="d-flex justify-content-end align-items-center">
-                  <Rating
-                    name="read-only"
-                    value={product?.staistics.ratesStatisctics['2']}
-                    readOnly
-                  />
+                  <Rating name="read-only" value={2} readOnly />
                   <span className="fs-16 c-grey ms-3 fw-bolder w-35 text-end">
                     {product?.staistics.ratesStatisctics['2']}
                   </span>
@@ -69,11 +61,7 @@ function StProduct({
                   {product?.staistics.unrocessedFeedbacksCount}
                 </span>
                 <div className="d-flex justify-content-end align-items-center">
-                  <Rating
-                    name="read-only"
-                    value={product?.staistics.ratesStatisctics['3']}
-                    readOnly
-                  />
+                  <Rating name="read-only" value={3} readOnly />
                   <span className="fs-16 c-grey ms-3 fw-bolder w-35 text-end">
                     {product?.staistics.ratesStatisctics['3']}
                   </span>
@@ -83,11 +71,7 @@ function StProduct({
                 <span className="fs-16 c-grey fw-bolder w-200">Средний рейтинг</span>
                 <span className="fs-16 c-grey fw-bolder me-5">{product?.staistics.avgRate}</span>
                 <div className="d-flex justify-content-end align-items-center">
-                  <Rating
-                    name="read-only"
-                    value={product?.staistics.ratesStatisctics['4']}
-                    readOnly
-                  />
+                  <Rating name="read-only" value={4} readOnly />
                   <span className="fs-16 c-grey ms-3 fw-bolder w-35 text-end">
                     {product?.staistics.ratesStatisctics['4']}
                   </span>
@@ -97,11 +81,7 @@ function StProduct({
                 <span className="fs-16 c-grey fw-bolder w-200">Автоответ</span>
                 <span className="fs-16 c-grey fw-bolder me-5">Включен</span>
                 <div className="d-flex justify-content-end align-items-center">
-                  <Rating
-                    name="read-only"
-                    value={product?.staistics.ratesStatisctics['5']}
-                    readOnly
-                  />
+                  <Rating name="read-only" value={5} readOnly />
                   <span className="fs-16 c-grey ms-3 fw-bolder w-35 text-end">
                     {product?.staistics.ratesStatisctics['5']}
                   </span>
