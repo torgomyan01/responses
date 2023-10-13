@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 import { GetUserStores, setupResponseInterceptor } from '../../utils/api';
 import { setActiveStore, setStores } from '../../redux/user-info';
+import { LocalStorageKeys } from '../../utils/const';
 
 const MyAccountPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,9 @@ const MyAccountPage: React.FC = () => {
 
   useEffect(() => {
     if (stores.length) {
-      dispatch(setActiveStore(stores[0]));
+      const getActiveStoreId = localStorage.getItem(LocalStorageKeys.activeStore) || 0;
+      const getActiveStore = stores.find((store) => store.storeId === +getActiveStoreId);
+      dispatch(setActiveStore(getActiveStore || stores[0]));
     }
   }, [stores]);
 

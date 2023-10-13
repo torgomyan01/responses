@@ -3,7 +3,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { GetStoreImage, RandomKey } from '../../../../utils/helpers';
 import { CircularProgress, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { SITE_URL } from '../../../../utils/const';
+import { LocalStorageKeys, SITE_URL } from '../../../../utils/const';
 import { useDispatch, useSelector } from 'react-redux';
 import { setActiveStore } from '../../../../redux/user-info';
 
@@ -13,7 +13,9 @@ function DropdownNavbar() {
   const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
 
   function changeSelect(store: IStores) {
-    dispatch(dispatch(setActiveStore(store)));
+    dispatch(setActiveStore(store));
+
+    localStorage.setItem(LocalStorageKeys.activeStore, String(store.storeId));
   }
 
   return (

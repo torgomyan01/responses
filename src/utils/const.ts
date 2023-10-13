@@ -58,5 +58,6 @@ export const DEF_INPUT = {
 };
 
 export const LocalStorageKeys = {
-  userAuth: 'userAuthSuccess'
+  userAuth: 'userAuthSuccess',
+  activeStore: 'activeStore'
 };

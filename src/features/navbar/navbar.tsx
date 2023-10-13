@@ -6,15 +6,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Badge, Button, CircularProgress, IconButton } from '@mui/material';
 import { SITE_URL } from '../../utils/const';
 import DropdownNavbar from './components/dropdown/dropdown';
-import { useDispatch, useSelector } from 'react-redux';
 import { UserLogout } from '../../utils/api';
 
 function Navbar() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [loadingLogout, setLoadingLogout] = useState<boolean>(false);
   const pathName = window.location.pathname;
-  const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
 
   function LogoutUser() {
     setLoadingLogout(true);
