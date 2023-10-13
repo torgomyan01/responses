@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import moment from 'moment';
 
 function StProduct({
-  analyticReview = true,
+  analyticReview = false,
   product
 }: {
   analyticReview?: boolean;
@@ -34,56 +34,66 @@ function StProduct({
               <li className="d-flex justify-content-between align-items-center mb-3">
                 <span className="fs-16 c-grey fw-bolder w-200">Всего отзывов</span>
                 <span className="fs-16 c-grey fw-bolder me-5">
-                  {product?.staistics.feedbacksCount}
+                  {product?.statistics.feedbacksCount}
                 </span>
                 <div className="d-flex justify-content-end align-items-center">
                   <Rating name="read-only" value={1} readOnly />
                   <span className="fs-16 c-grey ms-3 fw-bolder w-35 text-end">
-                    {product?.staistics.ratesStatisctics['1']}
+                    {product?.statistics.ratesStatisctics['1']}
                   </span>
                 </div>
               </li>
               <li className="d-flex justify-content-between align-items-center mb-3">
                 <span className="fs-16 c-grey fw-bolder w-200">Отвеченных отзывов</span>
                 <span className="fs-16 c-grey fw-bolder me-5">
-                  {product?.staistics.processedFeedbacksCount}
+                  {product?.statistics.processedFeedbacksCount}
                 </span>
                 <div className="d-flex justify-content-end align-items-center">
                   <Rating name="read-only" value={2} readOnly />
                   <span className="fs-16 c-grey ms-3 fw-bolder w-35 text-end">
-                    {product?.staistics.ratesStatisctics['2']}
+                    {product?.statistics.ratesStatisctics['2']}
                   </span>
                 </div>
               </li>
               <li className="d-flex justify-content-between align-items-center mb-3">
                 <span className="fs-16 c-grey fw-bolder w-200">Неотвеченных отзывов</span>
                 <span className="fs-16 c-grey fw-bolder me-5">
-                  {product?.staistics.unrocessedFeedbacksCount}
+                  {product?.statistics.unrocessedFeedbacksCount}
                 </span>
                 <div className="d-flex justify-content-end align-items-center">
                   <Rating name="read-only" value={3} readOnly />
                   <span className="fs-16 c-grey ms-3 fw-bolder w-35 text-end">
-                    {product?.staistics.ratesStatisctics['3']}
+                    {product?.statistics.ratesStatisctics['3']}
                   </span>
                 </div>
               </li>
               <li className="d-flex justify-content-between align-items-center mb-3">
                 <span className="fs-16 c-grey fw-bolder w-200">Средний рейтинг</span>
-                <span className="fs-16 c-grey fw-bolder me-5">{product?.staistics.avgRate}</span>
+                <span className="fs-16 c-grey fw-bolder me-5">{product?.statistics.avgRate}</span>
                 <div className="d-flex justify-content-end align-items-center">
                   <Rating name="read-only" value={4} readOnly />
                   <span className="fs-16 c-grey ms-3 fw-bolder w-35 text-end">
-                    {product?.staistics.ratesStatisctics['4']}
+                    {product?.statistics.ratesStatisctics['4']}
                   </span>
                 </div>
               </li>
-              <li className="d-flex justify-content-between align-items-center mb-3">
-                <span className="fs-16 c-grey fw-bolder w-200">Автоответ</span>
-                <span className="fs-16 c-grey fw-bolder me-5">Включен</span>
-                <div className="d-flex justify-content-end align-items-center">
+              <li className="d-flex justify-content-between align-items-top mb-3">
+                <span className="fs-16 c-grey fw-bolder w-180">Автоответ</span>
+                <span className="fs-16 c-grey fw-bolder text-center">
+                  {product?.replyMode.replyMode == 'auto' && <>Включен</>}
+                  {product?.replyMode.replyMode == 'semi-auto' && (
+                    <>
+                      Частично
+                      <br />
+                      включен
+                    </>
+                  )}
+                  {product?.replyMode.replyMode == 'manual' && <>Выключен</>}
+                </span>
+                <div className="d-flex justify-content-end align-items-top">
                   <Rating name="read-only" value={5} readOnly />
                   <span className="fs-16 c-grey ms-3 fw-bolder w-35 text-end">
-                    {product?.staistics.ratesStatisctics['5']}
+                    {product?.statistics.ratesStatisctics['5']}
                   </span>
                 </div>
               </li>

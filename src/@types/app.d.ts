@@ -33,9 +33,18 @@ declare interface IStatics {
   ratesStatisctics: { 1: number; 2: number; 3: number; 4: number; 5: number };
 }
 
+declare type ReplyModeType = 'auto' | 'semi-auto' | 'manual';
+
+declare interface ProductReplyMode {
+  storeId: number;
+  productId: number;
+  replyMode: ReplyModeType;
+}
+
 declare interface IStaticsProducts {
   product: IStaticsProduct;
-  staistics: IStatics;
+  statistics: IStatics;
+  replyMode: ProductReplyMode;
 }
 
 declare interface PaginationCount {
