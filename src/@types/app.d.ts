@@ -14,6 +14,9 @@ declare interface IStaticsProduct {
   sku: number | string;
   storeId: number;
   title: string;
+  vendorCode: string;
+  updatedAt: Date;
+  createdAt: Date;
 }
 
 declare interface IDefaultSelectArray {
@@ -198,6 +201,7 @@ declare interface IReviewItem {
       productId: number;
       sku: string | number;
       title: string;
+      vendorCode: string;
     };
     productId: number;
     rate: number;

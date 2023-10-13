@@ -139,7 +139,7 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ info })
                   </span>
                 </CopyToClipboard>
               </li>
-              <li>Артикул поставщика: нет</li>
+              <li>Артикул поставщика: {info.feedback.product.vendorCode}</li>
             </ul>
           </div>
         </div>
@@ -202,7 +202,7 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ info })
         )}
         <div className="d-flex justify-content-between align-items-center mt-5">
           <span className="fs-14 c-grey">
-            Дата отзыва: {moment(info.feedback.createdAt).format('MM DD YYYY, h:mm:ss')}
+            Дата отзыва: {moment(info.feedback.createdAt).format('MM.DD.YYYY, h:mm:ss')}
             <div>ID: {info.feedback.feedbackId}</div>
           </span>
           {hasResponse && isAwaitingModeration && (

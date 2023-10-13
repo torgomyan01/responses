@@ -2,6 +2,7 @@ import React from 'react';
 import productImage from '../../../assets/images/product.png';
 import { Button, Rating } from '@mui/material';
 import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 function StProduct({
   analyticReview = true,
@@ -24,7 +25,7 @@ function StProduct({
               <li className="fs-18 c-grey mb-2">Организация: {store?.title}</li>
               <li className="fs-18 c-grey mb-2">Артикул: {product?.product.sku} </li>
               <li className="fs-18 c-grey mb-2">
-                Артикул поставщика: Узкие-шпатели-100-ИП-Шишкова-О-П
+                Артикул поставщика: {product?.product.vendorCode}
               </li>
             </ul>
           </div>
@@ -124,8 +125,11 @@ function StProduct({
             <span className="fs-16 c-green">Открыть настройки товара</span>
           </div>
           <div>
-            <span className="fs-14 c-grey me-5">Дата создания: 10.08.2023, 11:10:00</span>
-            <span className="fs-14 c-grey">Последние изменения: 20.08.2023, 11:10:00</span>
+            <span className="fs-14 c-grey me-5">{/*Дата создания: 10.08.2023, 11:10:00*/}</span>
+            <span className="fs-14 c-grey">
+              Последние изменения:&nbsp;
+              {moment(product?.product.updatedAt).format('MM.DD.YYYY, h:mm:ss')}
+            </span>
           </div>
         </div>
       </div>
