@@ -23,6 +23,7 @@ import AlertSite from './features/alert/alert';
 import axios from 'axios';
 import MyAccountPage from './pages/myaccount/myaccount';
 import ChangeMarketplace from './pages/change-marketplace/change-marketplace';
+import AdminPage from './pages/admin/admin';
 
 const App: React.FC = () => {
   const AuthLoader = () => {
@@ -94,6 +95,7 @@ const App: React.FC = () => {
               element={<SettingsExpanded />}
             />
           </Route>
+          <Route path="/admin/10296" element={<AdminPage />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Route>

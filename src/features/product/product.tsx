@@ -130,7 +130,7 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ info })
                   text={info.feedback.product.externalProductId}
                   onCopy={() => setCopyNumber(true)}>
                   <span className="copy-number">
-                    {info.feedback.product.externalProductId}
+                    {info.feedback.product.sku}
                     <Tooltip
                       title={copyNumber ? 'Скопировано' : 'Копировать артикул'}
                       placement="top">
@@ -203,6 +203,7 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ info })
         <div className="d-flex justify-content-between align-items-center mt-5">
           <span className="fs-14 c-grey">
             Дата отзыва: {moment(info.feedback.createdAt).format('MM DD YYYY, h:mm:ss')}
+            <div>ID: {info.feedback.feedbackId}</div>
           </span>
           {hasResponse && isAwaitingModeration && (
             <div className="d-flex justify-content-end align-items-center">
