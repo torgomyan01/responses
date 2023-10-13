@@ -52,7 +52,7 @@ function StoresProduct() {
 
   useEffect(() => {
     StartGetProducts();
-  }, [store, activePage, totalCount]);
+  }, [store, activePage, totalCount, paginationCount]);
 
   function StartGetProducts() {
     if (store && store.storeId) {

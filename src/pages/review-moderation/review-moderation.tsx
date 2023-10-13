@@ -48,7 +48,7 @@ function ReviewModeration() {
           console.log(err);
         });
     }
-  }, [store, activePage, paginationCount]);
+  }, [store, activePage, paginationCount, totalCount]);
 
   return (
     <MainTemplate className="reviewModeration">
