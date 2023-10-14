@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './navbar.scss';
 import Logo from '../../assets/images/logo-site.svg';
 import rubleIcon from '../../assets/images/ruble-icon.svg';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Badge, Button, CircularProgress, IconButton } from '@mui/material';
 import { SITE_URL } from '../../utils/const';
 import DropdownNavbar from './components/dropdown/dropdown';
@@ -30,22 +30,20 @@ function Navbar() {
           <img src={Logo} alt="Logo SIte" className="logo-site" />
         </Link>
         <div className="d-flex justify-content-between align-items-center">
-          <Link
-            to={`../${SITE_URL.STORE_SETTINGS}`}
-            className={`nav-item ${pathName === SITE_URL.STORE_SETTINGS ? 'active' : ''}`}>
+          <NavLink to={`../${SITE_URL.STORE_SETTINGS}`} className="nav-item">
             Настройка отзывов
-          </Link>
+          </NavLink>
           {/*<Link to="#" className="nav-item">*/}
           {/*  Настройка отзывов*/}
           {/*  <i className="fa-regular fa-chevron-down ms-2" />*/}
           {/*</Link>*/}
           <DropdownNavbar />
-          <Link to="#" className="nav-item">
+          <NavLink to={`../${SITE_URL.STATISTICS}`} className="nav-item">
             Статистика
-          </Link>
-          <Link to="#" className="nav-item">
+          </NavLink>
+          <NavLink to={`../${SITE_URL.ANALYSYS}`} className="nav-item">
             Анализ
-          </Link>
+          </NavLink>
         </div>
 
         <div className="d-flex justify-content-between align-items-center">
@@ -53,26 +51,32 @@ function Navbar() {
             0,00
             <img src={rubleIcon} alt="rubleIcon" className="ms-2" />
           </div>
-          <Button variant="contained" className="purple-button ms-3">
-            Пополнить
-          </Button>
-          <IconButton aria-label="setting" className="ms-3 c-white">
-            <i className="fa-regular fa-gear" />
-          </IconButton>
-          <Badge
-            badgeContent={9}
-            color="primary"
-            overlap="circular"
-            className="ms-3 nav-debug"
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'left'
-            }}>
-            <IconButton aria-label="setting" className="c-white">
-              <i className="fa-sharp fa-solid fa-bell" />
+          <Link to={`../${SITE_URL.TOPUP}`}>
+            <Button variant="contained" className="purple-button ms-3">
+              Пополнить
+            </Button>
+          </Link>
+          <Link to={`../${SITE_URL.SETTINGS}`}>
+            <IconButton aria-label="setting" className="ms-3 c-white">
+              <i className="fa-regular fa-gear" />
             </IconButton>
-          </Badge>
-          <Link to={SITE_URL.PROFILE_SETTINGS} style={{ minWidth: 40, maxHeight: 40 }}>
+          </Link>
+          <Link to={`../${SITE_URL.NOTIFICATIONS}`}>
+            <Badge
+              badgeContent={1}
+              color="primary"
+              overlap="circular"
+              className="ms-3 nav-debug"
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'left'
+              }}>
+              <IconButton aria-label="setting" className="c-white">
+                <i className="fa-sharp fa-solid fa-bell" />
+              </IconButton>
+            </Badge>
+          </Link>
+          <Link to={`../${SITE_URL.PROFILE_SETTINGS}`} style={{ minWidth: 40, maxHeight: 40 }}>
             <IconButton
               aria-label="setting"
               className="nav-user ms-3"

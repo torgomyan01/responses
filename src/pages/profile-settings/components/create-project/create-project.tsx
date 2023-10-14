@@ -29,22 +29,23 @@ const arrSelectMarketplace = [
     name: 'Ozon',
     tooltipTitle: 'Ozon',
     inShort: '',
-    tooltipText:
-      'Ozon lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt oris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum '
+    enabled: false,
+    tooltipText: 'Скоро будет доступно'
   },
   {
     name: 'Яндекс.Маркет',
-    tooltipTitle: 'Яндекс.Марке',
+    tooltipTitle: 'Яндекс.Маркет',
     inShort: '',
-    tooltipText:
-      'Ozon lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt oris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum '
+    enabled: false,
+    tooltipText: 'Скоро будет доступно'
   },
   {
     name: 'Wildberries',
     tooltipTitle: 'Wildberries',
     inShort: '',
+    enabled: true,
     tooltipText:
-      'Ozon lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt oris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum '
+      'Wildberries - это крупнейший российский онлайн-ритейлер, специализирующийся на продаже одежды, обуви, товаров для дома и электроники. Компания была основана в 2004 году и предлагает широкий ассортимент товаров от различных брендов, а также собственных марок. Wildberries оперирует как в России, так и за ее пределами, включая страны СНГ и Европы.'
   }
 ];
 
@@ -54,7 +55,7 @@ STORES_MARKETPLACE.forEach((item, index) => {
 
 function CreateProject({ change }: ICreateProject) {
   const dispatch = useDispatch();
-  const [checkboxActive, setCheckboxActive] = useState<number>(0);
+  const [checkboxActive, setCheckboxActive] = useState<number>(2);
   const infoMarketplace = [<InfoOzon key={RandomKey()} />, '', <InfoWaldberis key={RandomKey()} />];
   const [name, setName] = useState<IDefInputs>(DEF_INPUT);
   const [key, setKey] = useState<IDefInputs>(DEF_INPUT);
@@ -94,12 +95,13 @@ function CreateProject({ change }: ICreateProject) {
         <div className="col-7">
           <div className="select-marketplace">
             {arrSelectMarketplace.map((item, index) => (
-              <div key={RandomKey()} className="select-marketplace-item">
+              <div key={item.name} className="select-marketplace-item">
                 <label className="d-flex justify-content-start align-items-center me-2">
                   <Checkbox
                     {...label}
                     checked={checkboxActive === index}
                     onChange={() => setCheckboxActive(index)}
+                    disabled={!item.enabled}
                   />
                   {item.name}
                 </label>

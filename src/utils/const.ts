@@ -13,7 +13,12 @@ export const SITE_URL = {
   CHANGE_MARKETPLACE: 'stores/change',
   MY_STORES: 'stores',
   PRODUCTS: 'products',
-  SETTINGS_EXPANDED: 'settings-expanded'
+  SETTINGS_EXPANDED: 'settings-expanded',
+  ANALYSYS: 'analysis',
+  STATISTICS: 'statistics',
+  TOPUP: 'ballance/top-up', // пополнение балланса
+  SETTINGS: 'settings', // какие-то настройки
+  NOTIFICATIONS: 'notifications' // всплывашки пользователю
 };
 
 export const STATUS_BUTTON = {
