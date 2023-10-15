@@ -218,7 +218,7 @@ declare interface IReviewItem {
     externalProductId: string;
     image: string;
     productId: number;
-    sku: string | number;
+    sku: string;
     title: string;
     vendorCode: string;
   };

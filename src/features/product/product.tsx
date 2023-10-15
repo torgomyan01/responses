@@ -128,9 +128,7 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ feedbac
               <li>Организация: {store?.title}</li>
               <li>
                 Артикул:{' '}
-                <CopyToClipboard
-                  text={feedback.product.externalProductId}
-                  onCopy={() => setCopyNumber(true)}>
+                <CopyToClipboard text={feedback.product.sku} onCopy={() => setCopyNumber(true)}>
                   <span className="copy-number">
                     {feedback.product.sku}
                     <Tooltip
