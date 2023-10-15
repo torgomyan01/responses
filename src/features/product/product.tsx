@@ -21,18 +21,20 @@ import { SITE_URL } from '../../utils/const';
 moment.locale('ru');
 
 interface FeedbackResponseReviewProps {
-  info: IReviewItem;
+  feedback: IReviewItem;
 }
 
-const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ info }) => {
+const DummyProductImage = 'https://www.productplan.com/uploads/2018/08/product-development.png';
+
+const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ feedback }) => {
   const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
 
   const [copyNumber, setCopyNumber] = useState(false);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [hasResponse, setHasResponse] = useState<boolean>(info.feedback.responses.length > 0), // Has feedback responses at all, or it's not generater yet
-    [response, setResponse] = useState(hasResponse ? info.feedback.responses[0] : null),
+  const [hasResponse, setHasResponse] = useState<boolean>(feedback.response !== null), // Has feedback responses at all, or it's not generater yet
+    [response, setResponse] = useState(feedback.response),
     [isAwaitingModeration, setIsAwaitingModeration] = useState<boolean>(
       hasResponse && response?.status === ResponseStatus.AwaitingModeration
     ),
@@ -62,7 +64,7 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ info })
   function handleRenewResponse() {
     setIsLoading(true);
     if (response) {
-      RenewResponse(info.feedback.storeId, info.feedback.feedbackId, response.responseId)
+      RenewResponse(feedback.storeId, feedback.feedbackId, response.responseId)
         .then(({ data }) => {
           if (data.feedback.responses.length > 0) {
             setResponse(data.feedback.responses[0]);
@@ -85,8 +87,8 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ info })
     setLoadingSend(true);
     if (response) {
       ApproveResponse(
-        info.feedback.storeId,
-        info.feedback.feedbackId,
+        feedback.storeId,
+        feedback.feedbackId,
         response.responseId,
         manualResponseText
       )
@@ -118,19 +120,19 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ info })
         {/* {info.feedback.feedbackId} */}
         <div className="d-flex justify-content-start align-items-start">
           <div className="products-item-header-image">
-            <img src={info.feedback.product.image} alt="product" />
+            <img src={feedback.product.image || DummyProductImage} alt="product" />
           </div>
           <div>
-            <h2 className="products-item-header-title">{info.feedback.product.title}</h2>
+            <h2 className="products-item-header-title">{feedback.product.title}</h2>
             <ul>
               <li>Организация: {store?.title}</li>
               <li>
                 Артикул:{' '}
                 <CopyToClipboard
-                  text={info.feedback.product.externalProductId}
+                  text={feedback.product.externalProductId}
                   onCopy={() => setCopyNumber(true)}>
                   <span className="copy-number">
-                    {info.feedback.product.sku}
+                    {feedback.product.sku}
                     <Tooltip
                       title={copyNumber ? 'Скопировано' : 'Копировать артикул'}
                       placement="top">
@@ -139,7 +141,7 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ info })
                   </span>
                 </CopyToClipboard>
               </li>
-              <li>Артикул поставщика: {info.feedback.product.vendorCode}</li>
+              <li>Артикул поставщика: {feedback.product.vendorCode}</li>
             </ul>
           </div>
         </div>
@@ -151,7 +153,7 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ info })
           {/* <StatusButton status={info.feedback.responses[0]?.status} /> */}
           <div className="products-item-review">
             <span className="products-item-review-name">Оценка:</span>
-            <Rating name="simple-controlled" value={Number(info.feedback.rate)} readOnly />
+            <Rating name="simple-controlled" value={Number(feedback.rate)} readOnly />
           </div>
         </div>
       </div>
@@ -188,7 +190,7 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ info })
         style={{ height: !collapsed ? (hasResponse ? 450 : 200) : 0 }}>
         <label className="def-label mt-5">
           <span className="def-label-title">Отзыв</span>
-          <input type="text" defaultValue={info.feedback.message} disabled />
+          <input type="text" defaultValue={feedback.message} disabled />
         </label>
         {hasResponse && (
           <label className="def-label mt-5">
@@ -202,8 +204,8 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ info })
         )}
         <div className="d-flex justify-content-between align-items-center mt-5">
           <span className="fs-14 c-grey">
-            Дата отзыва: {moment(info.feedback.createdAt).format('MM.DD.YYYY, h:mm:ss')}
-            <div>ID: {info.feedback.feedbackId}</div>
+            Дата отзыва: {moment(feedback.createdAt).format('MM.DD.YYYY, h:mm:ss')}
+            <div>ID: {feedback.feedbackId}</div>
           </span>
           {hasResponse && isAwaitingModeration && (
             <div className="d-flex justify-content-end align-items-center">

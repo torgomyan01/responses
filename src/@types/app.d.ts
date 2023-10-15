@@ -118,11 +118,11 @@ declare interface IDefaultInputs {
   value?: string | number;
   title?: any;
   quotation?:
-    | {
-        title: string;
-        text: string;
-      }
-    | undefined;
+  | {
+    title: string;
+    text: string;
+  }
+  | undefined;
   inpProps?: any;
 }
 
@@ -199,25 +199,28 @@ declare interface IStatistics {
 }
 
 declare interface IReviewItem {
-  feedback: {
-    createdAt: string;
-    feedbackId: number;
-    message: string;
-    product: {
-      categoryTitle: string;
-      externalProductId: string;
-      image: string;
-      productId: number;
-      sku: string | number;
-      title: string;
-      vendorCode: string;
-    };
+  feedbackId: number;
+  productId: number;
+  storeId: number;
+
+  rate: number;
+  responses?: IResponses[];
+  response: IResponses | null;
+  status: number;
+
+  userName: string;
+
+  createdAt: string;
+
+  message: string;
+  product: {
+    categoryTitle: string;
+    externalProductId: string;
+    image: string;
     productId: number;
-    rate: number;
-    responses: IResponses[];
-    status: number;
-    storeId: number;
-    userName: string;
+    sku: string | number;
+    title: string;
+    vendorCode: string;
   };
 }
 

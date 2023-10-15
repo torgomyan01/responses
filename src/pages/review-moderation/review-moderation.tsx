@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import './review-moderation.scss';
 import MainTemplate from '../../features/main-template/main-template';
 import { Button, CircularProgress, Pagination } from '@mui/material';
@@ -7,30 +7,50 @@ import { SITE_URL } from '../../utils/const';
 import Product from '../../features/product/product';
 import { CreatePageCount, RandomKey } from '../../utils/helpers';
 import PaginationCount from '../../features/pagination-count/pagination-count';
-import SortingSelect from '../../features/sorting-select/sorting-select';
 import { useSelector } from 'react-redux';
 import { GetFeedbacksResponse } from '../../utils/api';
 import { Link } from 'react-router-dom';
+import SortingOptions from '../../features/sorting-options/sorting-options';
+import SearchText from '../../features/search-text/search-text';
 
-const sortArray = [
-  'Сначала новые',
-  'Сначала старые',
-  'Сначала отправленные',
-  'Сначала неотправленные',
-  'Рейтинг по возрастанию',
-  'Рейтинг по убыванию',
-  'Группировка по товару'
+const sortOptions = [
+  {
+    title: 'Сначала новые',
+    sort: ['createdAt', 'DESC']
+  },
+  {
+    title: 'Сначала старые',
+    sort: ['createdAt', 'ASC']
+  },
+  {
+    title: 'Рейтинг по возрастанию',
+    sort: ['rate', 'ASC']
+  },
+  {
+    title: 'Рейтинг по убыванию',
+    sort: ['rate', 'DESC']
+  },
+  {
+    title: 'Сначала отправленные',
+    sort: ['status', 'DESC']
+  },
+  {
+    title: 'Сначала неотправленные',
+    sort: ['status', 'ASC']
+  }
 ];
 
 const pageSize = [10, 20, 50, 100];
 
 function ReviewModeration() {
   const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
-  const [reviews, setReviews] = useState<IReviewItem[] | null>(null);
+  const [feedbacks, setReviews] = useState<IReviewItem[] | null>(null);
 
   const [paginationCount, setPaginationCount] = useState<number>(pageSize[0]);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [activePage, setActivePage] = useState<number>(0);
+  const [sort, setSort] = useState(sortOptions[0].sort);
+  const [searchText, setSearchText] = useState<string>('');
 
   useEffect(() => {
     if (store) {
@@ -38,17 +58,27 @@ function ReviewModeration() {
       GetFeedbacksResponse(
         store.storeId,
         paginationCount,
-        activePage ? (activePage - 1) * paginationCount : activePage
+        activePage ? (activePage - 1) * paginationCount : activePage,
+        sort,
+        searchText
       )
         .then(({ data }) => {
           setTotalCount(data.totalCount);
           setReviews(data.items);
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     }
-  }, [store, activePage, paginationCount, totalCount]);
+  }, [store, activePage, paginationCount, totalCount, sort, searchText]);
+
+  const onSortChange = (sort: Array<string>) => {
+    setSort(sort);
+  };
+
+  const onSearchTextChange = (text: string) => {
+    setSearchText(text);
+  };
 
   return (
     <MainTemplate className="reviewModeration">
@@ -63,13 +93,10 @@ function ReviewModeration() {
       <hr className="mt-5 mb-5" />
       <div className="filter-block">
         <div className="d-flex justify-content-start align-items-center">
-          <label className="def-search me-5">
-            <i className="fa-solid fa-magnifying-glass" />
-            <input type="text" placeholder="Найти товар" />
-          </label>
-          <SortingSelect items={sortArray} />
+          <SearchText placeholder="Найти товар" onSearchTextChange={onSearchTextChange} />
+          <SortingOptions items={sortOptions} onSelect={onSortChange} />
         </div>
-        {reviews && (
+        {feedbacks && (
           <div className="pagination">
             <Pagination
               count={CreatePageCount(totalCount, paginationCount)}
@@ -81,8 +108,8 @@ function ReviewModeration() {
         )}
       </div>
       <div className="products">
-        {reviews ? (
-          reviews.map((info) => <Product key={info.feedback.feedbackId} info={info} />)
+        {feedbacks ? (
+          feedbacks.map((feedback) => <Product key={feedback.feedbackId} feedback={feedback} />)
         ) : (
           <div className="d-flex justify-content-center align-items-center mt-5">
             <CircularProgress
@@ -101,7 +128,7 @@ function ReviewModeration() {
           active={paginationCount}
           onChange={(value: number) => setPaginationCount(value)}
         />
-        {reviews && (
+        {feedbacks && (
           <div className="pagination">
             <Pagination
               count={CreatePageCount(totalCount, paginationCount)}
