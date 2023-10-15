@@ -23,11 +23,11 @@ const sortOptions = [
     sort: ['createdAt', 'ASC']
   },
   {
-    title: 'Рейтинг по возрастанию',
+    title: 'Оценка по возрастанию',
     sort: ['rate', 'ASC']
   },
   {
-    title: 'Рейтинг по убыванию',
+    title: 'Оценка по убыванию',
     sort: ['rate', 'DESC']
   },
   {
