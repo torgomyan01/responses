@@ -204,7 +204,7 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ feedbac
         )}
         <div className="d-flex justify-content-between align-items-center mt-5">
           <span className="fs-14 c-grey">
-            Дата отзыва: {moment(feedback.createdAt).format('MM.DD.YYYY, h:mm:ss')}
+            Дата отзыва: {moment(feedback.createdAt).format('DD.MM.YYYY, h:mm:ss')}
             <div>ID: {feedback.feedbackId}</div>
           </span>
           {hasResponse && isAwaitingModeration && (
