@@ -17,7 +17,6 @@ import CreateMarketplace from './pages/create-marketplace/create-marketplace';
 import MyStore from './pages/myStore/myStore';
 import Login from './pages/login/login';
 import StoresProduct from './pages/stores-product/stores-product';
-import SettingsExpanded from './pages/settings-expanded/settings-expanded';
 import PageNotFound from './pages/404/404';
 import AlertSite from './features/alert/alert';
 import axios from 'axios';
@@ -25,6 +24,7 @@ import MyAccountPage from './pages/myaccount/myaccount';
 import ChangeMarketplace from './pages/change-marketplace/change-marketplace';
 import AdminPage from './pages/admin/admin';
 import UnderConstructionPage from './pages/underConstruction/underConstructionPage';
+import Register from './pages/register/register';
 
 const App: React.FC = () => {
   const AuthLoader = () => {
@@ -58,6 +58,8 @@ const App: React.FC = () => {
           {/* Temporary redirect / to /login */}
           <Route index element={<Navigate to={SITE_URL.LOGIN} />} />
           <Route path={SITE_URL.LOGIN} element={<Login />} loader={AuthLoader} />
+          <Route path={SITE_URL.REGISTER} element={<Register />} loader={AuthLoader} />
+
           <Route path={SITE_URL.MY_ACCOUNT} loader={AuthLoaderRedirect} element={<MyAccountPage />}>
             <Route
               path={SITE_URL.FEEDBACKS}

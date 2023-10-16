@@ -113,7 +113,7 @@ interface IConfigurationResponse {
 }
 
 declare interface IDefaultInputs {
-  error?: boolean;
+  error?: boolean | string;
   errorMessage?: string;
   placeholder?: string;
   onChange?: any;
@@ -192,7 +192,7 @@ declare interface IStoreRates {
 
 declare interface IDefInputs {
   value: string;
-  error: boolean;
+  error: boolean | string;
 }
 
 declare interface IStatistics {

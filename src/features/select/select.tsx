@@ -5,7 +5,6 @@ import { RandomKey } from '../../utils/helpers';
 
 function Select({ selected, className = '', items = [], keys, onChange }: Select) {
   const [value, setValue] = useState<any>(selected);
-  console.log(selected, items);
 
   function changeSelect(item: any) {
     setValue(item);

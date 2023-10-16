@@ -5,6 +5,7 @@ import DropDownYm from '../assets/images/DropDownYm.png';
 export const SITE_URL = {
   HOME: '/',
   LOGIN: '/login',
+  REGISTER: '/register',
   MY_ACCOUNT: '/myaccount',
   FEEDBACKS: 'feedbacks',
   PROFILE_SETTINGS: 'user/profile',
@@ -64,5 +65,6 @@ export const DEF_INPUT = {
 
 export const LocalStorageKeys = {
   userAuth: 'userAuthSuccess',
-  activeStore: 'activeStore'
+  activeStore: 'activeStore',
+  registeredUserId: 'registeredUserId'
 };

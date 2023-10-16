@@ -125,7 +125,7 @@ function Login() {
                 </Button>
               </div>
               <div className="login-and-register">
-                <Link to="">Зарегистрироваться</Link>
+                <Link to={SITE_URL.REGISTER}>Зарегистрироваться</Link>
                 <Link to="">Восстановить пароль</Link>
               </div>
             </div>
