@@ -1,3 +1,5 @@
+type MessengerType = 'telegram' | 'whatsapp' | 'viber';
+
 declare interface Products {
   image: string;
   title: string;
@@ -55,6 +57,7 @@ declare interface Select {
   className?: string;
   items: any[];
   onChange?: (value: any) => void;
+  keys?: any[];
 }
 
 declare interface DefSwitch {
@@ -217,4 +220,19 @@ declare interface IResponses {
   status: number;
   responseType?: number;
   approveType?: number;
+}
+
+declare interface IUserProfile {
+  fio: {
+    firstname: string;
+    lastname: string;
+    middlename: string;
+  };
+  company: {
+    name: string;
+    inn: string;
+  };
+  phone: string;
+  email: string;
+  messenger: MessengerType;
 }

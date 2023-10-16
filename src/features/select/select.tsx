@@ -3,7 +3,7 @@ import './select.scss';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { RandomKey } from '../../utils/helpers';
 
-function Select({ selected, className = '', items = [], onChange }: Select) {
+function Select({ selected, className = '', items = [], keys, onChange }: Select) {
   const [value, setValue] = useState<any>(selected);
 
   function changeSelect(item: any) {

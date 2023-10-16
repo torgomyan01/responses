@@ -28,6 +28,8 @@ export const setupResponseInterceptor = (navigate: any) => {
 export const CreateUser = (data: { username: string; password: string }) =>
   axios.post(`${API_URL}${API_URLS.USER_PROFILE}`, data);
 
+export const GetUserInfo = () => axios.get(`${API_URL}${API_URLS.USER_PROFILE}`);
+
 export const UserLogin = (data: { username: string; password: string }) =>
   axios.post(`${API_URL}${API_URLS.USER_LOGIN}`, data);
 

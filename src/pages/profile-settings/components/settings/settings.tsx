@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DefaultInputs from '../../../../features/defultinputs/Defultinputs';
-import Dropdown from 'react-bootstrap/Dropdown';
-import { Link } from 'react-router-dom';
-import whatsapp from '../../../../assets/images/whatcap.svg';
-import telegram from '../../../../assets/images/telegram.svg';
-import viber from '../../../../assets/images/viber.svg';
 import imgUpload from '../../../../assets/images/img-upload.svg';
-import { Button, Checkbox } from '@mui/material';
+import { Backdrop, Button, Checkbox, CircularProgress } from '@mui/material';
 import './settings.scss';
+import { GetUserInfo } from '../../../../utils/api';
+import Select from '../../../../features/select/select';
 
 const label = {
   inputProps: { 'aria-label': 'Checkbox demo' },
@@ -19,6 +16,31 @@ const label = {
 };
 
 function Settings({ change }: ISettings) {
+  const [userInfo, setUserInfo] = useState<IUserProfile | null>(null);
+
+  useEffect(() => {
+    GetUserInfo()
+      .then(({ data }) => {
+        setUserInfo(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  function changeName(value: string, key: string) {
+    if (userInfo) {
+      const _userInfo: any = { ...userInfo };
+      const keys = key.split('.');
+      if (keys[1]) {
+        _userInfo[keys[0]][keys[1]] = value;
+      } else {
+        _userInfo[keys[0]] = value;
+      }
+      setUserInfo(_userInfo);
+    }
+  }
+
   return (
     <>
       <h2 className="def-section-title head-st-1">Настройки профиля</h2>
@@ -29,50 +51,46 @@ function Settings({ change }: ISettings) {
               <h3 className="wrapperTitle">Личные данные</h3>
               <div className="inner">
                 <div className="input-box input-box2">
-                  <DefaultInputs placeholder="Имя" />
+                  <DefaultInputs
+                    placeholder="Имя"
+                    value={userInfo?.fio.firstname}
+                    onChange={(e: any) => changeName(e.target.value, 'fio.firstname')}
+                  />
                 </div>
                 <div className="input-box">
-                  <DefaultInputs placeholder="E-mail" />
+                  <DefaultInputs
+                    placeholder="E-mail"
+                    value={userInfo?.email}
+                    onChange={(e: any) => changeName(e.target.value, 'email')}
+                  />
                 </div>
                 <div className="input-box input-box2">
-                  <DefaultInputs placeholder="Отчество" />
+                  <DefaultInputs
+                    placeholder="Отчество"
+                    value={userInfo?.fio.middlename}
+                    onChange={(e: any) => changeName(e.target.value, 'fio.middlename')}
+                  />
                 </div>
                 <div className="input-box">
-                  <DefaultInputs placeholder="Телефон" />
+                  <DefaultInputs
+                    placeholder="Телефон"
+                    value={userInfo?.phone}
+                    onChange={(e: any) => changeName(e.target.value, 'phone')}
+                  />
                 </div>
                 <div className="input-box input-box2 input-box_Last">
-                  <DefaultInputs placeholder="Фамилия" />
+                  <DefaultInputs
+                    placeholder="Фамилия"
+                    value={userInfo?.fio.lastname}
+                    onChange={(e: any) => changeName(e.target.value, 'fio.lastname')}
+                  />
                 </div>
                 <div className="input-box input-box_Last">
-                  <Dropdown className="DropDown-step">
-                    <Dropdown.Toggle
-                      className="DropDownBtn-step"
-                      variant="success"
-                      id="dropdown-basic">
-                      Мессенджер для уведомлений
-                      <i className="fa-solid fa-caret-down" />
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu className="DropDownItem-step">
-                      <Dropdown.Item className="DropDownItems-step">
-                        <Link to="#" className="links">
-                          <img src={whatsapp} alt="whatsapp" />
-                          <span>Whats App</span>
-                        </Link>
-                      </Dropdown.Item>
-                      <Dropdown.Item className="DropDownItems-step">
-                        <Link to="#" className="links">
-                          <img src={telegram} alt="whatsapp" />
-                          <span>Telegram</span>
-                        </Link>
-                      </Dropdown.Item>
-                      <Dropdown.Item className="DropDownItems-step">
-                        <Link to="#" className="links">
-                          <img src={viber} alt="whatsapp" />
-                          <span>Viber</span>
-                        </Link>
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
+                  <Select
+                    items={['Whats App', 'Telegram', 'Viber']}
+                    className="settings-select"
+                    selected={userInfo?.messenger.toLowerCase()}
+                  />
                 </div>
               </div>
             </div>
@@ -80,9 +98,17 @@ function Settings({ change }: ISettings) {
           <div className="col-12 mt-5">
             <div className="wrapper">
               <h3 className="wrapperTitle">Реквизиты компании (для юрлиц)</h3>
-              <DefaultInputs placeholder="Наименование" />
+              <DefaultInputs
+                placeholder="Наименование"
+                value={userInfo?.company.name}
+                onChange={(e: any) => changeName(e.target.value, 'company.name')}
+              />
               <div className="input-inn">
-                <DefaultInputs placeholder="ИНН" />
+                <DefaultInputs
+                  placeholder="ИНН"
+                  value={userInfo?.company.inn}
+                  onChange={(e: any) => changeName(e.target.value, 'company.inn')}
+                />
               </div>
             </div>
           </div>
@@ -114,6 +140,9 @@ function Settings({ change }: ISettings) {
           Сохранить
         </Button>
       </div>
+      <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={!userInfo}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </>
   );
 }
