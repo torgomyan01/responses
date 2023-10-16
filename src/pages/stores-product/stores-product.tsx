@@ -15,21 +15,6 @@ import { GetFeedbacksResponse, GetProductsStatistics } from '../../utils/api';
 import StProduct from './components/st-product';
 import { useSelector } from 'react-redux';
 
-const products: Products[] = Array.from({ length: 100 }).map((item, index) => {
-  return {
-    image: product,
-    title: `Шпатели для депиляции, шугаринга, воска, бровей деревянные -----${index + 1}`,
-    list: [
-      'Организация: ВБ ИП Шишкова О.П.',
-      'Артикул: 123123123 ',
-      'Артикул поставщика: Узкие-шпатели-100-ИП-Шишкова-О-П'
-    ],
-    status: STATUS_BUTTON.CLOSED,
-    autoSend: false,
-    reviews: 2
-  };
-});
-
 const sortArray = [
   'Сначала новые',
   'Сначала старые',
@@ -103,9 +88,9 @@ function StoresProduct() {
 
       <div className="d-flex justify-content-between align-items-center mt-5 mb-4">
         <div>
-          <h3 className="fs-3 c-grey mb-2 text-uppercase">все товары проекта</h3>
+          <h3 className="fs-3 c-grey mb-2 text-uppercase">все товары магазина</h3>
           <p className="fs-18 c-grey">
-            <b>Организация:</b> ИП Шишкова О.П.
+            <b>Организация:</b> {store?.title}
           </p>
         </div>
         <div className="d-lg-flex justify-content-between align-items-center">

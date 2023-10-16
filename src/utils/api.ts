@@ -56,9 +56,15 @@ export const SaveStoreInfo = (id: number, data: any) =>
 export const GetFeedbacksResponse = (
   id: number | undefined,
   limit: number | string,
-  startFrom: number
+  startFrom: number,
+  sort: string[],
+  searchText: string
 ) =>
-  axios.get(`${API_URL}${API_URLS.FEEDBACKS_RESPONSE(id)}?limit=${limit}&startFrom=${startFrom}`);
+  axios.get(
+    `${API_URL}${API_URLS.FEEDBACKS_RESPONSE(id)}?limit=${limit}&startFrom=${startFrom}&sortBy=${
+      sort[0]
+    }&sortOrder=${sort[1]}&searchText=${searchText}`
+  );
 
 export const GetProductsStatistics = (id: number, limit: number | string, startFrom: number) =>
   axios.get(`${API_URL}${API_URLS.PRODUCTS_STATISTICS(id)}?limit=${limit}&startFrom=${startFrom}`);

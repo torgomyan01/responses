@@ -24,6 +24,7 @@ import axios from 'axios';
 import MyAccountPage from './pages/myaccount/myaccount';
 import ChangeMarketplace from './pages/change-marketplace/change-marketplace';
 import AdminPage from './pages/admin/admin';
+import UnderConstructionPage from './pages/underConstruction/underConstructionPage';
 
 const App: React.FC = () => {
   const AuthLoader = () => {
@@ -89,10 +90,31 @@ const App: React.FC = () => {
               loader={AuthLoaderRedirect}
               element={<StoresProduct />}
             />
+
             <Route
-              path={`${SITE_URL.SETTINGS_EXPANDED}/:storeId/:productId`}
+              path={SITE_URL.ANALYSYS}
               loader={AuthLoaderRedirect}
-              element={<SettingsExpanded />}
+              element={<UnderConstructionPage />}
+            />
+            <Route
+              path={SITE_URL.STATISTICS}
+              loader={AuthLoaderRedirect}
+              element={<UnderConstructionPage />}
+            />
+            <Route
+              path={SITE_URL.TOPUP}
+              loader={AuthLoaderRedirect}
+              element={<UnderConstructionPage />}
+            />
+            <Route
+              path={SITE_URL.SETTINGS}
+              loader={AuthLoaderRedirect}
+              element={<UnderConstructionPage />}
+            />
+            <Route
+              path={SITE_URL.NOTIFICATIONS}
+              loader={AuthLoaderRedirect}
+              element={<UnderConstructionPage />}
             />
           </Route>
           <Route path="/admin/10296" element={<AdminPage />} />

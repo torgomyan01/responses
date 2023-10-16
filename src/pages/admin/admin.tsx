@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import type { PromptsConfiguration, RateType } from './models/PromptsConfiguration';
 import axios from 'axios';
 import { Container, Row, Col, Form, Button, Card, Stack } from 'react-bootstrap';
+import { openAlert, setMessageAlert } from '../../redux/alert-site';
+import { AlertSiteTypes } from '../../enums/enums';
+import { useDispatch } from 'react-redux';
 
 const AdminPage: React.FC = () => {
   const [configuration, setConfiguration] = useState<PromptsConfiguration | null>(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axios
@@ -18,10 +22,19 @@ const AdminPage: React.FC = () => {
       });
   }, []);
 
-  const handleChangeTemplate = (rate: string, template: string) => {
+  const handleChangePormptTemplate = (rate: string, template: string) => {
     if (configuration) {
       const newConfiguration: PromptsConfiguration = { ...configuration };
       newConfiguration.templates.promptTemplates.rates[rate as RateType].promptTemplate = template;
+      setConfiguration(newConfiguration);
+    }
+  };
+
+  const handleChangeFeedbackTemplate = (rate: string, template: string) => {
+    if (configuration) {
+      const newConfiguration: PromptsConfiguration = { ...configuration };
+      newConfiguration.templates.promptTemplates.rates[rate as RateType].feedbackTemplate =
+        template;
       setConfiguration(newConfiguration);
     }
   };
@@ -53,10 +66,26 @@ const AdminPage: React.FC = () => {
       axios
         .put('/api/v1/prompts/configuration/WB', configuration)
         .then(() => {
-          alert('Сохранено');
+          //alert('Сохранено');
+          dispatch(
+            openAlert({
+              status: AlertSiteTypes.success,
+              go: true
+            })
+          );
+          dispatch(setMessageAlert('Изменено успешно сохранено'));
         })
         .catch((error) => {
-          console.error(error);
+          const errorMessage = error?.response?.data?.error?.message || error.message;
+          console.error(errorMessage);
+          dispatch(
+            openAlert({
+              status: AlertSiteTypes.error,
+              go: true
+            })
+          );
+          console.log(error);
+          dispatch(setMessageAlert(errorMessage));
         });
     }
   };
@@ -93,13 +122,23 @@ const AdminPage: React.FC = () => {
                           />
                         </Form.Group>
                         <Form.Group>
-                          <Form.Label>Template</Form.Label>
+                          <Form.Label>Prompt template</Form.Label>
                           <Form.Control
                             type="text"
                             as="textarea"
                             rows={6}
                             defaultValue={rateConfig.promptTemplate}
-                            onChange={(e) => handleChangeTemplate(rate, e.target.value)}
+                            onChange={(e) => handleChangePormptTemplate(rate, e.target.value)}
+                          />
+                        </Form.Group>
+                        <Form.Group>
+                          <Form.Label>Feedback template</Form.Label>
+                          <Form.Control
+                            type="text"
+                            as="textarea"
+                            rows={6}
+                            defaultValue={rateConfig.feedbackTemplate}
+                            onChange={(e) => handleChangeFeedbackTemplate(rate, e.target.value)}
                           />
                         </Form.Group>
                       </div>

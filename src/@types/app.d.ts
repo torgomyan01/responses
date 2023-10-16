@@ -16,6 +16,9 @@ declare interface IStaticsProduct {
   sku: number | string;
   storeId: number;
   title: string;
+  vendorCode: string;
+  updatedAt: Date;
+  createdAt: Date;
 }
 
 declare interface IDefaultSelectArray {
@@ -32,9 +35,18 @@ declare interface IStatics {
   ratesStatisctics: { 1: number; 2: number; 3: number; 4: number; 5: number };
 }
 
+declare type ReplyModeType = 'auto' | 'semi-auto' | 'manual';
+
+declare interface ProductReplyMode {
+  storeId: number;
+  productId: number;
+  replyMode: ReplyModeType;
+}
+
 declare interface IStaticsProducts {
   product: IStaticsProduct;
-  staistics: IStatics;
+  statistics: IStatics;
+  replyMode: ProductReplyMode;
 }
 
 declare interface PaginationCount {
@@ -109,11 +121,11 @@ declare interface IDefaultInputs {
   value?: string | number;
   title?: any;
   quotation?:
-    | {
-        title: string;
-        text: string;
-      }
-    | undefined;
+  | {
+    title: string;
+    text: string;
+  }
+  | undefined;
   inpProps?: any;
 }
 
@@ -190,24 +202,28 @@ declare interface IStatistics {
 }
 
 declare interface IReviewItem {
-  feedback: {
-    createdAt: string;
-    feedbackId: number;
-    message: string;
-    product: {
-      categoryTitle: string;
-      externalProductId: string;
-      image: string;
-      productId: number;
-      sku: string | number;
-      title: string;
-    };
+  feedbackId: number;
+  productId: number;
+  storeId: number;
+
+  rate: number;
+  responses?: IResponses[];
+  response: IResponses | null;
+  status: number;
+
+  userName: string;
+
+  createdAt: string;
+
+  message: string;
+  product: {
+    categoryTitle: string;
+    externalProductId: string;
+    image: string;
     productId: number;
-    rate: number;
-    responses: IResponses[];
-    status: number;
-    storeId: number;
-    userName: string;
+    sku: string;
+    title: string;
+    vendorCode: string;
   };
 }
 
