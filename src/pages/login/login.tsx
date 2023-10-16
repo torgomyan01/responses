@@ -5,8 +5,7 @@ import DefaultInputs from '../../features/defultinputs/Defultinputs';
 import { Button, CircularProgress } from '@mui/material';
 import { DEF_INPUT, SITE_URL } from '../../utils/const';
 import { UserLogin } from '../../utils/api';
-import { useLoaderData, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 
 function Login() {
   const navigation = useNavigate();
@@ -124,6 +123,10 @@ function Login() {
                     />
                   )}
                 </Button>
+              </div>
+              <div className="login-and-register">
+                <Link to="">Зарегистрироваться</Link>
+                <Link to="">Восстановить пароль</Link>
               </div>
             </div>
           </form>

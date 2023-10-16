@@ -56,3 +56,19 @@
     }
   }
 }
+
+.login-and-register{
+  width: calc(100% + 60px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  position: relative;
+  left: -30px;
+  a{
+    color: #666676;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}

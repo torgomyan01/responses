@@ -121,11 +121,11 @@ declare interface IDefaultInputs {
   value?: string | number;
   title?: any;
   quotation?:
-  | {
-    title: string;
-    text: string;
-  }
-  | undefined;
+    | {
+        title: string;
+        text: string;
+      }
+    | undefined;
   inpProps?: any;
 }
 
