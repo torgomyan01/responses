@@ -3,8 +3,11 @@ import DefaultInputs from '../../../../features/defultinputs/Defultinputs';
 import imgUpload from '../../../../assets/images/img-upload.svg';
 import { Backdrop, Button, Checkbox, CircularProgress } from '@mui/material';
 import './settings.scss';
-import { GetUserInfo } from '../../../../utils/api';
+import { GetUserInfo, SaveUserInfo } from '../../../../utils/api';
 import Select from '../../../../features/select/select';
+import { openAlert, setMessageAlert } from '../../../../redux/alert-site';
+import { AlertSiteTypes } from '../../../../enums/enums';
+import { useDispatch } from 'react-redux';
 
 const label = {
   inputProps: { 'aria-label': 'Checkbox demo' },
@@ -15,8 +18,13 @@ const label = {
   }
 };
 
+const socSites = ['Whats App', 'Telegram', 'Viber'];
+const socSitesValues = ['whatsapp', 'telegram', 'viber'];
+
 function Settings({ change }: ISettings) {
+  const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState<IUserProfile | null>(null);
+  const [loadingSave, setLoadingSave] = useState<boolean>(false);
 
   useEffect(() => {
     GetUserInfo()
@@ -38,6 +46,33 @@ function Settings({ change }: ISettings) {
         _userInfo[keys[0]] = value;
       }
       setUserInfo(_userInfo);
+    }
+  }
+
+  function changeSelect(value: string) {
+    const selectedIndex = socSites.findIndex((item) => item === value);
+    if (userInfo && selectedIndex) {
+      const _userInfo: any = { ...userInfo };
+      _userInfo.messenger = socSitesValues[selectedIndex];
+      setUserInfo(_userInfo);
+    }
+  }
+
+  function saveChanges() {
+    if (userInfo) {
+      setLoadingSave(true);
+      SaveUserInfo(userInfo).then((res) => {
+        setLoadingSave(false);
+        dispatch(
+          openAlert({
+            status: AlertSiteTypes.success,
+            go: true
+          })
+        );
+        dispatch(setMessageAlert('Изменено успешно сохранено'));
+
+        setTimeout(() => change(1), 2000);
+      });
     }
   }
 
@@ -87,9 +122,12 @@ function Settings({ change }: ISettings) {
                 </div>
                 <div className="input-box input-box_Last">
                   <Select
-                    items={['Whats App', 'Telegram', 'Viber']}
+                    items={socSites}
                     className="settings-select"
-                    selected={userInfo?.messenger.toLowerCase()}
+                    onChange={changeSelect}
+                    selected={
+                      socSites[socSitesValues.findIndex((item) => item === userInfo?.messenger)]
+                    }
                   />
                 </div>
               </div>
@@ -136,8 +174,17 @@ function Settings({ change }: ISettings) {
         </div>
       </div>
       <div className="mt-5">
-        <Button variant="contained" className="btn-blue py-4 px-99" onClick={() => change(1)}>
+        <Button variant="contained" className="btn-blue py-4 px-99" onClick={saveChanges}>
           Сохранить
+          {loadingSave && (
+            <CircularProgress
+              size={25}
+              sx={{
+                color: '#FFF'
+              }}
+              className="ms-2"
+            />
+          )}
         </Button>
       </div>
       <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={!userInfo}>

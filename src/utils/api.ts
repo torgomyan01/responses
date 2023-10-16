@@ -30,6 +30,9 @@ export const CreateUser = (data: { username: string; password: string }) =>
 
 export const GetUserInfo = () => axios.get(`${API_URL}${API_URLS.USER_PROFILE}`);
 
+export const SaveUserInfo = (data: IUserProfile) =>
+  axios.put(`${API_URL}${API_URLS.USER_PROFILE}`, data);
+
 export const UserLogin = (data: { username: string; password: string }) =>
   axios.post(`${API_URL}${API_URLS.USER_LOGIN}`, data);
 
