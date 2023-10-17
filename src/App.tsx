@@ -58,7 +58,7 @@ const App: React.FC = () => {
           {/* Temporary redirect / to /login */}
           <Route index element={<Navigate to={SITE_URL.LOGIN} />} />
           <Route path={SITE_URL.LOGIN} element={<Login />} loader={AuthLoader} />
-          <Route path={SITE_URL.REGISTER} element={<Register />} loader={AuthLoader} />
+          <Route path={SITE_URL.REGISTER} element={<Register />} />
 
           <Route path={SITE_URL.MY_ACCOUNT} loader={AuthLoaderRedirect} element={<MyAccountPage />}>
             <Route
