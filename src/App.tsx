@@ -25,6 +25,7 @@ import ChangeMarketplace from './pages/change-marketplace/change-marketplace';
 import AdminPage from './pages/admin/admin';
 import UnderConstructionPage from './pages/underConstruction/underConstructionPage';
 import Register from './pages/register/register';
+import RecoverPassword from './pages/recover-password/recover-password';
 
 const App: React.FC = () => {
   const AuthLoader = () => {
@@ -59,6 +60,7 @@ const App: React.FC = () => {
           <Route index element={<Navigate to={SITE_URL.LOGIN} />} />
           <Route path={SITE_URL.LOGIN} element={<Login />} loader={AuthLoader} />
           <Route path={SITE_URL.REGISTER} element={<Register />} />
+          <Route path={SITE_URL.RECOVER_PASSWORD} element={<RecoverPassword />} />
 
           <Route path={SITE_URL.MY_ACCOUNT} loader={AuthLoaderRedirect} element={<MyAccountPage />}>
             <Route

@@ -126,7 +126,7 @@ function Register() {
             <p className="login-block-wrapper-title">Регистрация</p>
             <div className="mb-4">
               <DefaultInputs
-                placeholder="Логин или E-mail"
+                placeholder="Логин"
                 error={username.error}
                 title={
                   <span className={`fs-14 c-red mb-1 ${username.error ? 'd-block' : 'd-none'}`}>

@@ -6,6 +6,7 @@ export const SITE_URL = {
   HOME: '/',
   LOGIN: '/login',
   REGISTER: '/register',
+  RECOVER_PASSWORD: '/recover-password',
   MY_ACCOUNT: '/myaccount',
   FEEDBACKS: 'feedbacks',
   PROFILE_SETTINGS: 'user/profile',
