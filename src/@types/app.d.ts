@@ -180,6 +180,9 @@ declare interface IStore {
       rates: {
         [key in ReplyRateType]: IStoreRates;
       };
+      signature: {
+        customText: string;
+      };
       version: string;
     };
   };

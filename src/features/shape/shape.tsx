@@ -4,12 +4,25 @@ import updateButton from '../../assets/images/update-button.svg';
 import { Link, useLocation } from 'react-router-dom';
 import { SITE_URL } from '../../utils/const';
 
-function Shape() {
+interface ShapeProps {
+  onRerfreshClick?: () => void;
+}
+
+const Shape: React.FC<ShapeProps> = ({ onRerfreshClick }) => {
   const location = useLocation();
 
-  function ReloadPage() {
-    window.location.reload();
-  }
+  useEffect(() => {
+    console.log(location.pathname);
+  }, [location]);
+
+  const handleRefreshClick = () => {
+    if (onRerfreshClick) {
+      onRerfreshClick();
+    } else {
+      window.location.reload();
+    }
+  };
+
   return (
     <div className="shape">
       <div>
@@ -28,9 +41,14 @@ function Shape() {
           Отзывы
         </Link>
       </div>
-      <img src={updateButton} alt="updateButton" onClick={ReloadPage} className="cursor-pointer" />
+      <img
+        src={updateButton}
+        alt="updateButton"
+        onClick={handleRefreshClick}
+        className="cursor-pointer"
+      />
     </div>
   );
-}
+};
 
 export default Shape;

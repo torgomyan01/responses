@@ -15,6 +15,8 @@ import { openAlert, setMessageAlert } from '../../redux/alert-site';
 import { AlertSiteTypes } from '../../enums/enums';
 import { Link } from 'react-router-dom';
 import { SITE_URL } from '../../utils/const';
+import store from '../../app/store';
+import DefaultInputs from '../../features/defultinputs/Defultinputs';
 
 const sortArray = [
   'Сначала новые',
@@ -44,21 +46,21 @@ let changedProductSettings: IStore | null = null;
 
 function ProjectSettings() {
   const dispatch = useDispatch();
-  const activeStore = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
+  const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
   const [productSettings, setProductSettings] = useState<IStore | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [autoReplyAll, setAutoReplyAll] = useState<boolean>(false);
 
   useEffect(() => {
-    if (activeStore && activeStore.storeId) {
+    if (store && store.storeId) {
       setProductSettings(null);
       changedProductSettings = null;
-      GetStoreInfo(activeStore.storeId).then(({ data }: { data: IStore }) => {
+      GetStoreInfo(store.storeId).then(({ data }: { data: IStore }) => {
         setProductSettings(data);
         changedProductSettings = data;
       });
     }
-  }, [activeStore]);
+  }, [store]);
 
   useEffect(() => {
     if (productSettings) {
@@ -90,7 +92,6 @@ function ProjectSettings() {
   function changeTalentResponse(value: any) {
     const getValue = selectItems.find((item) => item.name === value);
     if (getValue) {
-      console.log(getValue.value);
       Array.from({ length: 5 }).forEach((item, index) => {
         changeProductSettings(
           'reviewStyle',
@@ -121,9 +122,9 @@ function ProjectSettings() {
    * SAVE CHANGES
    */
   function saveChanges() {
-    if (activeStore && activeStore.storeId) {
+    if (store && store.storeId) {
       setLoading(true);
-      SaveStoreInfo(activeStore.storeId, changedProductSettings)
+      SaveStoreInfo(store.storeId, changedProductSettings)
         .then(({ data }) => {
           setLoading(false);
           dispatch(
@@ -165,6 +166,23 @@ function ProjectSettings() {
     setProductSettings(changedProductSettings);
   }
 
+  const handleChangeSignature = (customText: string) => {
+    if (changedProductSettings) {
+      changedProductSettings = {
+        ...changedProductSettings,
+        configuration: {
+          ...changedProductSettings.configuration,
+          replyConfiguration: {
+            ...changedProductSettings.configuration.replyConfiguration,
+            signature: {
+              customText
+            }
+          }
+        }
+      } as IStore;
+    }
+  };
+
   return (
     <MainTemplate className="reviewModeration">
       <div className="d-flex justify-content-between align-items-center">
@@ -176,18 +194,9 @@ function ProjectSettings() {
         <Shape />
       </div>
       <hr className="mt-5 mb-5" />
-      <div className="filter-block">
-        <div className="d-flex justify-content-start align-items-center">
-          <label className="def-search me-5">
-            <i className="fa-solid fa-magnifying-glass" />
-            <input type="text" placeholder="Найти товар" />
-          </label>
-          <SortingSelect items={sortArray} />
-        </div>
-      </div>
       <h2 className="def-section-title mt-70">общие настройки для всех товаров Магазина</h2>
       <p className="fs-18 c-grey mt-3">
-        <b>Организация:</b> ИП Шишкова О.П.
+        <b>Организация:</b> {store?.title}
       </p>
       <div className="row">
         <div className="col-6 mb-5">
@@ -271,6 +280,20 @@ function ProjectSettings() {
                 changeAutoReply={getChangeAutoReply}
                 removeTalentItem={removeTalentItem}
               />
+            </div>
+            <div className="col-12 mb-5">
+              <div className="wrapper">
+                <DefaultInputs
+                  placeholder="Подпись"
+                  title={<span className="c-grey fs-18 mb-2 d-block">Подпись</span>}
+                  quotation={{
+                    text: 'text',
+                    title: 'title'
+                  }}
+                  onChange={(e: any) => handleChangeSignature(e.target.value)}
+                  value={productSettings.configuration.replyConfiguration.signature.customText}
+                />
+              </div>
             </div>
           </>
         ) : (
