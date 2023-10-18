@@ -78,6 +78,11 @@ export const GetProductsStatistics = (id: number, limit: number | string, startF
 export const RenewResponse = (storeId: number, feedbackId: number, responseId: number) =>
   axios.get(`${API_URL}${API_URLS.RENEW_FEEDBACK_RESPONSE(storeId, feedbackId, responseId)}`);
 
+export const GetProductResponseConfiguration = (
+  storeId: number | string,
+  productId: number | string
+) => axios.get(`${API_URL}${API_URLS.PRODUCT_RESPONSE_CONFIGURATION(storeId, productId)}`);
+
 export default (
   storeId: number,
   feedbackId: number,

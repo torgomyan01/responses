@@ -41,6 +41,7 @@ function StoresProduct() {
 
   function StartGetProducts() {
     if (store && store.storeId) {
+      setProducts(null);
       GetProductsStatistics(
         store.storeId,
         paginationCount,

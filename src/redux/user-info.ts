@@ -11,6 +11,7 @@ interface IUserInfo {
     apiToken: string;
   }[];
   activeStore: IStores | null;
+  selectedProduct: IStaticsProducts | null;
 }
 
 const initialState: IUserInfo = {
@@ -18,7 +19,8 @@ const initialState: IUserInfo = {
   username: '',
   email: '',
   stores: [],
-  activeStore: null
+  activeStore: null,
+  selectedProduct: null
 };
 
 const UserInfo = createSlice({
@@ -43,11 +45,20 @@ const UserInfo = createSlice({
     },
     setUserInfo(state, action) {
       state.activeStore = action.payload;
+    },
+    setSelectedProduct(state, action) {
+      state.selectedProduct = action.payload;
     }
   }
 });
 
-export const { setStores, updateStores, changeStores, removeStore, setActiveStore } =
-  UserInfo.actions;
+export const {
+  setStores,
+  updateStores,
+  changeStores,
+  removeStore,
+  setActiveStore,
+  setSelectedProduct
+} = UserInfo.actions;
 
 export default UserInfo.reducer;

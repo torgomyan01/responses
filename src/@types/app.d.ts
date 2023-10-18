@@ -1,4 +1,8 @@
 type MessengerType = 'telegram' | 'whatsapp' | 'viber';
+type ReplyRateType = '1' | '2' | '3' | '4' | '5';
+type ReviewStyleType = 'formal' | 'friendly';
+
+type ReplySignatureType = 'none' | 'store' | 'brand' | 'custom';
 
 declare interface Products {
   image: string;
@@ -103,6 +107,7 @@ interface IUserInfo {
     stores: IStores[];
     activeStore: IStores | null;
     userAuth: boolean;
+    selectedProduct: IStaticsProducts | null;
   };
 }
 
@@ -173,20 +178,40 @@ declare interface IStore {
   configuration: {
     replyConfiguration: {
       rates: {
-        '1': IStoreRates;
-        '2': IStoreRates;
-        '3': IStoreRates;
-        '4': IStoreRates;
-        '5': IStoreRates;
+        [key in ReplyRateType]: IStoreRates;
       };
       version: string;
     };
   };
 }
 
+interface IProductReplyConfiguration {
+  storeId: number;
+  productId: string | number;
+  isActive: false;
+  configuration: {
+    replyConfiguration: {
+      rates: {
+        [key in ReplyRateType]: IStoreRates;
+      };
+      version: string;
+      subscription: {
+        type: ReplySignatureType;
+        customText: string | null;
+      };
+      recommendations: {
+        sku: string | null;
+        message: string | null;
+        keywords: string[];
+      };
+      replyToOldFeedbacks: boolean;
+    };
+  };
+}
+
 declare interface IStoreRates {
   autoReply: boolean;
-  reviewStyle: string;
+  reviewStyle: ReviewStyleType;
   blacklistKeywords: string[];
 }
 

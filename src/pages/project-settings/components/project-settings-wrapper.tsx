@@ -55,7 +55,7 @@ function ProjectSettingsWrapper({
       <div className="d-flex justify-content-end mb-5">
         <div className="fs-18 c-grey d-flex justify-content-start align-items-center">
           {title}
-          <DefSwitch className="ms-2" status={item.autoReply} onChangeProps={changeAutoR} />
+          <DefSwitch className="ms-2 me-0" status={item.autoReply} onChangeProps={changeAutoR} />
         </div>
       </div>
       <form onSubmit={submit}>

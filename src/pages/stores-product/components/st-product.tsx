@@ -1,8 +1,10 @@
 import React from 'react';
-import productImage from '../../../assets/images/product.png';
 import { Button, Rating } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
+import { LocalStorageKeys, SITE_URL } from '../../../utils/const';
+import { setSelectedProduct } from '../../../redux/user-info';
 
 function StProduct({
   analyticReview = false,
@@ -11,7 +13,16 @@ function StProduct({
   analyticReview?: boolean;
   product?: IStaticsProducts;
 }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
+
+  function selectedProduct() {
+    dispatch(setSelectedProduct(product));
+    navigate(`../${SITE_URL.MY_ACCOUNT}/${SITE_URL.SETTINGS_EXPANDED}`);
+    localStorage.setItem(LocalStorageKeys.selectedProduct, JSON.stringify(product));
+  }
   return (
     <div className="product-store mb-4">
       <div className="product-store-info">
@@ -101,7 +112,9 @@ function StProduct({
           </div>
         </div>
         <div className="d-flex justify-content-between align-items-center mt-4">
-          <div className="d-lg-flex justify-content-start align-items-center">
+          <div
+            className="d-lg-flex justify-content-start align-items-center cursor-pointer"
+            onClick={selectedProduct}>
             <Button
               variant="contained"
               className="btn-green rounded-2 ps-0 pe-0 me-3"

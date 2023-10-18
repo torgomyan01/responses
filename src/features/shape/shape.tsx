@@ -7,10 +7,6 @@ import { SITE_URL } from '../../utils/const';
 function Shape() {
   const location = useLocation();
 
-  useEffect(() => {
-    console.log(location.pathname);
-  }, [location]);
-
   function ReloadPage() {
     window.location.reload();
   }

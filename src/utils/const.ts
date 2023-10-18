@@ -36,6 +36,8 @@ export const API_URLS = {
   USER_PROFILE: '/user/profile',
   GET_RESPONSE_RENEW: (responseId: number | string) => `/user/responses/${responseId}/renew`,
   GET_STORE: (id: number) => `/user/stores/${id}/configuration/response`,
+  PRODUCT_RESPONSE_CONFIGURATION: (storeId: number | string, productId: number | string) =>
+    `/user/stores/${storeId}/configuration/response/product/${productId}`,
   PRODUCTS_STATISTICS: (id: number) => `/user/stores/${id}/products-statistics`,
   FEEDBACKS_RESPONSE: (id: number | undefined) => `/user/stores/${id}/feedbacks-response`,
   RENEW_FEEDBACK_RESPONSE: (storeId: number, feedbackId: number, responseId: number) =>
@@ -67,5 +69,6 @@ export const DEF_INPUT = {
 export const LocalStorageKeys = {
   userAuth: 'userAuthSuccess',
   activeStore: 'activeStore',
-  registeredUserId: 'registeredUserId'
+  registeredUserId: 'registeredUserId',
+  selectedProduct: 'selectedProduct'
 };

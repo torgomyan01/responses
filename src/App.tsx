@@ -26,6 +26,7 @@ import AdminPage from './pages/admin/admin';
 import UnderConstructionPage from './pages/underConstruction/underConstructionPage';
 import Register from './pages/register/register';
 import RecoverPassword from './pages/recover-password/recover-password';
+import SettingsExpanded from './pages/settings-expanded/settings-expanded';
 
 const App: React.FC = () => {
   const AuthLoader = () => {
@@ -72,6 +73,11 @@ const App: React.FC = () => {
               path={SITE_URL.PROFILE_SETTINGS}
               loader={AuthLoaderRedirect}
               element={<ProfileSettings />}
+            />
+            <Route
+              path={SITE_URL.SETTINGS_EXPANDED}
+              loader={AuthLoaderRedirect}
+              element={<SettingsExpanded />}
             />
             <Route
               path={SITE_URL.STORE_SETTINGS}
