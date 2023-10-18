@@ -51,26 +51,60 @@ function ReviewModeration() {
   const [activePage, setActivePage] = useState<number>(0);
   const [sort, setSort] = useState(sortOptions[0].sort);
   const [searchText, setSearchText] = useState<string>('');
+  const [refreshToggle, setRefreshToggle] = useState<boolean>(true);
+
+  // useEffect(() => {
+  //   let interval: NodeJS.Timer;
+  //   if (store) {
+  //     setReviews(null);
+  //     GetFeedbacksResponse(
+  //       store.storeId,
+  //       paginationCount,
+  //       activePage ? (activePage - 1) * paginationCount : activePage,
+  //       sort,
+  //       searchText
+  //     )
+  //       .then(({ data }) => {
+  //         setTotalCount(data.totalCount);
+  //         setReviews(data.items);
+  //       })
+  //       .catch((err) => {
+  //         console.error(err);
+  //       });
+  //   },
+
+  // }, [store, activePage, paginationCount, totalCount, sort, searchText]);
 
   useEffect(() => {
+    let interval: NodeJS.Timer;
     if (store) {
+      const loadData = async () => {
+        GetFeedbacksResponse(
+          store.storeId,
+          paginationCount,
+          activePage ? (activePage - 1) * paginationCount : activePage,
+          sort,
+          searchText
+        )
+          .then(({ data }) => {
+            setTotalCount(data.totalCount);
+            console.log(data.items[0]);
+            setReviews(data.items);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      };
+
       setReviews(null);
-      GetFeedbacksResponse(
-        store.storeId,
-        paginationCount,
-        activePage ? (activePage - 1) * paginationCount : activePage,
-        sort,
-        searchText
-      )
-        .then(({ data }) => {
-          setTotalCount(data.totalCount);
-          setReviews(data.items);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      loadData();
+      interval = setInterval(loadData, 10000);
     }
-  }, [store, activePage, paginationCount, totalCount, sort, searchText]);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [store, activePage, paginationCount, totalCount, sort, searchText, refreshToggle]);
 
   const onSortChange = (sort: Array<string>) => {
     setSort(sort);
@@ -88,7 +122,11 @@ function ReviewModeration() {
             вернуться к списку магазинов
           </Button>
         </Link>
-        <Shape />
+        <Shape
+          onRerfreshClick={() => {
+            setRefreshToggle(!refreshToggle);
+          }}
+        />
       </div>
       <hr className="mt-5 mb-5" />
       <div className="filter-block">
@@ -109,7 +147,12 @@ function ReviewModeration() {
       </div>
       <div className="products">
         {feedbacks ? (
-          feedbacks.map((feedback) => <Product key={feedback.feedbackId} feedback={feedback} />)
+          feedbacks.map((feedback) => (
+            <Product
+              key={`${feedback.feedbackId}-${feedback.status}-${feedback?.response?.responseId}`}
+              feedback={feedback}
+            />
+          ))
         ) : (
           <div className="d-flex justify-content-center align-items-center mt-5">
             <CircularProgress

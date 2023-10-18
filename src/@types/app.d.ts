@@ -179,6 +179,9 @@ declare interface IStore {
         '4': IStoreRates;
         '5': IStoreRates;
       };
+      signature: {
+        customText: string;
+      };
       version: string;
     };
   };
