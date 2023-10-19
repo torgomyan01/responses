@@ -2,16 +2,8 @@ type MessengerType = 'telegram' | 'whatsapp' | 'viber';
 type ReplyRateType = '1' | '2' | '3' | '4' | '5';
 type ReviewStyleType = 'formal' | 'friendly';
 
-type ReplySignatureType = 'none' | 'store' | 'brand' | 'custom';
-
-declare interface Products {
-  image: string;
-  title: string;
-  list: string[];
-  status: string;
-  autoSend: boolean;
-  reviews: number;
-}
+declare type ReplySignatureType = 'default' | 'storeName' | 'brandName' | 'custom';
+declare type ReplyModeType = 'auto' | 'semi-auto' | 'manual';
 
 declare interface IStaticsProduct {
   image: string;
@@ -25,11 +17,6 @@ declare interface IStaticsProduct {
   createdAt: Date;
 }
 
-declare interface IDefaultSelectArray {
-  value: string;
-  name: string;
-}
-
 declare interface IStatics {
   avgRate: number;
   feedbacksCount: number;
@@ -38,8 +25,6 @@ declare interface IStatics {
   productId: number;
   ratesStatisctics: { 1: number; 2: number; 3: number; 4: number; 5: number };
 }
-
-declare type ReplyModeType = 'auto' | 'semi-auto' | 'manual';
 
 declare interface ProductReplyMode {
   storeId: number;
@@ -62,10 +47,6 @@ declare interface PaginationCount {
 declare interface MainTemplate {
   children: any;
   className: string;
-}
-
-declare interface Product {
-  info: IReviewItem;
 }
 
 declare interface Select {
@@ -111,12 +92,6 @@ interface IUserInfo {
   };
 }
 
-interface IConfigurationResponse {
-  ConfigurationResponse: {
-    infoStore: IStore;
-  };
-}
-
 declare interface IDefaultInputs {
   error?: boolean | string;
   errorMessage?: string;
@@ -125,6 +100,7 @@ declare interface IDefaultInputs {
   className?: string;
   value?: string | number;
   title?: any;
+  disabled?: boolean;
   quotation?:
     | {
         title: string;
@@ -206,7 +182,9 @@ interface IProductReplyConfiguration {
         sku: string | null;
         message: string | null;
         keywords: string[];
+        useKeywords: boolean;
       };
+      useProductNameInReply: boolean;
       replyToOldFeedbacks: boolean;
     };
   };
