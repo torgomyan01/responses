@@ -1,0 +1,76 @@
+.login {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.login-left {
+  width: 50%;
+  height: 100%;
+  background: url("../../assets/images/login-bg.png") no-repeat center center;
+  background-size: 100% 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-left-body {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+}
+.login-left-text {
+  color: #FFF;
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 40px;
+}
+.login-left h1 {
+  color: #FFF;
+  font-size: 36px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 3.75rem;
+}
+.login-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  filter: drop-shadow(0px 40px 80px rgba(168, 168, 190, 0.3));
+}
+.login-block-wrapper {
+  width: 100%;
+  max-width: 420px;
+  padding: 2.5rem 3.25rem;
+  border-radius: 20px;
+  border: 1px solid #BFBFD9;
+  background: #FFF;
+}
+.login-block-wrapper-title {
+  color: #666676;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.login-and-register {
+  width: calc(100% + 60px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  position: relative;
+  left: -30px;
+}
+.login-and-register a {
+  color: #666676;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/*# sourceMappingURL=register.css.map */

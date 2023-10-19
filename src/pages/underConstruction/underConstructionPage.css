@@ -1,0 +1,26 @@
+.under-construction {
+  text-align: center;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+.under-construction img {
+  max-width: 100%;
+}
+
+.under-construction h1 {
+  color: #f55d5d;
+  font-size: 36px;
+  margin-top: 20px;
+}
+
+.under-construction p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+/*# sourceMappingURL=underConstructionPage.css.map */

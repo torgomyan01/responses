@@ -83,6 +83,12 @@ export const GetProductResponseConfiguration = (
   productId: number | string
 ) => axios.get(`${API_URL}${API_URLS.PRODUCT_RESPONSE_CONFIGURATION(storeId, productId)}`);
 
+export const ChangeProductResponseConfiguration = (
+  storeId: number | string,
+  productId: number | string,
+  data: any
+) => axios.put(`${API_URL}${API_URLS.PRODUCT_RESPONSE_CONFIGURATION(storeId, productId)}`, data);
+
 export default (
   storeId: number,
   feedbackId: number,

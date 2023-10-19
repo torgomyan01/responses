@@ -9,14 +9,19 @@ import Interrogative from '../../features/Interrogative/Interrogative';
 import DefSwitch from '../../features/switch/switch';
 import DefaultInputs from '../../features/defultinputs/Defultinputs';
 import moment from 'moment';
-import { useSelector } from 'react-redux';
-import { GetProductResponseConfiguration } from '../../utils/api';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  ChangeProductResponseConfiguration,
+  GetProductResponseConfiguration
+} from '../../utils/api';
 import ProjectSettingsWrapper from '../project-settings/components/project-settings-wrapper';
 import {
   changeProductReplyConfiguration,
   changeProductSettings,
   RandomKey
 } from '../../utils/helpers';
+import { openAlert, setMessageAlert } from '../../redux/alert-site';
+import { AlertSiteTypes } from '../../enums/enums';
 
 const selectItemsTitles = ['Дружелюбно', 'Формально'];
 const selectItems = [
@@ -29,6 +34,30 @@ const selectItems = [
     name: selectItemsTitles[1]
   }
 ];
+
+//По умолчанию
+// название магазина
+// имя бренда
+// обычай
+
+const selectReplySignatureType = [
+  {
+    name: 'По умолчанию',
+    value: 'default'
+  },
+  {
+    name: 'Название магазина',
+    value: 'storeName'
+  },
+  {
+    name: 'Имя бренда',
+    value: 'brandName'
+  },
+  {
+    name: 'Обычай',
+    value: 'custom'
+  }
+];
 const getSelectedProduct = JSON.parse(
   localStorage.getItem(LocalStorageKeys.selectedProduct) as string
 );
@@ -36,6 +65,7 @@ const getSelectedProduct = JSON.parse(
 let changedProductSettings: IProductReplyConfiguration | null = null;
 
 function SettingsExpanded() {
+  const dispatch = useDispatch();
   const store = useSelector((state: IUserInfo) => state.UserInfo.activeStore);
   const selectedProduct =
     useSelector((state: IUserInfo) => state.UserInfo.selectedProduct) || getSelectedProduct;
@@ -44,8 +74,7 @@ function SettingsExpanded() {
   const [individualCustomization, setIndividualCustomization] = useState<boolean>(true);
   const [autoReplySettings, setAutoReplySettings] = useState<boolean>(false);
   const [textRecommendSuccess, setTextRecommendSuccess] = useState<boolean>(false);
-
-  console.log(data);
+  const [loadingSave, setLoadingSave] = useState<boolean>(false);
 
   useEffect(() => {
     if (store && store.storeId && selectedProduct) {
@@ -87,7 +116,6 @@ function SettingsExpanded() {
   function changeTalentResponse(value: any) {
     const getValue = selectItems.find((item) => item.name === value);
     if (getValue) {
-      console.log(getValue.value);
       Array.from({ length: 5 }).forEach((item, index) => {
         changeProductReplyConfiguration(
           'reviewStyle',
@@ -187,7 +215,67 @@ function SettingsExpanded() {
       _data.configuration.replyConfiguration.subscription.customText = e.target.value;
       setData(_data);
       changedProductSettings = _data;
+      console.log(_data.configuration.replyConfiguration.subscription.customText);
+    }
+  }
+
+  function changeReplySignatureType(value: string) {
+    const type = selectReplySignatureType.find((item) => item.name === value);
+    const _data: any = { ...data };
+    if (_data.configuration && type) {
+      _data.configuration.replyConfiguration.subscription.type = type.value;
+      setData(_data);
+      changedProductSettings = _data;
       console.log(_data);
+    }
+  }
+
+  function removeKeywords(value: string) {
+    const _data: any = { ...data };
+    if (_data.configuration) {
+      _data.configuration.replyConfiguration.recommendations.keywords =
+        _data.configuration.replyConfiguration.recommendations.keywords.filter(
+          (_item: string) => _item !== value
+        );
+      setData(_data);
+      changedProductSettings = _data;
+    }
+  }
+
+  function changeRecommendSuccess() {
+    const _data: any = { ...data };
+    if (_data.configuration) {
+      _data.configuration.replyConfiguration.recommendations.useKeywords =
+        !_data.configuration.replyConfiguration.recommendations.useKeywords;
+      setData(_data);
+      changedProductSettings = _data;
+    }
+  }
+
+  function saveChanges() {
+    if (store && store.storeId && selectedProduct) {
+      setLoadingSave(true);
+
+      ChangeProductResponseConfiguration(
+        store.storeId,
+        selectedProduct?.product.productId,
+        changedProductSettings
+      )
+        .then(({ data }) => {
+          console.log(data);
+          setLoadingSave(false);
+          dispatch(
+            openAlert({
+              status: AlertSiteTypes.success,
+              go: true
+            })
+          );
+          dispatch(setMessageAlert('Изменено успешно сохранено'));
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoadingSave(false);
+        });
     }
   }
 
@@ -386,7 +474,7 @@ function SettingsExpanded() {
                         title={
                           <span className="c-grey fs-18 mb-2 d-block">Текст рекомендации</span>
                         }
-                        disabled={textRecommendSuccess}
+                        disabled={data.configuration.replyConfiguration.recommendations.useKeywords}
                         inpProps={{
                           name: 'text'
                         }}
@@ -401,7 +489,10 @@ function SettingsExpanded() {
                         (item) => (
                           <div key={RandomKey()} className="todo">
                             <span className="fs-16 c-grey">{item}</span>
-                            <i className="fa-regular fa-circle-xmark ms-3" />
+                            <i
+                              className="fa-regular fa-circle-xmark ms-3"
+                              onClick={() => removeKeywords(item)}
+                            />
                           </div>
                         )
                       )}
@@ -442,12 +533,14 @@ function SettingsExpanded() {
                     <div className="col-12">
                       <ProjectSettingsWrapper
                         item={{
-                          blacklistKeywords: []
+                          blacklistKeywords: [],
+                          autoReply:
+                            data.configuration.replyConfiguration.recommendations.useKeywords
                         }}
                         index={0}
                         onChange={() => null}
-                        title={'Использовать ключевые слова'}
-                        changeAutoReply={() => setTextRecommendSuccess(!textRecommendSuccess)}
+                        title="Использовать ключевые слова"
+                        changeAutoReply={changeRecommendSuccess}
                         removeTalentItem={() => null}
                       />
                     </div>
@@ -461,11 +554,15 @@ function SettingsExpanded() {
                         <p className="fs-18 c-grey">Какую подпись использовать</p>
                         <Select
                           className="select-project-settings"
-                          selected={printValueSelect(
-                            data?.configuration.replyConfiguration.rates['1'].reviewStyle
-                          )}
-                          items={selectItemsTitles}
-                          onChange={changeTalentResponse}
+                          selected={
+                            selectReplySignatureType.find(
+                              (item) =>
+                                (item.value =
+                                  data?.configuration.replyConfiguration.subscription.type)
+                            )?.name || ''
+                          }
+                          items={selectReplySignatureType.map((item) => item.name)}
+                          onChange={changeReplySignatureType}
                         />
                       </div>
                       <div className="col-6">
@@ -473,6 +570,9 @@ function SettingsExpanded() {
                           placeholder="Вы можете ознакомиться с другими товарами"
                           title={<span className="c-grey fs-18 mb-2 d-block">Своя подпись</span>}
                           onChange={changeYourSignature}
+                          value={
+                            data.configuration.replyConfiguration.subscription.customText || ''
+                          }
                         />
                       </div>
                     </div>
@@ -575,15 +675,17 @@ function SettingsExpanded() {
                   </div>
                 </div>
                 <div className="mt-5">
-                  <Button variant="contained" className="btn-blue py-4 px-99">
+                  <Button variant="contained" className="btn-blue py-4 px-99" onClick={saveChanges}>
                     Сохранить
-                    <CircularProgress
-                      size={24}
-                      sx={{
-                        color: '#fff'
-                      }}
-                      className="ms-2"
-                    />
+                    {loadingSave && (
+                      <CircularProgress
+                        size={24}
+                        sx={{
+                          color: '#fff'
+                        }}
+                        className="ms-2"
+                      />
+                    )}
                   </Button>
                 </div>
               </div>
