@@ -71,8 +71,14 @@ function Register() {
       .then(({ data }) => {
         LoginUser();
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(({ response }) => {
+        if (response.status === 409) {
+          setUsername({
+            value: username.value,
+            error: 'Пользователь с таким e-mail уже зарегистрирован'
+          });
+          setLoading(false);
+        }
       });
   }
 
