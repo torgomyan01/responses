@@ -106,7 +106,7 @@ export const ChangeStore = (
     storeId: number;
     storeType: string;
     title: string;
-    apiToken: string;
+    apiToken: string | null;
   },
   id: string | number
 ) => axios.put(`${API_URL}${API_URLS.STORES}/${id}`, data);
