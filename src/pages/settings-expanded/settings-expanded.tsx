@@ -54,7 +54,7 @@ const selectReplySignatureType = [
     value: 'brandName'
   },
   {
-    name: 'Обычай',
+    name: 'Своя подпись',
     value: 'custom'
   }
 ];
@@ -566,12 +566,15 @@ function SettingsExpanded() {
                         />
                       </div>
                       <div className="col-6">
+                        {/*TODO here need to change Placehorder depends on data.configuration.replyConfiguration.subscription.type */}
                         <DefaultInputs
-                          placeholder="Вы можете ознакомиться с другими товарами"
                           title={<span className="c-grey fs-18 mb-2 d-block">Своя подпись</span>}
                           onChange={changeYourSignature}
                           value={
                             data.configuration.replyConfiguration.subscription.customText || ''
+                          }
+                          disabled={
+                            data.configuration.replyConfiguration.subscription.type !== 'custom'
                           }
                         />
                       </div>
