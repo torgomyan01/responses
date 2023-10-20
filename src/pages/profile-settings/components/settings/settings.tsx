@@ -8,6 +8,7 @@ import Select from '../../../../features/select/select';
 import { openAlert, setMessageAlert } from '../../../../redux/alert-site';
 import { AlertSiteTypes } from '../../../../enums/enums';
 import { useDispatch } from 'react-redux';
+import { validRegex } from '../../../../utils/helpers';
 
 const label = {
   inputProps: { 'aria-label': 'Checkbox demo' },
@@ -24,6 +25,7 @@ const socSitesValues = ['whatsapp', 'telegram', 'viber'];
 function Settings({ change }: ISettings) {
   const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState<IUserProfile | null>(null);
+  const [emailValidator, setEmailValidator] = useState<null | string>(null);
   const [loadingSave, setLoadingSave] = useState<boolean>(false);
 
   useEffect(() => {
@@ -40,6 +42,7 @@ function Settings({ change }: ISettings) {
     if (userInfo) {
       const _userInfo: any = { ...userInfo };
       const keys = key.split('.');
+      setEmailValidator(null);
       if (keys[1]) {
         _userInfo[keys[0]][keys[1]] = value;
       } else {
@@ -60,6 +63,13 @@ function Settings({ change }: ISettings) {
 
   function saveChanges() {
     if (userInfo) {
+      if (!validRegex(userInfo.email)) {
+        setEmailValidator('Неправильный адрес');
+        return;
+      } else {
+        setEmailValidator(null);
+      }
+
       setLoadingSave(true);
       SaveUserInfo(userInfo).then((res) => {
         setLoadingSave(false);
@@ -95,6 +105,8 @@ function Settings({ change }: ISettings) {
                 <div className="input-box">
                   <DefaultInputs
                     placeholder="E-mail"
+                    error={!!emailValidator}
+                    errorMessage={emailValidator || ''}
                     value={userInfo?.email}
                     onChange={(e: any) => changeName(e.target.value, 'email')}
                   />
