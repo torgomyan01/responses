@@ -74,7 +74,7 @@ function ChangeMarketplace() {
     });
     setKey({
       error: false,
-      value: store?.apiToken || ''
+      value: store ? store.apiToken || '******' : ''
     });
 
     arrSelectMarketplace.forEach((item, index) => {
@@ -106,13 +106,14 @@ function ChangeMarketplace() {
         setKey(ChangeDefInputValue(key.value, true));
         return;
       }
+      console.log(key.value);
       setLoading(true);
       ChangeStore(
         {
           storeId: activeStore?.storeId,
           storeType: arrSelectMarketplace[checkboxActive].inShort,
           title: name.value,
-          apiToken: key.value
+          apiToken: key.value == '******' ? null : key.value
         },
         activeStore?.storeId
       )
@@ -193,12 +194,13 @@ function ChangeMarketplace() {
             />
             <DefaultInputs
               className="mt-5"
-              onChange={(e: any) =>
+              onChange={(e: any) => {
+                console.log(e.target.value);
                 setKey({
                   value: e.target.value,
                   error: false
-                })
-              }
+                });
+              }}
               inpProps={{
                 value: key.value
               }}
