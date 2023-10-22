@@ -135,6 +135,7 @@ declare interface IProjectSettingsWrapper {
   onChange: any;
   changeAutoReply: (checked: boolean, keyNumber: number) => void;
   removeTalentItem: (array: string[], keyNumber: number) => void;
+  inputTitle?: string;
 }
 
 declare interface IAlertSite {

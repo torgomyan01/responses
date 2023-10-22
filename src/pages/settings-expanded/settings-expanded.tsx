@@ -71,7 +71,6 @@ function SettingsExpanded() {
     useSelector((state: IUserInfo) => state.UserInfo.selectedProduct) || getSelectedProduct;
   const [data, setData] = useState<IProductReplyConfiguration | null>(null);
   const [autoReplyAll, setAutoReplyAll] = useState<boolean>(false);
-  const [individualCustomization, setIndividualCustomization] = useState<boolean>(true);
   const [autoReplySettings, setAutoReplySettings] = useState<boolean>(false);
   const [textRecommendSuccess, setTextRecommendSuccess] = useState<boolean>(false);
   const [loadingSave, setLoadingSave] = useState<boolean>(false);
@@ -252,6 +251,14 @@ function SettingsExpanded() {
     }
   }
 
+  function changeIsActive() {
+    const _data: any = { ...data };
+    _data.isActive = !_data.isActive;
+    setData(_data);
+    changedProductSettings = _data;
+    saveChanges();
+  }
+
   function saveChanges() {
     if (store && store.storeId && selectedProduct) {
       setLoadingSave(true);
@@ -390,26 +397,26 @@ function SettingsExpanded() {
           </div>
         </div>
       </div>
-      <div className="row justify-content-end">
-        <div className="col-6">
-          <div className="wrapper">
-            <div className="fs-18 c-grey d-flex justify-content-end align-items-center w-100">
-              Индивидуальная настройка для товара
-              <DefSwitch
-                className="ms-2 me-0"
-                onChangeProps={(value: boolean) => setIndividualCustomization(value)}
-                status={individualCustomization}
-              />
+
+      {data ? (
+        <>
+          <div className="row justify-content-end">
+            <div className="col-6">
+              <div className="wrapper">
+                <div className="fs-18 c-grey d-flex justify-content-end align-items-center w-100">
+                  Индивидуальная настройка для товара
+                  <DefSwitch
+                    className="ms-2 me-0"
+                    onChangeProps={changeIsActive}
+                    status={data?.isActive}
+                  />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {individualCustomization && (
-        <>
-          <h2 className="def-section-title mt-70 mb-5">Настройки текста отзыва</h2>
-          {data ? (
+          {data?.isActive && (
             <>
+              <h2 className="def-section-title mt-70 mb-5">Настройки текста отзыва</h2>
               <div className="row mt-5">
                 <div className="col-6 mb-5 pe-4">
                   <div className="wrapper">
@@ -468,13 +475,12 @@ function SettingsExpanded() {
                         }}
                       />
                     </div>
-                    <form onSubmit={addRecommendedItem} className="mb-4">
+                    <div className="mb-4">
                       <DefaultInputs
                         placeholder="Вы можете ознакомиться с другими товарами"
                         title={
                           <span className="c-grey fs-18 mb-2 d-block">Текст рекомендации</span>
                         }
-                        disabled={data.configuration.replyConfiguration.recommendations.useKeywords}
                         inpProps={{
                           name: 'text'
                         }}
@@ -483,19 +489,6 @@ function SettingsExpanded() {
                           title: 'title'
                         }}
                       />
-                    </form>
-                    <div className="todos mt-2 mb-">
-                      {data.configuration.replyConfiguration.recommendations.keywords.map(
-                        (item) => (
-                          <div key={RandomKey()} className="todo">
-                            <span className="fs-16 c-grey">{item}</span>
-                            <i
-                              className="fa-regular fa-circle-xmark ms-3"
-                              onClick={() => removeKeywords(item)}
-                            />
-                          </div>
-                        )
-                      )}
                     </div>
                     <div className="mb-4">
                       <p className="fs-18 c-grey">Предпросмотр отзыва</p>
@@ -531,18 +524,51 @@ function SettingsExpanded() {
                       </div>
                     </div>
                     <div className="col-12">
-                      <ProjectSettingsWrapper
-                        item={{
-                          blacklistKeywords: [],
-                          autoReply:
-                            data.configuration.replyConfiguration.recommendations.useKeywords
-                        }}
-                        index={0}
-                        onChange={() => null}
-                        title="Использовать ключевые слова"
-                        changeAutoReply={changeRecommendSuccess}
-                        removeTalentItem={() => null}
-                      />
+                      <div className="wrapper">
+                        <div className="d-flex justify-content-end mb-5">
+                          <div className="fs-18 c-grey d-flex justify-content-start align-items-center">
+                            Использовать ключевые слова
+                            <DefSwitch
+                              className="ms-2 me-0"
+                              status={
+                                data.configuration.replyConfiguration.recommendations.useKeywords
+                              }
+                              onChangeProps={changeRecommendSuccess}
+                            />
+                          </div>
+                        </div>
+                        <form onSubmit={addRecommendedItem} className="mb-4">
+                          <DefaultInputs
+                            placeholder="Введите ключевое слово и нажмите Enter"
+                            title={
+                              <span className="c-grey fs-18 mb-2 d-block">Ключевые слова</span>
+                            }
+                            disabled={
+                              data.configuration.replyConfiguration.recommendations.useKeywords
+                            }
+                            inpProps={{
+                              name: 'text'
+                            }}
+                            quotation={{
+                              text: 'text',
+                              title: 'title'
+                            }}
+                          />
+                        </form>
+                        <div className="todos mt-2 mb-">
+                          {data.configuration.replyConfiguration.recommendations.keywords.map(
+                            (item) => (
+                              <div key={RandomKey()} className="todo">
+                                <span className="fs-16 c-grey">{item}</span>
+                                <i
+                                  className="fa-regular fa-circle-xmark ms-3"
+                                  onClick={() => removeKeywords(item)}
+                                />
+                              </div>
+                            )
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -693,18 +719,18 @@ function SettingsExpanded() {
                 </div>
               </div>
             </>
-          ) : (
-            <div className="d-flex justify-content-center align-items-center mt-5">
-              <CircularProgress
-                size={50}
-                sx={{
-                  color: '#4B4AEF'
-                }}
-                className="mt-1"
-              />
-            </div>
           )}
         </>
+      ) : (
+        <div className="d-flex justify-content-center align-items-center mt-5">
+          <CircularProgress
+            size={50}
+            sx={{
+              color: '#4B4AEF'
+            }}
+            className="mt-1"
+          />
+        </div>
       )}
     </MainTemplate>
   );

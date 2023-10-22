@@ -11,7 +11,8 @@ function ProjectSettingsWrapper({
   item,
   onChange,
   changeAutoReply,
-  removeTalentItem
+  removeTalentItem,
+  inputTitle
 }: IProjectSettingsWrapper) {
   const [todos, setTodo] = useState<any>([]);
   const [input, setInput] = useState('');
@@ -61,7 +62,7 @@ function ProjectSettingsWrapper({
       <form onSubmit={submit}>
         <DefaultInputs
           placeholder="Введите ключевое слово и нажмите Enter"
-          title={<span className="c-grey fs-18 mb-2 d-block">Черный список</span>}
+          title={<span className="c-grey fs-18 mb-2 d-block">{inputTitle || 'Черный список'}</span>}
           quotation={{
             text: 'text',
             title: 'title'

@@ -162,6 +162,7 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ feedbac
               вернуться к списку товаров
             </Button>
           </Link>
+
           {hasResponse && (
             <div className="fs-18 c-grey">
               <span className="me-3">Автоответ на отзывы этого товара:</span>
