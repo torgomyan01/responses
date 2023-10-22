@@ -211,10 +211,10 @@ function SettingsExpanded() {
   function changeYourSignature(e: any) {
     const _data: any = { ...data };
     if (_data.configuration) {
-      _data.configuration.replyConfiguration.subscription.customText = e.target.value;
+      _data.configuration.replyConfiguration.signature.customText = e.target.value;
       setData(_data);
       changedProductSettings = _data;
-      console.log(_data.configuration.replyConfiguration.subscription.customText);
+      console.log(_data.configuration.replyConfiguration.signature.customText);
     }
   }
 
@@ -222,7 +222,7 @@ function SettingsExpanded() {
     const type = selectReplySignatureType.find((item) => item.name === value);
     const _data: any = { ...data };
     if (_data.configuration && type) {
-      _data.configuration.replyConfiguration.subscription.type = type.value;
+      _data.configuration.replyConfiguration.signature.type = type.value;
       setData(_data);
       changedProductSettings = _data;
       console.log(_data);
@@ -583,8 +583,7 @@ function SettingsExpanded() {
                           selected={
                             selectReplySignatureType.find(
                               (item) =>
-                                (item.value =
-                                  data?.configuration.replyConfiguration.subscription.type)
+                                (item.value = data?.configuration.replyConfiguration.signature.type)
                             )?.name || ''
                           }
                           items={selectReplySignatureType.map((item) => item.name)}
@@ -592,15 +591,13 @@ function SettingsExpanded() {
                         />
                       </div>
                       <div className="col-6">
-                        {/*TODO here need to change Placehorder depends on data.configuration.replyConfiguration.subscription.type */}
+                        {/*TODO here need to change Placehorder depends on data.configuration.replyConfiguration.signature.type */}
                         <DefaultInputs
                           title={<span className="c-grey fs-18 mb-2 d-block">Своя подпись</span>}
                           onChange={changeYourSignature}
-                          value={
-                            data.configuration.replyConfiguration.subscription.customText || ''
-                          }
+                          value={data.configuration.replyConfiguration.signature.customText || ''}
                           disabled={
-                            data.configuration.replyConfiguration.subscription.type !== 'custom'
+                            data.configuration.replyConfiguration.signature.type !== 'custom'
                           }
                         />
                       </div>
