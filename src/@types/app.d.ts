@@ -175,7 +175,7 @@ interface IProductReplyConfiguration {
         [key in ReplyRateType]: IStoreRates;
       };
       version: string;
-      subscription: {
+      signature: {
         type: ReplySignatureType;
         customText: string | null;
       };
