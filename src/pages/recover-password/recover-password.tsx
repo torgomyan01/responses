@@ -6,6 +6,9 @@ import { Button, CircularProgress } from '@mui/material';
 import { DEF_INPUT, SITE_URL } from '../../utils/const';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { ResetPassword, SaveResetPassword } from '../../utils/api';
+import { openAlert, setMessageAlert } from '../../redux/alert-site';
+import { AlertSiteTypes } from '../../enums/enums';
 
 function RecoverPassword() {
   const dispatch = useDispatch();
@@ -13,9 +16,82 @@ function RecoverPassword() {
   const [username, setUsername] = useState<IDefInputs>(DEF_INPUT);
   const [loading, setLoading] = useState<boolean>(false);
   const [usernameChecked, setUsernameChecked] = useState<boolean>(false);
+  const [secretKey, setSecretKey] = useState<string | null>(null);
+  const [loadingGetKey, setLoadingGetKey] = useState<boolean>(false);
 
-  function nextStep() {
-    setUsernameChecked(true);
+  const [newPassword, setNewPassword] = useState<IDefInputs>(DEF_INPUT);
+  const [newPasswordRepeat, setNewPasswordRepeat] = useState<IDefInputs>(DEF_INPUT);
+
+  function nextStep(e: any) {
+    e.preventDefault();
+    if (!username.value) {
+      setUsername({
+        value: username.value,
+        error: 'Поле должно быть заполнено'
+      });
+      return;
+    }
+
+    setLoadingGetKey(true);
+    ResetPassword({ username: username.value })
+      .then(({ data }) => {
+        setSecretKey(data.secretKey);
+        setUsernameChecked(true);
+        setLoadingGetKey(false);
+      })
+      .catch((err) => {
+        if (err.response.status === 404) {
+          setUsername({
+            value: username.value,
+            error: 'Пользователь с таким логином не найден'
+          });
+        }
+        setLoadingGetKey(false);
+      });
+  }
+
+  function datChanges(e: any) {
+    e.preventDefault();
+
+    if (newPassword.value !== newPasswordRepeat.value) {
+      setNewPasswordRepeat({
+        value: newPasswordRepeat.value,
+        error: 'Пароли не соответствуют'
+      });
+      setNewPassword({
+        value: newPasswordRepeat.value,
+        error: 'Пароли не соответствуют'
+      });
+      return;
+    }
+
+    if (secretKey) {
+      setLoading(true);
+      SaveResetPassword({
+        secretKey,
+        password: newPassword.value
+      })
+        .then(({ data }) => {
+          console.log(data);
+          setLoading(false);
+
+          dispatch(
+            openAlert({
+              status: AlertSiteTypes.success,
+              go: true
+            })
+          );
+          dispatch(setMessageAlert('Ваш новый пароль успешно сохранен'));
+
+          setTimeout(() => {
+            navigation(`/${SITE_URL.LOGIN}`);
+          }, 2000);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
+    }
   }
 
   return (
@@ -40,20 +116,25 @@ function RecoverPassword() {
         <div className="login-block">
           <div className="login-block-wrapper">
             {usernameChecked ? (
-              <>
+              <form onSubmit={datChanges}>
                 <p className="login-block-wrapper-title">Введите пароль</p>
                 <div className="mb-4">
                   <DefaultInputs
                     placeholder="Введите пароль"
-                    error={username.error}
+                    error={newPassword.error}
                     title={
-                      <span className={`fs-14 c-red mb-1 ${username.error ? 'd-block' : 'd-none'}`}>
+                      <span
+                        className={`fs-14 c-red mb-1 ${newPassword.error ? 'd-block' : 'd-none'}`}>
                         <i className="fa-regular fa-circle-exclamation me-2" />
-                        {username.error}
+                        {newPassword.error}
                       </span>
                     }
+                    inpProps={{
+                      type: 'password'
+                    }}
+                    value={newPassword.value}
                     onChange={(e: any) =>
-                      setUsername({
+                      setNewPassword({
                         value: e.target.value,
                         error: false
                       })
@@ -63,15 +144,22 @@ function RecoverPassword() {
                 <div className="mb-4">
                   <DefaultInputs
                     placeholder="Повторите пароль"
-                    error={username.error}
+                    error={newPasswordRepeat.error}
+                    inpProps={{
+                      type: 'password'
+                    }}
                     title={
-                      <span className={`fs-14 c-red mb-1 ${username.error ? 'd-block' : 'd-none'}`}>
+                      <span
+                        className={`fs-14 c-red mb-1 ${
+                          newPasswordRepeat.error ? 'd-block' : 'd-none'
+                        }`}>
                         <i className="fa-regular fa-circle-exclamation me-2" />
-                        {username.error}
+                        {newPasswordRepeat.error}
                       </span>
                     }
+                    value={newPasswordRepeat.value}
                     onChange={(e: any) =>
-                      setUsername({
+                      setNewPasswordRepeat({
                         value: e.target.value,
                         error: false
                       })
@@ -79,7 +167,7 @@ function RecoverPassword() {
                   />
                 </div>
                 <div className="d-flex justify-content-center align-items-center mt-5">
-                  <Button variant="contained" className="btn-green py-3 px-5">
+                  <Button variant="contained" className="btn-green py-3 px-5" type="submit">
                     Сменить
                     {loading && (
                       <CircularProgress
@@ -92,9 +180,9 @@ function RecoverPassword() {
                     )}
                   </Button>
                 </div>
-              </>
+              </form>
             ) : (
-              <>
+              <form onSubmit={nextStep}>
                 <p className="login-block-wrapper-title">Восстановление пароля</p>
                 <div className="mb-4">
                   <DefaultInputs
@@ -115,9 +203,9 @@ function RecoverPassword() {
                   />
                 </div>
                 <div className="d-flex justify-content-center align-items-center mt-5">
-                  <Button variant="contained" className="btn-green py-3 px-5" onClick={nextStep}>
+                  <Button variant="contained" className="btn-green py-3 px-5" type="submit">
                     Восстановить пароль
-                    {loading && (
+                    {loadingGetKey && (
                       <CircularProgress
                         size={24}
                         sx={{
@@ -128,7 +216,7 @@ function RecoverPassword() {
                     )}
                   </Button>
                 </div>
-              </>
+              </form>
             )}
             <div className="login-and-register">
               <Link to={SITE_URL.LOGIN}>Войти с паролем</Link>

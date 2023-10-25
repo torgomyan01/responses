@@ -15,11 +15,7 @@ import {
   GetProductResponseConfiguration
 } from '../../utils/api';
 import ProjectSettingsWrapper from '../project-settings/components/project-settings-wrapper';
-import {
-  changeProductReplyConfiguration,
-  changeProductSettings,
-  RandomKey
-} from '../../utils/helpers';
+import { changeProductReplyConfiguration, RandomKey } from '../../utils/helpers';
 import { openAlert, setMessageAlert } from '../../redux/alert-site';
 import { AlertSiteTypes } from '../../enums/enums';
 
@@ -34,11 +30,6 @@ const selectItems = [
     name: selectItemsTitles[1]
   }
 ];
-
-//По умолчанию
-// название магазина
-// имя бренда
-// обычай
 
 const selectReplySignatureType = [
   {
@@ -72,13 +63,13 @@ function SettingsExpanded() {
   const [data, setData] = useState<IProductReplyConfiguration | null>(null);
   const [autoReplyAll, setAutoReplyAll] = useState<boolean>(false);
   const [autoReplySettings, setAutoReplySettings] = useState<boolean>(false);
-  const [textRecommendSuccess, setTextRecommendSuccess] = useState<boolean>(false);
   const [loadingSave, setLoadingSave] = useState<boolean>(false);
 
   useEffect(() => {
     if (store && store.storeId && selectedProduct) {
       GetProductResponseConfiguration(store.storeId, selectedProduct?.product.productId)
         .then(({ data }) => {
+          console.log(data);
           setData(data);
           changedProductSettings = data;
         })
@@ -214,7 +205,6 @@ function SettingsExpanded() {
       _data.configuration.replyConfiguration.signature.customText = e.target.value;
       setData(_data);
       changedProductSettings = _data;
-      console.log(_data.configuration.replyConfiguration.signature.customText);
     }
   }
 
@@ -225,7 +215,6 @@ function SettingsExpanded() {
       _data.configuration.replyConfiguration.signature.type = type.value;
       setData(_data);
       changedProductSettings = _data;
-      console.log(_data);
     }
   }
 
@@ -284,6 +273,13 @@ function SettingsExpanded() {
           setLoadingSave(false);
         });
     }
+  }
+
+  function getSelectedItem() {
+    const res = selectReplySignatureType.find(
+      (item) => item.value === data?.configuration.replyConfiguration.signature.type
+    );
+    return res?.name || '';
   }
 
   return (
@@ -484,6 +480,8 @@ function SettingsExpanded() {
                         inpProps={{
                           name: 'text'
                         }}
+                        value={data.configuration.replyConfiguration.recommendations.message || ''}
+                        onChange={changeReviewPreview}
                         quotation={{
                           text: 'text',
                           title: 'title'
@@ -498,10 +496,6 @@ function SettingsExpanded() {
                           style={{
                             height: 147
                           }}
-                          onChange={changeReviewPreview}
-                          defaultValue={
-                            data.configuration.replyConfiguration.recommendations.message || ''
-                          }
                         />
                       </label>
                     </div>
@@ -580,12 +574,7 @@ function SettingsExpanded() {
                         <p className="fs-18 c-grey">Какую подпись использовать</p>
                         <Select
                           className="select-project-settings"
-                          selected={
-                            selectReplySignatureType.find(
-                              (item) =>
-                                (item.value = data?.configuration.replyConfiguration.signature.type)
-                            )?.name || ''
-                          }
+                          selected={getSelectedItem()}
                           items={selectReplySignatureType.map((item) => item.name)}
                           onChange={changeReplySignatureType}
                         />
@@ -677,26 +666,28 @@ function SettingsExpanded() {
 
                 <h2 className="def-section-title mt-70 mb-5">Пример отзыва</h2>
 
-                <div className="wrapper">
-                  <div className="row">
-                    <div className="col-6">
-                      <label className="def-label">
-                        <textarea
-                          placeholder="Введите пример отзыва, чтобы увидеть пример ответа"
-                          style={{
-                            height: 260
-                          }}
-                        />
-                      </label>
-                    </div>
-                    <div className="col-6">
-                      <label className="def-label">
-                        <textarea
-                          style={{
-                            height: 260
-                          }}
-                        />
-                      </label>
+                <div className="px-3">
+                  <div className="wrapper">
+                    <div className="row">
+                      <div className="col-6">
+                        <label className="def-label">
+                          <textarea
+                            placeholder="Введите пример отзыва, чтобы увидеть пример ответа"
+                            style={{
+                              height: 260
+                            }}
+                          />
+                        </label>
+                      </div>
+                      <div className="col-6">
+                        <label className="def-label">
+                          <textarea
+                            style={{
+                              height: 260
+                            }}
+                          />
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>

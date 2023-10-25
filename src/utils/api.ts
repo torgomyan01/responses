@@ -28,6 +28,12 @@ export const setupResponseInterceptor = (navigate: any) => {
 export const CreateUser = (data: { username: string; password: string }) =>
   axios.post(`${API_URL}${API_URLS.USER_PROFILE}`, data);
 
+export const ResetPassword = (data: { username: string }) =>
+  axios.post(`${API_URL}${API_URLS.USER_RESET}`, data);
+
+export const SaveResetPassword = (data: { secretKey: string; password: string }) =>
+  axios.put(`${API_URL}${API_URLS.USER_RESET}`, data);
+
 export const GetUserInfo = () => axios.get(`${API_URL}${API_URLS.USER_PROFILE}`);
 
 export const SaveUserInfo = (data: IUserProfile) =>

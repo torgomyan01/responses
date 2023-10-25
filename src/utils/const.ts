@@ -30,6 +30,7 @@ export const STATUS_BUTTON = {
 
 export const API_URLS = {
   USER_LOGIN: '/user/login',
+  USER_RESET: '/user/password/reset',
   USER_LOGOUT: '/user/logout',
   USER_STATUS: '/user/status',
   STORES: '/user/stores',

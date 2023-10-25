@@ -4,6 +4,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { RandomKey } from '../../utils/helpers';
 
 function Select({ selected, className = '', items = [], keys, onChange }: Select) {
+  // console.log(selected, items);
   const [value, setValue] = useState<any>(selected);
 
   function changeSelect(item: any) {

@@ -11,10 +11,6 @@ interface ShapeProps {
 const Shape: React.FC<ShapeProps> = ({ onRerfreshClick }) => {
   const location = useLocation();
 
-  useEffect(() => {
-    console.log(location.pathname);
-  }, [location]);
-
   const handleRefreshClick = () => {
     if (onRerfreshClick) {
       onRerfreshClick();
