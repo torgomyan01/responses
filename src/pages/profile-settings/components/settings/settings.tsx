@@ -71,18 +71,22 @@ function Settings({ change }: ISettings) {
       }
 
       setLoadingSave(true);
-      SaveUserInfo(userInfo).then((res) => {
-        setLoadingSave(false);
-        dispatch(
-          openAlert({
-            status: AlertSiteTypes.success,
-            go: true
-          })
-        );
-        dispatch(setMessageAlert('Изменено успешно сохранено'));
+      SaveUserInfo(userInfo)
+        .then((res) => {
+          setLoadingSave(false);
+          dispatch(
+            openAlert({
+              status: AlertSiteTypes.success,
+              go: true
+            })
+          );
+          dispatch(setMessageAlert('Изменено успешно сохранено'));
 
-        setTimeout(() => change(1), 2000);
-      });
+          setTimeout(() => change(1), 2000);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }
 

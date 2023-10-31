@@ -118,14 +118,6 @@ function ProjectSettings() {
     );
   }
 
-  dispatch(
-    openAlert({
-      status: AlertSiteTypes.info,
-      go: true
-    })
-  );
-  dispatch(setMessageAlert('Изменено успешно сохранено'));
-
   /**
    * SAVE CHANGES
    */

@@ -179,6 +179,9 @@ body {
   color: #61CDA6 !important;
   padding: 0.9375rem 2.125rem !important;
 }
+.btn-green:hover, .btn-green:active {
+  background: #47B08B !important;
+}
 
 .btn-blue {
   border-radius: 3.125rem !important;
@@ -195,6 +198,16 @@ body {
   border: 1px solid #4B4AEF;
   background: #FFF !important;
   color: #4B4AEF !important;
+}
+.btn-blue:hover, .btn-blue:active {
+  background: #504FCD !important;
+}
+
+button.error {
+  background: #FF6C6C !important;
+}
+button.error:hover {
+  background: #de5656 !important;
 }
 
 .purple-gray-button {
