@@ -30,6 +30,15 @@ const AdminPage: React.FC = () => {
     }
   };
 
+  const handleChangeRecommendationsTemplate = (rate: string, template: string) => {
+    if (configuration) {
+      const newConfiguration: PromptsConfiguration = { ...configuration };
+      newConfiguration.templates.promptTemplates.rates[rate as RateType].recommendationsTemplate =
+        template;
+      setConfiguration(newConfiguration);
+    }
+  };
+
   const handleChangeFeedbackTemplate = (rate: string, template: string) => {
     if (configuration) {
       const newConfiguration: PromptsConfiguration = { ...configuration };
@@ -103,7 +112,9 @@ const AdminPage: React.FC = () => {
                     <Card.Body>
                       <div style={{ paddingBottom: '20px' }}>
                         <Form.Group>
-                          <Form.Label>Temperature</Form.Label>
+                          <Form.Label>
+                            <h5>Temperature</h5>
+                          </Form.Label>
                           <Form.Control
                             type="text"
                             style={{ maxWidth: '100px' }}
@@ -121,26 +132,50 @@ const AdminPage: React.FC = () => {
                             }}
                           />
                         </Form.Group>
-                        <Form.Group>
-                          <Form.Label>Prompt template</Form.Label>
-                          <Form.Control
-                            type="text"
-                            as="textarea"
-                            rows={6}
-                            defaultValue={rateConfig.promptTemplate}
-                            onChange={(e) => handleChangePormptTemplate(rate, e.target.value)}
-                          />
-                        </Form.Group>
-                        <Form.Group>
-                          <Form.Label>Feedback template</Form.Label>
-                          <Form.Control
-                            type="text"
-                            as="textarea"
-                            rows={6}
-                            defaultValue={rateConfig.feedbackTemplate}
-                            onChange={(e) => handleChangeFeedbackTemplate(rate, e.target.value)}
-                          />
-                        </Form.Group>
+                        <div className="mt-3">
+                          <Form.Group>
+                            <Form.Label>
+                              <h5>Prompt template</h5>
+                            </Form.Label>
+                            <Form.Control
+                              type="text"
+                              as="textarea"
+                              rows={7}
+                              defaultValue={rateConfig.promptTemplate}
+                              onChange={(e) => handleChangePormptTemplate(rate, e.target.value)}
+                            />
+                          </Form.Group>
+                        </div>
+                        <div className="mt-3">
+                          <Form.Group>
+                            <Form.Label>
+                              <h5>Recommendations template</h5>
+                            </Form.Label>
+                            <Form.Control
+                              type="text"
+                              as="textarea"
+                              rows={3}
+                              defaultValue={rateConfig.recommendationsTemplate}
+                              onChange={(e) =>
+                                handleChangeRecommendationsTemplate(rate, e.target.value)
+                              }
+                            />
+                          </Form.Group>
+                        </div>
+                        <div className="mt-3">
+                          <Form.Group>
+                            <Form.Label>
+                              <h5>Feedback template</h5>
+                            </Form.Label>
+                            <Form.Control
+                              type="text"
+                              as="textarea"
+                              rows={5}
+                              defaultValue={rateConfig.feedbackTemplate}
+                              onChange={(e) => handleChangeFeedbackTemplate(rate, e.target.value)}
+                            />
+                          </Form.Group>
+                        </div>
                       </div>
                     </Card.Body>
                   </Card>

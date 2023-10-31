@@ -62,7 +62,7 @@ function SettingsExpanded() {
     useSelector((state: IUserInfo) => state.UserInfo.selectedProduct) || getSelectedProduct;
   const [data, setData] = useState<IProductReplyConfiguration | null>(null);
   const [autoReplyAll, setAutoReplyAll] = useState<boolean>(false);
-  const [autoReplySettings, setAutoReplySettings] = useState<boolean>(false);
+  const [autoReplySettings, setAutoReplySettings] = useState<boolean>(true);
   const [loadingSave, setLoadingSave] = useState<boolean>(false);
 
   useEffect(() => {
@@ -154,13 +154,22 @@ function SettingsExpanded() {
         index + 1,
         value,
         (result) => {
-          console.log(result);
           changedProductSettings = result;
         }
       );
     });
     setData(changedProductSettings);
   }
+
+  const handleIsAppyRecommendations = (isActive: boolean) => {
+    if (data) {
+      const newData: IProductReplyConfiguration = {
+        ...data
+      };
+      newData.configuration.replyConfiguration.recommendations.isActive = isActive;
+      setData(newData);
+    }
+  };
 
   function addRecommendedItem(e: any) {
     e.preventDefault();
@@ -454,7 +463,13 @@ function SettingsExpanded() {
                     <div className="d-flex justify-content-end mb-5">
                       <div className="fs-18 c-grey d-flex justify-content-start align-items-center">
                         Включить рекомендации
-                        <DefSwitch className="ms-2 me-0" />
+                        <DefSwitch
+                          className="ms-2 me-0"
+                          status={
+                            data.configuration.replyConfiguration.recommendations.isActive || false
+                          }
+                          onChangeProps={handleIsAppyRecommendations}
+                        />
                       </div>
                     </div>
                     <div className="mb-4">
@@ -488,7 +503,7 @@ function SettingsExpanded() {
                         }}
                       />
                     </div>
-                    <div className="mb-4">
+                    {/* <div className="mb-4">
                       <p className="fs-18 c-grey">Предпросмотр отзыва</p>
                       <label className="def-label">
                         <textarea
@@ -498,12 +513,12 @@ function SettingsExpanded() {
                           }}
                         />
                       </label>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="col-6 mb-5">
                   <div className="row">
-                    <div className="col-12 mb-5">
+                    {/* <div className="col-12 mb-5 d-none">
                       <div className="wrapper h-auto">
                         <div className="d-flex justify-content-between align-items-center">
                           <div className="fs-18 c-grey d-flex justify-content-between align-items-center w-100">
@@ -516,7 +531,7 @@ function SettingsExpanded() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="col-12">
                       <div className="wrapper">
                         <div className="d-flex justify-content-end mb-5">
@@ -538,7 +553,7 @@ function SettingsExpanded() {
                               <span className="c-grey fs-18 mb-2 d-block">Ключевые слова</span>
                             }
                             disabled={
-                              data.configuration.replyConfiguration.recommendations.useKeywords
+                              !data.configuration.replyConfiguration.recommendations.useKeywords
                             }
                             inpProps={{
                               name: 'text'
@@ -663,9 +678,8 @@ function SettingsExpanded() {
                     </div>
                   </div>
                 )}
-
+                {/* 
                 <h2 className="def-section-title mt-70 mb-5">Пример отзыва</h2>
-
                 <div className="px-3">
                   <div className="wrapper">
                     <div className="row">
@@ -690,7 +704,8 @@ function SettingsExpanded() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
+
                 <div className="mt-5">
                   <Button variant="contained" className="btn-blue py-4 px-99" onClick={saveChanges}>
                     Сохранить

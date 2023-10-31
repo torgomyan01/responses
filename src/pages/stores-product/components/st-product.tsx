@@ -34,7 +34,8 @@ function StProduct({
             </div>
             <ul className="list-unstyled mt-3">
               <li className="fs-18 c-grey mb-2">Организация: {store?.title}</li>
-              <li className="fs-18 c-grey mb-2">Артикул: {product?.product.sku} </li>
+              <li className="fs-18 c-grey mb-2">Артикул: {product?.product.externalProductId} </li>
+              <li className="fs-18 c-grey mb-2">Штрихкод: {product?.product.sku}</li>
               <li className="fs-18 c-grey mb-2">
                 Артикул поставщика: {product?.product.vendorCode}
               </li>

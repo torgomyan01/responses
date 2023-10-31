@@ -12,6 +12,7 @@ interface PromptsConfiguration {
           temperature: number;
           promptTemplate: string;
           feedbackTemplate: string;
+          recommendationsTemplate: string;
         };
       };
       placeholders: {

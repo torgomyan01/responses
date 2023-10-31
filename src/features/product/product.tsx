@@ -5,12 +5,7 @@ import './product.scss';
 import img from '../../assets/images/product.png';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import ApproveResponse, { RenewResponse } from '../../utils/api';
-import {
-  ResponseStatus,
-  ResponseReplyType,
-  ResponseApproveType,
-  FeedbackStatus
-} from '../../responses-shared/types';
+import { ResponseStatus, ResponseReplyType } from '../../responses-shared/types';
 
 import StatusLabel from '../status-label/status-label';
 
@@ -126,8 +121,9 @@ const FeedbackResponseReview: React.FC<FeedbackResponseReviewProps> = ({ feedbac
             <h2 className="products-item-header-title">{feedback.product.title}</h2>
             <ul>
               <li>Организация: {store?.title}</li>
+              <li>Артикул: {feedback.product.externalProductId} </li>
               <li>
-                Артикул:{' '}
+                Штрихкод:&nbsp;
                 <CopyToClipboard text={feedback.product.sku} onCopy={() => setCopyNumber(true)}>
                   <span className="copy-number">
                     {feedback.product.sku}
