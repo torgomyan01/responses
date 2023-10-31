@@ -207,7 +207,7 @@ function Register() {
             </div>
             <div className="login-and-register">
               <Link to={SITE_URL.LOGIN}>Войти с паролем</Link>
-              <Link to={SITE_URL.RECOVER_PASSWORD}>Восстановить пароль</Link>
+              <Link to={SITE_URL.RESET_PASSWORD}>Восстановить пароль</Link>
             </div>
           </div>
         </form>
