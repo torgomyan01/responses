@@ -175,6 +175,7 @@ function ProjectSettings() {
           replyConfiguration: {
             ...changedProductSettings.configuration.replyConfiguration,
             signature: {
+              type: 'custom',
               customText
             }
           }

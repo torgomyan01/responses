@@ -15,6 +15,7 @@ declare interface IStaticsProduct {
   vendorCode: string;
   updatedAt: Date;
   createdAt: Date;
+  externalProductId: string;
 }
 
 declare interface IStatics {
@@ -180,6 +181,7 @@ interface IProductReplyConfiguration {
         customText: string | null;
       };
       recommendations: {
+        isActive: boolean;
         sku: string | null;
         message: string | null;
         keywords: string[];
