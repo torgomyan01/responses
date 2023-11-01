@@ -139,6 +139,15 @@ function ProjectSettings() {
         .catch((err) => {
           console.log(err);
           setLoading(false);
+          if (err.response.status === 500) {
+            dispatch(
+              openAlert({
+                status: AlertSiteTypes.success,
+                go: true
+              })
+            );
+            dispatch(setMessageAlert('Произошла ошибка. Пожалуйста, попробуйте еще раз'));
+          }
         });
     }
   }

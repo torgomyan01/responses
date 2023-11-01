@@ -6,8 +6,12 @@ import { Button, CircularProgress } from '@mui/material';
 import { DEF_INPUT, SITE_URL } from '../../utils/const';
 import { UserLogin } from '../../utils/api';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import { openAlert, setMessageAlert } from '../../redux/alert-site';
+import { AlertSiteTypes } from '../../enums/enums';
+import { useDispatch } from 'react-redux';
 
 function Login() {
+  const dispatch = useDispatch();
   const navigation = useNavigate();
   const [username, setUsername] = useState<IDefInputs>(DEF_INPUT);
   const [password, setPassword] = useState<IDefInputs>(DEF_INPUT);
@@ -34,7 +38,17 @@ function Login() {
           navigation(`${SITE_URL.MY_ACCOUNT}/${SITE_URL.MY_STORES}`);
           setLoading(false);
         })
-        .catch(() => {
+        .catch((err) => {
+          if (err.response.status === 401) {
+            dispatch(
+              openAlert({
+                status: AlertSiteTypes.error,
+                go: true
+              })
+            );
+            dispatch(setMessageAlert('Неверное имя пользователя или пароль'));
+          }
+
           setLoading(false);
           setUsername({
             value: username.value,

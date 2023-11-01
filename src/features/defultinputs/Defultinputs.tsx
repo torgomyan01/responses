@@ -24,7 +24,7 @@ function DefaultInputs({
         className={`${error && 'error'}`}
         type="text"
         placeholder={error ? errorMessage : placeholder}
-        onChange={onChange}
+        onInput={onChange}
         disabled={disabled}
         defaultValue={value}
         {...inpProps}

@@ -28,6 +28,8 @@ function Settings({ change }: ISettings) {
   const [emailValidator, setEmailValidator] = useState<null | string>(null);
   const [loadingSave, setLoadingSave] = useState<boolean>(false);
 
+  console.log(userInfo);
+
   useEffect(() => {
     GetUserInfo()
       .then(({ data }) => {
@@ -86,6 +88,16 @@ function Settings({ change }: ISettings) {
         })
         .catch((err) => {
           console.log(err);
+
+          if (err?.error?.message) {
+            dispatch(
+              openAlert({
+                status: AlertSiteTypes.success,
+                go: true
+              })
+            );
+            dispatch(setMessageAlert(err.error.message));
+          }
         });
     }
   }

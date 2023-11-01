@@ -6,8 +6,12 @@ import { Button, CircularProgress } from '@mui/material';
 import { DEF_INPUT, SITE_URL } from '../../utils/const';
 import { Link, useNavigate } from 'react-router-dom';
 import { StartResetPassword } from '../../utils/api';
+import { openAlert, setMessageAlert } from '../../redux/alert-site';
+import { AlertSiteTypes } from '../../enums/enums';
+import { useDispatch } from 'react-redux';
 
 function ResetPassword() {
+  const dispatch = useDispatch();
   const navigation = useNavigate();
   const [username, setUsername] = useState<IDefInputs>(DEF_INPUT);
   const [loadingGetKey, setLoadingGetKey] = useState<boolean>(false);
@@ -34,6 +38,13 @@ function ResetPassword() {
             value: username.value,
             error: 'Пользователь с таким логином не найден'
           });
+          dispatch(
+            openAlert({
+              status: AlertSiteTypes.error,
+              go: true
+            })
+          );
+          dispatch(setMessageAlert('Пользователь с таким логином не найдень'));
         }
         setLoadingGetKey(false);
       });

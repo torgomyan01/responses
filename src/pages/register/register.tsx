@@ -77,6 +77,13 @@ function Register() {
             value: username.value,
             error: 'Пользователь с таким e-mail уже зарегистрирован'
           });
+          dispatch(
+            openAlert({
+              status: AlertSiteTypes.error,
+              go: true
+            })
+          );
+          dispatch(setMessageAlert('Пользователь с таким e-mail уже зарегистрирован'));
           setLoading(false);
         }
       });
