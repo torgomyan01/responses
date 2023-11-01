@@ -84,20 +84,18 @@ function Settings({ change }: ISettings) {
           );
           dispatch(setMessageAlert('Изменено успешно сохранено'));
 
-          setTimeout(() => change(1), 2000);
+          //setTimeout(() => change(1), 2000);
         })
         .catch((err) => {
-          console.log(err);
-
-          if (err?.error?.message) {
-            dispatch(
-              openAlert({
-                status: AlertSiteTypes.success,
-                go: true
-              })
-            );
-            dispatch(setMessageAlert(err.error.message));
-          }
+          const message = err?.error?.message || 'Ошибка сохранения';
+          setLoadingSave(false);
+          dispatch(
+            openAlert({
+              status: AlertSiteTypes.error,
+              go: true
+            })
+          );
+          dispatch(setMessageAlert(message));
         });
     }
   }
