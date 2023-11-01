@@ -125,12 +125,7 @@ function Login() {
                 />
               </div>
               <div className="d-flex justify-content-center align-items-center mt-4">
-                <Button
-                  variant="contained"
-                  className={`btn-green py-3 px-5 ${
-                    username.error || username.error ? 'error' : ''
-                  }`}
-                  type="submit">
+                <Button variant="contained" className="btn-green py-3 px-5" type="submit">
                   Войти
                   {loading && (
                     <CircularProgress
@@ -145,7 +140,7 @@ function Login() {
               </div>
               <div className="login-and-register">
                 <Link to={SITE_URL.REGISTER}>Зарегистрироваться</Link>
-                <Link to={SITE_URL.RESET_PASSWORD}>Восстановить пароль</Link>
+                <Link to={SITE_URL.RECOVER_PASSWORD}>Восстановить пароль</Link>
               </div>
             </div>
           </form>

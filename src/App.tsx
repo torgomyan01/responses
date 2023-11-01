@@ -25,9 +25,8 @@ import ChangeMarketplace from './pages/change-marketplace/change-marketplace';
 import AdminPage from './pages/admin/admin';
 import UnderConstructionPage from './pages/underConstruction/underConstructionPage';
 import Register from './pages/register/register';
-import ResetPassword from './pages/reset-password/reset-password';
+import RecoverPassword from './pages/recover-password/recover-password';
 import SettingsExpanded from './pages/settings-expanded/settings-expanded';
-import ResetPasswordUpdate from './pages/reset-password-update/reset-password-update';
 
 const App: React.FC = () => {
   const AuthLoader = () => {
@@ -62,11 +61,7 @@ const App: React.FC = () => {
           <Route index element={<Navigate to={SITE_URL.LOGIN} />} />
           <Route path={SITE_URL.LOGIN} element={<Login />} loader={AuthLoader} />
           <Route path={SITE_URL.REGISTER} element={<Register />} />
-          <Route path={SITE_URL.RESET_PASSWORD} element={<ResetPassword />} />
-          <Route
-            path={`${SITE_URL.RESET_PASSWORD_UPDATE}/:key`}
-            element={<ResetPasswordUpdate />}
-          />
+          <Route path={SITE_URL.RECOVER_PASSWORD} element={<RecoverPassword />} />
 
           <Route path={SITE_URL.MY_ACCOUNT} loader={AuthLoaderRedirect} element={<MyAccountPage />}>
             <Route

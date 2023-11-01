@@ -171,9 +171,6 @@ body{
     color: #61CDA6 !important;
     padding: 0.9375rem 2.125rem !important;
   }
-  &:hover, &:active{
-    background: #47B08B !important;
-  }
 }
 
 .btn-blue{
@@ -190,18 +187,6 @@ body{
     border: 1px solid #4B4AEF;
     background: #FFF !important;
     color: #4B4AEF !important;
-  }
-  &:hover, &:active{
-    background: #504FCD !important;
-  }
-}
-
-button{
-  &.error{
-    background: #FF6C6C !important;
-    &:hover{
-      background: #de5656 !important;
-    }
   }
 }
 
