@@ -135,8 +135,8 @@ export const validRegex = (email: string) => {
   );
 };
 
-export const setAlertError = (error: any) => (dispatch: any) => {
-  const message = error?.error?.message || 'Ошибка сохранения';
+export const setAlertError = (error: any, defaultMessage: string = 'Ошибка сохранения') => {
+  const message = error?.error?.message || defaultMessage;
   store.dispatch(
     openAlert({
       status: AlertSiteTypes.error,
