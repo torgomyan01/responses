@@ -1,4 +1,7 @@
-import { LocalStorageKeys, STORES_MARKETPLACE } from './const';
+import { STORES_MARKETPLACE } from './const';
+import { openAlert, setMessageAlert } from '../redux/alert-site';
+import { AlertSiteTypes } from '../enums/enums';
+import store from '../app/store';
 
 export const RandomKey = (length = 5) => {
   let result = '';
@@ -130,4 +133,15 @@ export const validRegex = (email: string) => {
   return email.match(
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   );
+};
+
+export const setAlertError = (error: any) => (dispatch: any) => {
+  const message = error?.error?.message || 'Ошибка сохранения';
+  store.dispatch(
+    openAlert({
+      status: AlertSiteTypes.error,
+      go: true
+    })
+  );
+  store.dispatch(setMessageAlert(message));
 };

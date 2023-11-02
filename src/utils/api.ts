@@ -1,5 +1,8 @@
 import axios from 'axios';
 import { API_URLS } from './const';
+import store from '../app/store';
+import { openAlert, setMessageAlert } from '../redux/alert-site';
+import { AlertSiteTypes } from '../enums/enums';
 
 const API_URL = process.env.REACT_APP_API_URL;
 

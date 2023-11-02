@@ -8,7 +8,7 @@ import Select from '../../../../features/select/select';
 import { openAlert, setMessageAlert } from '../../../../redux/alert-site';
 import { AlertSiteTypes } from '../../../../enums/enums';
 import { useDispatch } from 'react-redux';
-import { validRegex } from '../../../../utils/helpers';
+import { setAlertError, validRegex } from '../../../../utils/helpers';
 
 const label = {
   inputProps: { 'aria-label': 'Checkbox demo' },
@@ -27,8 +27,6 @@ function Settings({ change }: ISettings) {
   const [userInfo, setUserInfo] = useState<IUserProfile | null>(null);
   const [emailValidator, setEmailValidator] = useState<null | string>(null);
   const [loadingSave, setLoadingSave] = useState<boolean>(false);
-
-  console.log(userInfo);
 
   useEffect(() => {
     GetUserInfo()
@@ -87,15 +85,9 @@ function Settings({ change }: ISettings) {
           //setTimeout(() => change(1), 2000);
         })
         .catch((err) => {
-          const message = err?.error?.message || 'Ошибка сохранения';
           setLoadingSave(false);
-          dispatch(
-            openAlert({
-              status: AlertSiteTypes.error,
-              go: true
-            })
-          );
-          dispatch(setMessageAlert(message));
+
+          setAlertError(err);
         });
     }
   }

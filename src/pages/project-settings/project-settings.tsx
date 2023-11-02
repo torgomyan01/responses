@@ -142,7 +142,7 @@ function ProjectSettings() {
           if (err.response.status === 500) {
             dispatch(
               openAlert({
-                status: AlertSiteTypes.success,
+                status: AlertSiteTypes.error,
                 go: true
               })
             );
