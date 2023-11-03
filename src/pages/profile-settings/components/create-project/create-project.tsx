@@ -3,7 +3,12 @@ import { Button, Checkbox, CircularProgress } from '@mui/material';
 import Interrogative from '../../../../features/Interrogative/Interrogative';
 import './create-project.scss';
 import DefaultInputs from '../../../../features/defultinputs/Defultinputs';
-import { ChangeDefInputValue, checkNumberOfString, RandomKey } from '../../../../utils/helpers';
+import {
+  ChangeDefInputValue,
+  checkNumberOfString,
+  RandomKey,
+  setAlertError
+} from '../../../../utils/helpers';
 import InfoOzon from '../info-ozon/info-ozon';
 import InfoWaldberis from '../info-waldberis/info-waldberis';
 import { DEF_INPUT, SITE_URL, STORES_MARKETPLACE } from '../../../../utils/const';
@@ -85,6 +90,7 @@ function CreateProject({ change }: ICreateProject) {
       .catch((err) => {
         console.log(err);
         setLoading(false);
+        setAlertError(err);
       });
   }
 

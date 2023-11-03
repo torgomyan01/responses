@@ -15,7 +15,7 @@ import {
   GetProductResponseConfiguration
 } from '../../utils/api';
 import ProjectSettingsWrapper from '../project-settings/components/project-settings-wrapper';
-import { changeProductReplyConfiguration, RandomKey } from '../../utils/helpers';
+import { changeProductReplyConfiguration, RandomKey, setAlertError } from '../../utils/helpers';
 import { openAlert, setMessageAlert } from '../../redux/alert-site';
 import { AlertSiteTypes } from '../../enums/enums';
 
@@ -280,6 +280,7 @@ function SettingsExpanded() {
         .catch((err) => {
           console.log(err);
           setLoadingSave(false);
+          setAlertError(err);
         });
     }
   }

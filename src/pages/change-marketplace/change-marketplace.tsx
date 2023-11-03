@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import MainTemplate from '../../features/main-template/main-template';
-import { ChangeDefInputValue, RandomKey } from '../../utils/helpers';
+import { ChangeDefInputValue, RandomKey, setAlertError } from '../../utils/helpers';
 import { Backdrop, Button, Checkbox, CircularProgress } from '@mui/material';
 import Interrogative from '../../features/Interrogative/Interrogative';
 import DefaultInputs from '../../features/defultinputs/Defultinputs';
@@ -140,6 +140,7 @@ function ChangeMarketplace() {
         .catch((err) => {
           console.log(err);
           setLoading(false);
+          setAlertError(err);
         });
     }
   }

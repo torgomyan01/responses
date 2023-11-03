@@ -3,19 +3,17 @@ import './project-settings.scss';
 import MainTemplate from '../../features/main-template/main-template';
 import { Button, CircularProgress } from '@mui/material';
 import Shape from '../../features/shape/shape';
-import SortingSelect from '../../features/sorting-select/sorting-select';
 import Interrogative from '../../features/Interrogative/Interrogative';
 import DefSwitch from '../../features/switch/switch';
 import ProjectSettingsWrapper from './components/project-settings-wrapper';
 import { GetStoreInfo, SaveStoreInfo } from '../../utils/api';
-import { changeProductSettings } from '../../utils/helpers';
+import { changeProductSettings, setAlertError } from '../../utils/helpers';
 import Select from '../../features/select/select';
 import { useDispatch, useSelector } from 'react-redux';
 import { openAlert, setMessageAlert } from '../../redux/alert-site';
 import { AlertSiteTypes } from '../../enums/enums';
 import { Link } from 'react-router-dom';
 import { SITE_URL } from '../../utils/const';
-import store from '../../app/store';
 import DefaultInputs from '../../features/defultinputs/Defultinputs';
 
 const sortArray = [
@@ -139,6 +137,7 @@ function ProjectSettings() {
         .catch((err) => {
           console.log(err);
           setLoading(false);
+          setAlertError(err);
           if (err.response.status === 500) {
             dispatch(
               openAlert({
