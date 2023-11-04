@@ -28,8 +28,9 @@ function ResetPassword() {
 
     setLoadingGetKey(true);
     StartResetPassword({ username: username.value })
-      .then(() => {
+      .then(({ data }) => {
         navigation(`${SITE_URL.LOGIN}`);
+        // navigation(`${SITE_URL.RESET_PASSWORD_UPDATE}/${data.secretKey}`);
         setLoadingGetKey(false);
       })
       .catch((err) => {

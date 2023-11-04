@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { SaveResetPassword } from '../../utils/api';
 import { openAlert, setMessageAlert } from '../../redux/alert-site';
 import { AlertSiteTypes } from '../../enums/enums';
+import { setAlertError } from '../../utils/helpers';
 
 function ResetPasswordUpdate() {
   const { key } = useParams();
@@ -56,7 +57,7 @@ function ResetPasswordUpdate() {
           }, 2000);
         })
         .catch((err) => {
-          console.log(err);
+          setAlertError(err);
           setLoading(false);
         });
     }
